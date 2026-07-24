@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: Account Reports API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Reports
+paths:
+  /reports/{reportId}:
+    get:
+      summary: Retrieve Report details
+      operationId: getReport
+      parameters:
+      - in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+          description: The Report ID
+          example: f028b8e0-58d6-4f7d-8f6d-9b4c8818c3bf
+      responses:
+        '200':
+          description: The Report associated with the given unique ID
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - createdAt
+                - fileName
+                - type
+                - url
+                - urlExpiresAt
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the Report
+                    example: f028b8e0-58d6-4f7d-8f6d-9b4c8818c3bf
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: Time when this Report was created
+                    example: '2024-01-01T00:00:00.000Z'
+                  fileName:
+                    type: string
+                    description: A suitable name for saving the file to a filesystem
+                    example: payout-2024-01-01.csv
+                  type:
+                    type: string
+                    description: The type of the Report
+                    enum:
+                    - payout
+                    - payout_summary
+                    - transactions
+                    - global_transactions
+                    - global_payout_summary
+                    example: payout
+                  url:
+                    type: string
+                    description: A public URL for accessing this Report. See the `urlExpiresAt` field for the expiration time of this URL. If you need the Report after this date you can call this API again to receive a new URL
+                  urlExpiresAt:
+                    type: string
+                    format: date-time
+                    description: Time when this URL expires
+                    example: '2024-01-01T05:00:00.000Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/ReportNotFoundError'
+      tags:
+      - Reports
+components:
+  schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: reportId
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Report not found
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: REPORT_NOT_FOUND
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Report not found
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ReportNotFoundError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: REPORT_NOT_FOUND
+              enum:
+              - REPORT_NOT_FOUND
+            message:
+              type: string
+              example: Report not found
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    ReportNotFoundError:
+      description: Report was not found with the given ID
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReportNotFoundError'
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

@@ -1,0 +1,164 @@
+openapi: 3.1.0
+info:
+  title: Account Prices API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Prices
+paths:
+  /prices:
+    get:
+      summary: Get localized pricing by country or IP address.
+      operationId: getLocalizedPricingByIpAddressOrCountry
+      parameters:
+      - in: query
+        allowReserved: true
+        name: ip
+        description: The IP address of the user. Either `ip` or `country` is required.
+        schema:
+          type: string
+          example: 192.0.2.1
+      - in: query
+        allowReserved: true
+        name: country
+        description: The country of the user an ISO 3166-1 code. Either `ip` or `country` is required.
+        schema:
+          type: string
+          example: US
+      - in: query
+        allowReserved: true
+        name: locale
+        description: The locale to use for localized prices, in IETF BCP 47 tag
+        schema:
+          type: string
+          example: en-US
+      responses:
+        '200':
+          description: Country or IP address parsed successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  description: The country is not supported
+                  required:
+                  - isSupported
+                  - country
+                  properties:
+                    isSupported:
+                      type: boolean
+                      enum:
+                      - false
+                    country:
+                      type:
+                      - string
+                      - 'null'
+                    reason:
+                      type: string
+                      description: Why the country is not supported (e.g., "restricted" for sanctioned countries)
+                - type: object
+                  description: The country or IP address is supported
+                  required:
+                  - isSupported
+                  - country
+                  - currency
+                  - prices
+                  properties:
+                    isSupported:
+                      type: boolean
+                      enum:
+                      - true
+                    isFallback:
+                      type: boolean
+                      description: Whether this is a fallback to US pricing for an unsupported country
+                    country:
+                      type: string
+                      description: The country used for pricing (may be "US" for fallback)
+                    currency:
+                      type: string
+                      description: The currency of the included prices
+                    prices:
+                      type: object
+                      description: Map of tier code to price info
+                      additionalProperties:
+                        type:
+                        - object
+                        - 'null'
+                        required:
+                        - price
+                        - localizedPrice
+                        properties:
+                          price:
+                            type: number
+                            description: The price for this tier in the currency
+                          localizedPrice:
+                            type: string
+                            description: The price for this tier in the currency, localized either for the passed locale or the default locale in that country
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Prices
+components:
+  schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: items.0
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Item missing both price tier and price.
+        context:
+          type: object
+          description: Additional context about the error
+          additionalProperties: true
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: INVALID_ITEM_ERROR
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Item missing both price tier and price.
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

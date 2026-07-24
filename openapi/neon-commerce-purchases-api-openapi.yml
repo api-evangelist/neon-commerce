@@ -1,0 +1,1895 @@
+openapi: 3.1.0
+info:
+  title: Account Purchases API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Purchases
+paths:
+  /purchases/search:
+    get:
+      summary: Search for a purchase by checkout ID or order number
+      operationId: findPurchase
+      parameters:
+      - in: query
+        allowReserved: true
+        name: orderNumber
+        schema:
+          type: string
+          description: The order number supplied to the user on checkout completion
+          example: ABCD-1234-EFGH
+      - in: query
+        allowReserved: true
+        name: checkoutId
+        schema:
+          type: string
+          description: A finalized checkout ID. Use this parameter to find the associated purchase
+          example: 97937797-8675-496f-a219-198b3b3b7f63
+      responses:
+        '200':
+          description: The purchase associated with the given unique ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/PurchaseNotFoundError'
+      tags:
+      - Purchases
+  /purchases/{purchaseId}:
+    get:
+      summary: Get a purchase
+      description: Get a purchase by its ID
+      operationId: getPurchase
+      parameters:
+      - in: path
+        name: purchaseId
+        required: true
+        description: The purchase ID
+        schema:
+          type: string
+      responses:
+        '201':
+          description: The purchase object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/PurchaseNotFoundError'
+      tags:
+      - Purchases
+  /purchases/refunds:
+    get:
+      summary: Get all available refunds for a specific environment
+      operationId: getPurchaseRefunds
+      parameters:
+      - in: query
+        allowReserved: true
+        name: limit
+        schema:
+          type: number
+          maximum: 100
+          description: A limit on the number of refunds to be returned.
+      - in: query
+        allowReserved: true
+        name: startDate
+        schema:
+          type: string
+          format: date-time
+        description: Filter refunds created on or after this date (inclusive)
+      - in: query
+        allowReserved: true
+        name: endDate
+        schema:
+          type: string
+          format: date-time
+        description: Filter refunds created before this date (exclusive)
+      - in: query
+        allowReserved: true
+        name: startingAfter
+        schema:
+          type: string
+        description: 'A cursor for use in pagination. An object ID that defines your place in the list of refunds. It''ll fetch the next page of the list.
+
+          '
+      - in: query
+        allowReserved: true
+        name: endingBefore
+        schema:
+          type: string
+        description: 'A cursor for use in pagination. An object ID that defines your place in the list of refunds. It''ll fetch the previous page of the list.
+
+          '
+      responses:
+        '200':
+          description: List of refunds
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Refund'
+                  links:
+                    type: object
+                    required:
+                    - previous
+                    - next
+                    properties:
+                      previous:
+                        type:
+                        - string
+                        - 'null'
+                        description: Link to the previous page of refunds
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                        description: Link to the next page of refunds
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Purchases
+  /purchases:
+    get:
+      summary: Get all available purchases for a specific environment
+      operationId: getPurchases
+      parameters:
+      - in: query
+        allowReserved: true
+        name: limit
+        schema:
+          type: number
+          maximum: 100
+          description: A limit on the number of purchases to be returned.
+      - in: query
+        allowReserved: true
+        name: startDate
+        schema:
+          type: string
+          format: date-time
+          description: Only returns purchases that were created after the given starting date (inclusive).
+      - in: query
+        allowReserved: true
+        name: endDate
+        schema:
+          type: string
+          format: date-time
+          description: Only returns purchases that were created before the given ending date (exclusive).
+      - in: query
+        allowReserved: true
+        name: startingAfter
+        schema:
+          type: string
+          description: 'A cursor for use in pagination. An object ID that defines your place in the list of purchases. It''ll fetch the next page of the list.
+
+            '
+      - in: query
+        allowReserved: true
+        name: endingBefore
+        schema:
+          type: string
+          description: 'A cursor for use in pagination. An object ID that defines your place in the list of purchases. It''ll fetch the previous page of the list.
+
+            '
+      responses:
+        '200':
+          description: The list of purchases corresponding to the chosen filters (if any).
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                      - $ref: '#/components/schemas/BasePurchase'
+                      - type: object
+                        required:
+                        - refunds
+                        properties:
+                          refunds:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Refund'
+                  links:
+                    type: object
+                    required:
+                    - previous
+                    - next
+                    properties:
+                      previous:
+                        type:
+                        - string
+                        - 'null'
+                        description: 'The link associated with the query of the same service if you were to paginate to the previous page of the list. If null, then there''s no more previous data. This URL will include any date filters, if applicable.
+
+                          '
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                        description: 'The link associated with the query of the same service if you were to paginate to the next page of the list. If null, then there''s no more data. This URL will include any date filters, if applicable.
+
+                          '
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Purchases
+  /purchases/{purchaseId}/refund:
+    post:
+      summary: 'Refunds a purchase.
+
+        '
+      description: 'Refunds are typically handled by Neon. Please reach out to Neon to determine if you qualify for access to this API.
+
+        '
+      operationId: refundPurchase
+      parameters:
+      - in: path
+        name: purchaseId
+        description: A valid purchase ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                properties:
+                  fee:
+                    type: number
+                    description: The amount to be removed from the fee (treated as 0 if not provided), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+              - type: object
+                required:
+                - items
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - itemId
+                      - quantity
+                      properties:
+                        itemId:
+                          type: string
+                          description: The ID of the purchased item to be refunded
+                        quantity:
+                          type: number
+                          description: The number of units of this item to be refunded; units are refunded in order of most to least discounted
+      responses:
+        '200':
+          description: Refund Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/PurchaseNotFoundError'
+      tags:
+      - Purchases
+  /purchases/webhooks:
+    post:
+      summary: Subscribe to purchase lifecycle events
+      description: Learn more about webhooks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks).
+      operationId: subscribeToWebhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - url
+              properties:
+                url:
+                  description: The destination URL for these webhooks
+                  type: string
+                  format: uri
+                  example: https://gameUrl.com/purchase.completed
+                secret:
+                  description: A shared secret used to sign every webhook
+                  type: string
+                enabledEvents:
+                  description: The set of events to which this URL will be subscribed, or `*` to subscribe to all events
+                  type: array
+                  default:
+                  - '*'
+                  items:
+                    type: string
+                    enum:
+                    - '*'
+                    - payment.failed
+                    - purchase.completed
+                    - refund.processed
+                    - dispute.closed
+                    - dispute.opened
+                    - invoice.paid
+                    - subscription.activated
+                    - subscription.canceled
+                    - subscription.expired
+                    - checkout.abandoned
+                    - cart.abandoned
+                eventVersion:
+                  description: The version of schema to be used for calls to this URL
+                  default: 2
+                  type: number
+      responses:
+        '201':
+          description: Webhook added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - secret
+                - ids
+                properties:
+                  secret:
+                    type: string
+                    description: The secret used to sign this callback's data, either passed in or generated by Neon
+                  ids:
+                    type: array
+                    description: The created callback IDs
+                    items:
+                      type: string
+                      description: The UUID of the created callback
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      callbacks:
+        payment.failed:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`payment.failed`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/PaymentFailedWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        purchase.completed:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`purchase.completed`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/PurchaseWebhookV2'
+                      - $ref: '#/components/schemas/PurchaseWebhookV1'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        refund.processed:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`refund.processed`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/RefundWebhookV2'
+                      - $ref: '#/components/schemas/RefundWebhookV1'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        dispute.opened:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`dispute.opened`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/DisputeWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        dispute.closed:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`dispute.closed`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/DisputeWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        invoice.paid:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`invoice.paid`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/InvoiceWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        invoice.refunded:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`invoice.refunded`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/InvoiceRefundWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        subscription.activated:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`invoice.paid`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/SubscriptionWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        subscription.canceled:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`invoice.paid`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/SubscriptionWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        subscription.expired:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`subscription.expired`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/SubscriptionWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        checkout.abandoned:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`invoice.paid`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/CheckoutAbandonedWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+        cart.abandoned:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`invoice.paid`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      anyOf:
+                      - $ref: '#/components/schemas/CartAbandonedWebhook'
+              responses:
+                '200':
+                  description: Return a 200 status to indicate the request was handled successfully
+      tags:
+      - Purchases
+components:
+  schemas:
+    PaymentFailedWebhook:
+      type: object
+      description: Request body for event version 1
+      required:
+      - id
+      - version
+      - isSandbox
+      - type
+      - data
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 1
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event (payment.failed)
+          example: payment.failed
+        data:
+          allOf:
+          - type: object
+            required:
+            - payment
+            properties:
+              payment:
+                type: object
+                description: The payment that failed
+                required:
+                - id
+                - date
+                - status
+                - method
+                - code
+                - message
+                - amount
+                - currency
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the payment
+                  date:
+                    type: string
+                    format: date-time
+                    description: The date of this payment failure
+                  status:
+                    type: string
+                    description: The status of the payment
+                  method:
+                    type: string
+                    description: The payment method associated with this payment
+                  code:
+                    type: string
+                    description: The error code associated with the payment failure
+                  message:
+                    type: string
+                    description: Additional information to describe the payment failure
+                  amount:
+                    type: integer
+                    description: The amount of this payment, expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+                  currency:
+                    type: string
+                    description: The ISO 4217 currency code of the payment
+          - anyOf:
+            - type: object
+              required:
+              - checkout
+              properties:
+                checkout:
+                  type: object
+                  required:
+                  - id
+                  - accountId
+                  properties:
+                    id:
+                      type: string
+                      description: The checkout ID associated with this payment
+                    accountId:
+                      description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+                        '
+                      type:
+                      - string
+                      - 'null'
+                      example: player_987654
+                      minLength: 1
+            - type: object
+              required:
+              - invoice
+              properties:
+                invoice:
+                  type: object
+                  required:
+                  - id
+                  - accountId
+                  properties:
+                    id:
+                      type: string
+                      description: The invoice ID associated with this payment
+                    accountId:
+                      description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+                        '
+                      type:
+                      - string
+                      - 'null'
+                      example: player_987654
+                      minLength: 1
+    SubscriptionWebhook:
+      type: object
+      description: Request body for event version 1
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 1
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event (invoice.paid or dispute.closed)
+          example: invoice.paid
+        data:
+          type: object
+          properties:
+            subscription:
+              $ref: '#/components/schemas/SubscriptionExternal'
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: purchaseId
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Purchase not found
+    InvoiceRefundWebhook:
+      type: object
+      description: Request body for event version 1
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 1
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event (invoice.refunded)
+          example: invoice.paid
+        data:
+          type: object
+          required:
+          - refund
+          properties:
+            refund:
+              $ref: '#/components/schemas/InvoiceRefund'
+    BasePurchase:
+      type: object
+      required:
+      - id
+      - date
+      - checkoutId
+      - orderNumber
+      - itemsSubtotalAmount
+      - totalExcludingTaxAmount
+      - subtotalAmount
+      - taxAmount
+      - taxRate
+      - totalAmount
+      - currency
+      - initialCurrency
+      - status
+      - playerCountry
+      - initialPlayerCountry
+      - pricingSheetName
+      - locale
+      - items
+      - payment
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+          description: The ISO timestamp of this purchase
+        orderNumber:
+          type: string
+          description: The user-facing short ID associated with this purchase
+        checkoutId:
+          allOf:
+          - description: The ID of the checkout this purchase originated from
+          - type: string
+        itemsSubtotalAmount:
+          type: number
+          description: Sum of all items (price × quantity), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        totalExcludingTaxAmount:
+          type: number
+          description: Total amount excluding tax (total - tax), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        subtotalAmount:
+          type: number
+          description: '**Deprecated:** Use `itemsSubtotalAmount` or `totalExcludingTaxAmount` instead. This field represents the total excluding tax (total - tax), expressed as 100x the currency''s base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies'
+          deprecated: true
+        taxAmount:
+          type: number
+          description: The purchase tax amount, expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        taxRate:
+          type: number
+          description: The tax rate used for this checkout as a percentage
+        totalAmount:
+          type: number
+          description: The total amount of this checkout (subtotal + tax), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        discountAmount:
+          type:
+          - number
+          - 'null'
+          description: The amount this checkout was discounted, if applicable, expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        promoCode:
+          type:
+          - string
+          - 'null'
+          description: The promo code applied to this checkout, if applicable
+        fee:
+          type: object
+          required:
+          - fxRate
+          - feeAmount
+          - netProceedsAmount
+          - settlementCurrency
+          properties:
+            fxRate:
+              type: number
+              description: The foreign-exchange rate used to convert this purchase from the purchase currency to your settlement currency
+            feeAmount:
+              type: number
+              description: The fee amount we charged, expressed as 100x your settlement currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+            netProceedsAmount:
+              type: number
+              description: The net proceeds you're credited, expressed as 100x your settlement currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+            settlementCurrency:
+              type: string
+              description: Your settlement currency
+        currency:
+          type: string
+        initialCurrency:
+          type: string
+          description: The initial currency of the purchase before any currency changes
+        initialPlayerCountry:
+          type: string
+          description: The initial player country of the purchase before any country changes
+        pricingSheetName:
+          type:
+          - string
+          - 'null'
+          description: The name of the pricing sheet used for this purchase
+        status:
+          type: string
+        externalReferenceId:
+          type:
+          - string
+          - 'null'
+          example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
+          description: User-supplied reference ID
+        externalMetadata: {}
+        accountId:
+          description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+            '
+          type:
+          - string
+          - 'null'
+          example: player_987654
+          minLength: 1
+        email:
+          type:
+          - string
+          - 'null'
+          description: The user's email address
+        ipAddress:
+          type:
+          - string
+          - 'null'
+          description: The user's IP address
+        locale:
+          type: string
+          description: The player's IETF BCP 47 locale
+          example: en-US
+        playerCountry:
+          type: string
+          description: The player's ISO 3166-1 alpha-2 country
+          example: US
+        items:
+          type: array
+          description: The items acquired in this purchase
+          items:
+            $ref: '#/components/schemas/PurchaseItem'
+        payment:
+          type:
+          - object
+          - 'null'
+          description: The payment details for this purchase
+          required:
+          - vendor
+          - method
+          properties:
+            vendor:
+              type: string
+              description: The payment vendor used for this purchase
+            method:
+              type:
+              - string
+              - 'null'
+              description: The payment method used for this purchase, if available (e.g. free purchases)
+        referral:
+          type:
+          - object
+          - 'null'
+          description: Information about the referral that led to this purchase
+          properties:
+            source:
+              type:
+              - string
+              - 'null'
+              enum:
+              - facebook
+              - discord
+              - google
+              - twitter
+              - tiktok
+              - youtube
+              - chatgpt
+              - support
+              - unknown
+              - null
+              description: The source of the referral
+            method:
+              type:
+              - string
+              - 'null'
+              enum:
+              - utm
+              - click_id
+              - referer
+              - null
+              description: The method used to derive the referral source
+            host:
+              type:
+              - string
+              - 'null'
+              description: The host of the referral, from the HTTP `referer` header
+        claimedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The ISO timestamp of when this purchase was marked as claimed
+    CartAbandonedWebhook:
+      type: object
+      description: Request body for event version 1
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 1
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event
+          example: invoice.paid
+        data:
+          type: object
+          properties:
+            redirectUrl:
+              type: string
+              description: The URL to redirect the user to
+            cart:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ID of the cart
+            playerId:
+              type: string
+              description: The ID of the player
+    RefundWebhookV1:
+      type: object
+      description: Request body for event version 1
+      deprecated: true
+      properties:
+        refund:
+          type: object
+        isSandbox:
+          type: boolean
+    Purchase:
+      allOf:
+      - $ref: '#/components/schemas/BasePurchase'
+      - type: object
+        required:
+        - events
+        properties:
+          events:
+            type: array
+            items:
+              $ref: '#/components/schemas/PurchaseEvent'
+    RefundItem:
+      type: object
+      required:
+      - id
+      - quantity
+      - item
+      - sku
+      - name
+      - price
+      - referencePrice
+      - referenceCurrency
+      properties:
+        id:
+          type: string
+          description: The unique ID of this item
+          deprecated: true
+        quantity:
+          type: number
+          description: The number of units of this item refunded
+        item:
+          type: object
+          description: The original purchased item
+          required:
+          - id
+          - sku
+          properties:
+            id:
+              type: string
+              description: The unique ID of this item
+            sku:
+              type: string
+              description: The SKU of this item
+        sku:
+          type: string
+          description: The SKU of this item
+          deprecated: true
+        name:
+          type: string
+          description: The localized name of this item
+          deprecated: true
+        price:
+          type: number
+          description: The price of this item, expressed as 100x the smallest unit of the purchase currency
+          deprecated: true
+        refundableQuantity:
+          type: number
+          description: The purchased quantity of this item, excluding refunded units
+          deprecated: true
+        referencePrice:
+          type: number
+          description: The price of this item in the settlement currency
+          deprecated: true
+        referenceCurrency:
+          type: string
+          description: The settlement currency of this item
+          deprecated: true
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: PURCHASE_NOT_FOUND
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Purchase not found
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    SubscriptionExternal:
+      type: object
+      required:
+      - id
+      - sku
+      - name
+      - price
+      - currency
+      - status
+      - imageUrl
+      - country
+      - externalReferenceId
+      - externalMetadata
+      properties:
+        id:
+          type: string
+          description: The ID of this subscription
+          example: 123e4567-e89b-12d3-a456-426614174000
+        sku:
+          type: string
+          description: Unique subscription SKU
+          example: GOLD-1234
+        name:
+          type: string
+          minLength: 1
+          description: Customer-facing subscription name
+          example: Gold Membership
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user
+        price:
+          type: integer
+          minimum: 0
+          description: Subscription price, expressed in 100x the base unit of the currency; read more about prices [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api)
+          example: 9999
+        currency:
+          $ref: '#/components/schemas/Currency'
+        status:
+          type: string
+          description: Current status of the subscription
+          enum:
+          - active
+          - inactive
+          - pending_cancellation
+          - canceled
+          - expired
+          example: active
+        frequency:
+          type: string
+          default: monthly
+          description: Billing frequency for the subscription
+          example: monthly
+          enum:
+          - monthly
+        accountId:
+          description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+            '
+          type: string
+          example: player_987654
+          minLength: 1
+        accountDisplayName:
+          type:
+          - string
+          - 'null'
+          description: 'Public-facing account name. Could be:
+
+            * Gamertag (e.g., "GreatGamer123")
+
+            * Real name (e.g., "John Smith")
+
+            '
+          example: GreatGamer123
+        imageUrl:
+          type: string
+          format: uri
+          description: URI for subscription image
+          example: https://example.com/images/gold-membership.png
+        externalReferenceId:
+          type:
+          - string
+          - 'null'
+          description: Optional UUID for external reference tracking
+          example: e7ec4567-e89b-12d3-a456-426614174000
+        externalMetadata:
+          description: 'Additional tracking metadata for analytics and webhooks.
+
+            DO NOT include sensitive data or authentication tokens.
+
+            '
+        locale:
+          type: string
+          description: IETF BCP 47 language tag
+          default: en-US
+          example: en-US
+        country:
+          type: string
+          description: Player country
+          enum:
+          - AE
+          - AL
+          - AM
+          - AR
+          - AT
+          - AU
+          - BE
+          - BG
+          - BR
+          - CA
+          - CH
+          - CL
+          - CN
+          - CY
+          - CZ
+          - DE
+          - DK
+          - EE
+          - EG
+          - ES
+          - FI
+          - FR
+          - GB
+          - GE
+          - GR
+          - HK
+          - HR
+          - HU
+          - ID
+          - IE
+          - IL
+          - IN
+          - IS
+          - IT
+          - JP
+          - KR
+          - KZ
+          - LT
+          - LU
+          - LV
+          - MA
+          - MO
+          - MT
+          - MX
+          - MY
+          - NG
+          - NL
+          - 'NO'
+          - NZ
+          - OM
+          - PE
+          - PH
+          - PK
+          - PL
+          - PT
+          - RO
+          - RS
+          - RU
+          - SA
+          - SE
+          - SG
+          - SI
+          - SK
+          - TH
+          - TW
+          - UA
+          - US
+          - UY
+          - UZ
+          - BH
+          - CI
+          - CM
+          - GH
+          - JO
+          - KE
+          - KW
+          - QA
+          - RW
+          - SN
+          - TZ
+          - UG
+          - ZA
+          - TR
+    PurchaseBundleItem:
+      type: object
+      required:
+      - sku
+      - name
+      - quantity
+      properties:
+        sku:
+          type: string
+          description: External identifier
+        name:
+          type: string
+          description: Name of item, for display in checkout
+        quantity:
+          type: integer
+          description: Number of this item in purchase
+    PurchaseItem:
+      type: object
+      required:
+      - id
+      - sku
+      - name
+      - price
+      - quantity
+      - refundableQuantity
+      - referencePrice
+      - referenceCurrency
+      - bundleContents
+      properties:
+        id:
+          type: string
+          description: The unique ID of this item
+        sku:
+          type: string
+          description: The SKU of this item
+        name:
+          type: string
+          description: The localized name of this item
+        price:
+          type: number
+          description: The price of this item, expressed as 100x the smallest unit of the purchase currency
+        quantity:
+          type: number
+          description: The total purchased quantity of this item
+        refundableQuantity:
+          type: number
+          description: The purchased quantity of this item, excluding refunded units
+        referencePrice:
+          type: number
+          description: The price of this item in the settlement currency
+        referenceCurrency:
+          type: string
+          description: The settlement currency of this item
+        bundleContents:
+          type: array
+          description: The items bundled with this SKU
+          items:
+            $ref: '#/components/schemas/PurchaseBundleItem'
+    Currency:
+      type: string
+      enum:
+      - AED
+      - ALL
+      - AMD
+      - ARS
+      - AUD
+      - BRL
+      - CAD
+      - CLP
+      - CNY
+      - CZK
+      - DKK
+      - EGP
+      - EUR
+      - GBP
+      - GEL
+      - HKD
+      - IDR
+      - ILS
+      - INR
+      - ISK
+      - JPY
+      - KRW
+      - KZT
+      - MAD
+      - MXN
+      - MYR
+      - NGN
+      - NOK
+      - NZD
+      - PEN
+      - PHP
+      - PKR
+      - PLN
+      - RON
+      - RSD
+      - RUB
+      - SAR
+      - SEK
+      - SGD
+      - THB
+      - TRY
+      - TWD
+      - UAH
+      - USD
+      - UYU
+      - UZS
+      - KES
+      - TZS
+      - ZAR
+    PurchaseNotFoundError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: PURCHASE_NOT_FOUND
+              enum:
+              - PURCHASE_NOT_FOUND
+            message:
+              type: string
+              example: Purchase not found.
+    Refund:
+      type: object
+      required:
+      - purchaseId
+      - id
+      - refundId
+      - date
+      - subtotalAmount
+      - taxAmount
+      - totalAmount
+      - playerCountry
+      - initialCurrency
+      - initialPlayerCountry
+      - pricingSheetName
+      - items
+      - payment
+      properties:
+        purchaseId:
+          description: The ID of the purchase being refunded
+          type: string
+        id:
+          description: The refund ID
+          type: string
+        refundId:
+          type: string
+          description: The refund ID
+          deprecated: true
+        date:
+          description: The date of the refund
+          type: string
+          format: date-time
+        currency:
+          description: The currency of the refunded purchase
+          type: string
+        subtotalAmount:
+          description: '**Deprecated:** Use `itemsSubtotalAmount` or `totalExcludingTaxAmount` instead. The refund subtotal (i.e., the amount passed in), expressed as 100x the currency''s base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies'
+          type: number
+          deprecated: true
+        taxAmount:
+          description: The amount of sales tax refunded, expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+          type: number
+        totalAmount:
+          description: The total amount returned to the customer, expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+          type: number
+        accountId:
+          description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+            '
+          type:
+          - string
+          - 'null'
+          example: player_987654
+          minLength: 1
+        externalReferenceId:
+          description: The developer-supplied external reference ID on the originating purchase, if available
+          type:
+          - string
+          - 'null'
+        externalMetadata: {}
+        playerCountry:
+          type:
+          - string
+          - 'null'
+          description: The player's ISO 3166-1 alpha-2 country
+          example: US
+        initialCurrency:
+          type: string
+          description: The initial currency of the checkout before any currency changes
+        initialPlayerCountry:
+          type: string
+          description: The initial player country of the checkout before any country changes
+        pricingSheetName:
+          type:
+          - string
+          - 'null'
+          description: The name of the pricing sheet used for this purchase
+        items:
+          description: The items in the original purchase
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundItem'
+        payment:
+          type:
+          - object
+          - 'null'
+          description: The payment details for this purchase
+          required:
+          - vendor
+          - method
+          properties:
+            vendor:
+              type: string
+              description: The payment vendor used for this purchase
+            method:
+              type:
+              - string
+              - 'null'
+              description: The payment method used for this purchase, if available (e.g. free purchases)
+    InvoiceRefund:
+      type: object
+      required:
+      - id
+      - date
+      - subtotalAmount
+      - taxAmount
+      - totalAmount
+      - currency
+      - settlementCurrency
+      - invoiceId
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        subtotalAmount:
+          type: integer
+          deprecated: true
+        taxAmount:
+          type: integer
+        subtotalAmountInSettlementCurrency:
+          type: integer
+        totalAmountInSettlementCurrency:
+          type: integer
+        totalAmount:
+          type: integer
+        currency:
+          $ref: '#/components/schemas/Currency'
+        settlementCurrency:
+          $ref: '#/components/schemas/Currency'
+        invoiceId:
+          type: string
+    RefundWebhookV2:
+      type: object
+      description: Request body for event version 2
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 2
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event (refund.processed)
+          example: refund.processed
+        data:
+          type: object
+          properties:
+            refund:
+              $ref: '#/components/schemas/Refund'
+    Dispute:
+      type: object
+      required:
+      - id
+      - date
+      - status
+      - comments
+      - amount
+      - purchaseId
+      - currency
+      - isSandbox
+      - reason
+      properties:
+        id:
+          description: The dispute ID
+          type: string
+        date:
+          description: The date of the dispute
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: The status of this dispute. Disputes are initialized in the `open` status; when we receive a decision from the customer's bank, the status is updated to `won`, `lost`, or `closed`.
+          enum:
+          - open
+          - closed
+          - won
+          - lost
+        comments:
+          type:
+          - string
+          - 'null'
+          description: Optional comments; defaults to null
+        amount:
+          type: number
+          description: Total disputed amount
+        purchaseId:
+          type: string
+          description: The ID of the purchase being disputed
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        currency:
+          type: string
+          description: The ISO 4217 currency code of the purchase under dispute
+        reason:
+          type:
+          - string
+          - 'null'
+          description: The reason for the dispute
+          enum:
+          - null
+          - cancel_subscription
+          - product_not_received
+          - product_unacceptable
+          - friendly_fraud
+          - ach_return
+          - ach_reversal
+          - duplicate
+          - fraud
+          - authorization
+          - processing_errors
+          - consumer_disputes
+          - other
+    Invoice:
+      type: object
+      required:
+      - id
+      - date
+      - itemsSubtotalAmount
+      - totalExcludingTaxAmount
+      - subtotalAmount
+      - taxAmount
+      - totalAmount
+      - currency
+      - fee
+      - subscriptionId
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        itemsSubtotalAmount:
+          type: integer
+        totalExcludingTaxAmount:
+          type: integer
+        subtotalAmount:
+          type: integer
+          deprecated: true
+        taxAmount:
+          type: integer
+        subtotalAmountInSettlementCurrency:
+          type: integer
+        totalAmountInSettlementCurrency:
+          type: integer
+        totalAmount:
+          type: integer
+        currency:
+          $ref: '#/components/schemas/Currency'
+        fee:
+          type: object
+          required:
+          - fxRate
+          - feeAmount
+          - netProceedsAmount
+          - settlementCurrency
+          properties:
+            fxRate:
+              type: number
+              description: The foreign-exchange rate used to convert this purchase from the purchase currency to your settlement currency
+            feeAmount:
+              type: number
+              description: The fee amount we charged, expressed as 100x your settlement currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+            netProceedsAmount:
+              type: number
+              description: The net proceeds you're credited, expressed as 100x your settlement currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+            settlementCurrency:
+              type: string
+              description: Your settlement currency
+        subscriptionId:
+          type: string
+    DisputeWebhook:
+      type: object
+      description: Request body for event version 1
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 2
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event (dispute.opened or dispute.closed)
+          example: dispute.opened
+        data:
+          type: object
+          properties:
+            dispute:
+              $ref: '#/components/schemas/Dispute'
+    InvoiceWebhook:
+      type: object
+      description: Request body for event version 1
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 1
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event (invoice.paid)
+          example: invoice.paid
+        data:
+          type: object
+          required:
+          - invoice
+          properties:
+            invoice:
+              $ref: '#/components/schemas/Invoice'
+    PurchaseWebhookV1:
+      type: object
+      description: Request body for event version 1
+      deprecated: true
+      properties:
+        purchase:
+          type: object
+        isSandbox:
+          type: boolean
+    PurchaseEvent:
+      type: object
+      required:
+      - id
+      - type
+      - amount
+      - currency
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        date:
+          type: string
+          description: The ISO timestamp of this event
+          format: date-time
+        type:
+          type: string
+          enum:
+          - sale
+          - refund
+          - chargeback
+        amount:
+          type: number
+          description: The total amount of this event (either the purchase or refund total), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        currency:
+          type: string
+    PurchaseWebhookV2:
+      type: object
+      description: Request body for event version 2
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 2
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event (purchase.completed)
+          example: purchase.completed
+        data:
+          type: object
+          properties:
+            purchase:
+              $ref: '#/components/schemas/Purchase'
+    CheckoutAbandonedWebhook:
+      type: object
+      description: Request body for event version 1
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        version:
+          type: integer
+          description: The version of this event
+          enum:
+          - 1
+        isSandbox:
+          type: boolean
+          description: Whether this event is in sandbox mode
+        type:
+          type: string
+          description: The type of this event
+          example: invoice.paid
+        data:
+          type: object
+          properties:
+            redirectUrl:
+              type: string
+              description: The URL to redirect the user to
+            checkout:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ID of the checkout
+                date:
+                  type: string
+                  format: date-time
+                  description: The ISO timestamp of this purchase
+  responses:
+    PurchaseNotFoundError:
+      description: Purchase is not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PurchaseNotFoundError'
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  parameters:
+    NeonSignature:
+      in: header
+      name: X-Neon-Digest
+      required: true
+      schema:
+        type: string
+        description: 'The signature of this request. The signing key used is returned when the callbacks are generated.
+
+          To verify the signature, convert the request body to a JSON string, compute an HMAC with the SHA-256 hash function using the signing key as the key and the JSONified request body as the message.
+
+          '
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

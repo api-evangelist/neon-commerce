@@ -1,0 +1,895 @@
+openapi: 3.1.0
+info:
+  title: Account Client API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Client
+paths:
+  /client/token:
+    post:
+      summary: Retrieve a client token
+      operationId: createClientToken
+      description: 'This endpoint issues a client token that can be used with client-side requests to the Neon APIs. Expires in 24 hours.
+
+        '
+      security:
+      - ClientKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - accountId
+              properties:
+                accountId:
+                  description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+                    '
+                  type: string
+                  example: player_987654
+                  minLength: 1
+                accountDisplayName:
+                  type:
+                  - string
+                  - 'null'
+                  description: 'The display name for the player. This will be used instead of the `accountId` for display if provided. This can be used when the player ID is not meant to be player-facing. Some common examples are a custom gamertag (e.g. "GreatGamer123"), the player''s name (e.g. "John Smith"), or an email address (e.g. "johnsmith@gmail.com").
+
+                    '
+                pricingSheetName:
+                  type:
+                  - string
+                  - 'null'
+                metadata:
+                  type:
+                  - object
+                  - 'null'
+                  description: 'Additional metadata that you''d like to track alongside events for this user. This data will be included in analytics events and webhooks. It should not include any sensitive or internal data like internal authentication tokens. Common use cases are analytics session IDs or device IDs.
+
+                    '
+                  additionalProperties: true
+                fraudMetadata:
+                  type: object
+                  description: 'Metadata used to help prevent fraud.
+
+                    '
+                  properties:
+                    customer:
+                      type: object
+                      description: 'Metadata about the customer making a checkout.
+
+                        '
+                      properties:
+                        creationTime:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                          description: 'The time the customer was created.
+
+                            '
+                        socialSignOnType:
+                          type: string
+                          description: 'The social sign-in type of the customer in game.
+
+                            '
+                          enum:
+                          - google
+                          - apple
+                          - facebook
+                          - twitter
+                          - yahoo
+                          - microsoft
+                          - wechat
+                          - github
+                          - linkedin
+                          - amazon
+                          - other
+                        platform:
+                          type: string
+                          description: 'The platform the customer is using.
+
+                            '
+                          enum:
+                          - web
+                          - ios
+                          - android
+                          - macos
+                          - windows
+                          - linux
+                          - other
+                        sessionCount:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The number of sessions the customer has had in the app.
+
+                            '
+                        levelInApp:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The level of the customer in the app.
+
+                            '
+                        followersInApp:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The number of followers the customer has in the app.
+
+                            '
+                        isOnLatestAppVersion:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer is on the latest version of the app.
+
+                            '
+                        hasLinkedSocialAccount:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer has linked a social account in the app.
+
+                            '
+                        finishedGameSetup:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer has finished the game setup.
+
+                            '
+                        isKnownUser:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer is a known user in the app.
+
+                            '
+                    latestLoginIp:
+                      type: object
+                      description: 'An object of IP information.
+
+                        '
+                      properties:
+                        ipAddress:
+                          type:
+                          - string
+                          - 'null'
+                          description: The IP address the customer logged in from
+                        country:
+                          type:
+                          - string
+                          - 'null'
+                          description: The country the IP address is located in, as an ISO 3166-1 code
+                        city:
+                          type:
+                          - string
+                          - 'null'
+                          description: The city the IP address is located in
+                        region:
+                          type:
+                          - string
+                          - 'null'
+                          description: The region the IP address is located in
+      responses:
+        '201':
+          description: The client token was successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - token
+                - expiresAt
+                - expiresInSeconds
+                properties:
+                  token:
+                    type: string
+                    description: 'The token to use for client-side requests to Neon APIs. This token expires and should be re-requested frequently.
+
+                      '
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    description: 'The time at which the client token expires.
+
+                      '
+                    example: '2023-06-23T20:00:00.000Z'
+                  expiresInSeconds:
+                    type: integer
+                    description: 'The time in seconds until the client token expires.
+
+                      '
+        '400':
+          $ref: '#/components/responses/APIError'
+        '401':
+          $ref: '#/components/responses/APIError'
+        '500':
+          $ref: '#/components/responses/APIError'
+      tags:
+      - Client
+  /client/checkout:
+    post:
+      summary: Create a checkout using a client token
+      description: 'Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. See [Create a checkout using a client token](https://docs.neonpay.com/reference/createcheckoutclient) for more information. Don''t use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.
+
+        '
+      operationId: createCheckoutClient
+      security:
+      - ClientToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientCreateCheckoutRequest'
+      responses:
+        '201':
+          description: The response is used to move the user into the checkout flow and can be used to track the status of a checkout.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - redirectUrl
+                - externalProvider
+                - token
+                properties:
+                  id:
+                    description: ID of the created checkout
+                    type: string
+                  token:
+                    description: Token used to access the checkout. Must be included alongside the checkout ID.
+                    type: string
+                  redirectUrl:
+                    description: URL of the checkout; redirect to this URL in the browser
+                    type: string
+                    example: https://checkout.neonpay.com/checkout/ct_KbWxq3yU8jZpL0vN7sM1aR4tH6gQ2dE5
+                  externalProvider:
+                    description: The external provider used for this checkout, if applicable
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the external provider, if applicable
+                        example: xsolla
+                      orderId:
+                        type:
+                        - number
+                        - 'null'
+                        description: The order ID of the external provider, if applicable
+                        example: 1234567890
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Client
+  /client/purchase/{purchaseId}/claim:
+    patch:
+      summary: Mark an unclaimed purchase as claimed
+      description: 'Mark a purchase as claimed. This is required if you are using a serverless flow.
+
+        The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.
+
+        '
+      operationId: clientClaimPurchase
+      security:
+      - ClientToken: []
+      parameters:
+      - in: path
+        name: purchaseId
+        required: true
+        description: The purchase ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The purchase object with signed headers
+          headers:
+            X-Neon-Signature:
+              description: Base64-encoded signature of the response
+              schema:
+                type: string
+              example: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6==
+            X-Neon-Signature-Timestamp:
+              description: ISO timestamp when the signature was generated
+              schema:
+                type: string
+              example: '2024-04-27T12:34:56.789Z'
+            X-Neon-Signature-Algorithm:
+              description: The signature algorithm used
+              schema:
+                type: string
+                enum:
+                - Ed25519
+              example: Ed25519
+            X-Neon-Signature-Deprecated:
+              description: Optional secondary signature using deprecated key only applicable during rotation period. Clients with cached old public keys can verify with this signature.
+              schema:
+                type: string
+              required: false
+              example: z9y8x7w6v5u4t3s2r1q0p9o8n7m6l5k4j3i2h1g0f9e8d7c6b5a4==
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/PurchaseNotFoundError'
+      tags:
+      - Client
+  /client/purchases/unclaimed:
+    get:
+      summary: Get all unclaimed purchases for a particular user
+      description: 'Returns a data object containing the list of unclaimed purchases for the user.
+
+        The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.
+
+        '
+      operationId: clientGetPurchasesUnclaimed
+      security:
+      - ClientToken: []
+      responses:
+        '200':
+          description: The list of unclaimed purchases for the user.
+          headers:
+            X-Neon-Signature:
+              description: Base64-encoded signature of the response
+              schema:
+                type: string
+              example: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6==
+            X-Neon-Signature-Timestamp:
+              description: ISO timestamp when the signature was generated
+              schema:
+                type: string
+              example: '2024-04-27T12:34:56.789Z'
+            X-Neon-Signature-Algorithm:
+              description: The signature algorithm used
+              schema:
+                type: string
+                enum:
+                - Ed25519
+              example: Ed25519
+            X-Neon-Signature-Deprecated:
+              description: Optional secondary signature using deprecated key only applicable during rotation period. Clients with cached old public keys can verify with this signature.
+              schema:
+                type: string
+              required: false
+              example: z9y8x7w6v5u4t3s2r1q0p9o8n7m6l5k4j3i2h1g0f9e8d7c6b5a4==
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BasePurchase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/PurchaseNotFoundError'
+      tags:
+      - Client
+components:
+  responses:
+    PurchaseNotFoundError:
+      description: Purchase is not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PurchaseNotFoundError'
+    APIError:
+      description: Response for API errors
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - code
+            - message
+            properties:
+              statusCode:
+                type: number
+                description: The HTTP response code
+                example: 400
+              code:
+                type: string
+                description: An error code that is static and can be used for programmatic error handling
+                example: AUTH_CODE_NOT_FOUND
+              message:
+                type: string
+                description: A human readable description of the error
+                example: The provided authorization code was not found
+              errors:
+                type: array
+                description: A list of more detailed errors about specific errors for specific entities
+                items:
+                  type: object
+                  required:
+                  - source
+                  - message
+                  properties:
+                    source:
+                      type: string
+                      description: Specific entity that caused this error
+                      example: code
+                    message:
+                      type: string
+                      description: Human readable description of the error for this entity (defined in `source`)
+                      example: The provided authorization code was not found
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  schemas:
+    PurchaseItem:
+      type: object
+      required:
+      - id
+      - sku
+      - name
+      - price
+      - quantity
+      - refundableQuantity
+      - referencePrice
+      - referenceCurrency
+      - bundleContents
+      properties:
+        id:
+          type: string
+          description: The unique ID of this item
+        sku:
+          type: string
+          description: The SKU of this item
+        name:
+          type: string
+          description: The localized name of this item
+        price:
+          type: number
+          description: The price of this item, expressed as 100x the smallest unit of the purchase currency
+        quantity:
+          type: number
+          description: The total purchased quantity of this item
+        refundableQuantity:
+          type: number
+          description: The purchased quantity of this item, excluding refunded units
+        referencePrice:
+          type: number
+          description: The price of this item in the settlement currency
+        referenceCurrency:
+          type: string
+          description: The settlement currency of this item
+        bundleContents:
+          type: array
+          description: The items bundled with this SKU
+          items:
+            $ref: '#/components/schemas/PurchaseBundleItem'
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: items.0
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Item missing both price tier and price.
+        context:
+          type: object
+          description: Additional context about the error
+          additionalProperties: true
+    Purchase:
+      allOf:
+      - $ref: '#/components/schemas/BasePurchase'
+      - type: object
+        required:
+        - events
+        properties:
+          events:
+            type: array
+            items:
+              $ref: '#/components/schemas/PurchaseEvent'
+    BaseClientCreateCheckoutRequest:
+      type: object
+      required:
+      - languageLocale
+      - playerCountry
+      - offers
+      - currency
+      properties:
+        offers:
+          description: Offers being purchased
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required:
+            - sku
+            - quantity
+            properties:
+              sku:
+                type: string
+                description: The SKU identifier for the offer
+              quantity:
+                type: integer
+                minimum: 1
+                description: The quantity of the offer being purchased
+        externalReferenceId:
+          description: A reference to this transaction, like an internal purchase ID
+          type: string
+        storeUrl:
+          type: string
+          example: https://shop.knightfighter.com/
+          description: The URL of the store. Used for attribution and backlinking
+          format: uri
+        languageLocale:
+          type: string
+          description: The user's language, in IETF BCP 47 tag
+          example: en-US
+        playerCountry:
+          type: string
+          pattern: ^[A-Z]{2}$
+          description: 'The physical location of the player as an ISO 3166-1 alpha-2 code; also used to derive currency. See [International Support & Currencies](https://docs.neonpay.com/docs/currencies) for a full list of supported countries.
+
+            '
+          example: US
+        currency:
+          type: string
+          description: 'The ISO 4217 currency code that you displayed to the user prior to initiating this checkout, if applicable. See [Initiating a Checkout](https://docs.neonpay.com/docs/creating-a-checkout#currencies-and-country-codes) for more details on this field.
+
+            '
+        defaultPaymentMethod:
+          type:
+          - string
+          - 'null'
+          description: 'The default payment method for this checkout, if applicable. This is used to pre-select the payment method in the checkout flow.
+
+            '
+        hidePromoCodeInput:
+          type:
+          - boolean
+          - 'null'
+          description: Whether to hide the promo code input in checkout; defaults to false
+        contact:
+          type: object
+          properties:
+            email:
+              type:
+              - string
+              - 'null'
+    PurchaseNotFoundError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: PURCHASE_NOT_FOUND
+              enum:
+              - PURCHASE_NOT_FOUND
+            message:
+              type: string
+              example: Purchase not found.
+    PurchaseEvent:
+      type: object
+      required:
+      - id
+      - type
+      - amount
+      - currency
+      properties:
+        id:
+          type: string
+          description: The ID of this event
+        date:
+          type: string
+          description: The ISO timestamp of this event
+          format: date-time
+        type:
+          type: string
+          enum:
+          - sale
+          - refund
+          - chargeback
+        amount:
+          type: number
+          description: The total amount of this event (either the purchase or refund total), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        currency:
+          type: string
+    BasePurchase:
+      type: object
+      required:
+      - id
+      - date
+      - checkoutId
+      - orderNumber
+      - itemsSubtotalAmount
+      - totalExcludingTaxAmount
+      - subtotalAmount
+      - taxAmount
+      - taxRate
+      - totalAmount
+      - currency
+      - initialCurrency
+      - status
+      - playerCountry
+      - initialPlayerCountry
+      - pricingSheetName
+      - locale
+      - items
+      - payment
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+          description: The ISO timestamp of this purchase
+        orderNumber:
+          type: string
+          description: The user-facing short ID associated with this purchase
+        checkoutId:
+          allOf:
+          - description: The ID of the checkout this purchase originated from
+          - type: string
+        itemsSubtotalAmount:
+          type: number
+          description: Sum of all items (price × quantity), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        totalExcludingTaxAmount:
+          type: number
+          description: Total amount excluding tax (total - tax), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        subtotalAmount:
+          type: number
+          description: '**Deprecated:** Use `itemsSubtotalAmount` or `totalExcludingTaxAmount` instead. This field represents the total excluding tax (total - tax), expressed as 100x the currency''s base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies'
+          deprecated: true
+        taxAmount:
+          type: number
+          description: The purchase tax amount, expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        taxRate:
+          type: number
+          description: The tax rate used for this checkout as a percentage
+        totalAmount:
+          type: number
+          description: The total amount of this checkout (subtotal + tax), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        discountAmount:
+          type:
+          - number
+          - 'null'
+          description: The amount this checkout was discounted, if applicable, expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+        promoCode:
+          type:
+          - string
+          - 'null'
+          description: The promo code applied to this checkout, if applicable
+        fee:
+          type: object
+          required:
+          - fxRate
+          - feeAmount
+          - netProceedsAmount
+          - settlementCurrency
+          properties:
+            fxRate:
+              type: number
+              description: The foreign-exchange rate used to convert this purchase from the purchase currency to your settlement currency
+            feeAmount:
+              type: number
+              description: The fee amount we charged, expressed as 100x your settlement currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+            netProceedsAmount:
+              type: number
+              description: The net proceeds you're credited, expressed as 100x your settlement currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
+            settlementCurrency:
+              type: string
+              description: Your settlement currency
+        currency:
+          type: string
+        initialCurrency:
+          type: string
+          description: The initial currency of the purchase before any currency changes
+        initialPlayerCountry:
+          type: string
+          description: The initial player country of the purchase before any country changes
+        pricingSheetName:
+          type:
+          - string
+          - 'null'
+          description: The name of the pricing sheet used for this purchase
+        status:
+          type: string
+        externalReferenceId:
+          type:
+          - string
+          - 'null'
+          example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
+          description: User-supplied reference ID
+        externalMetadata: {}
+        accountId:
+          description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+            '
+          type:
+          - string
+          - 'null'
+          example: player_987654
+          minLength: 1
+        email:
+          type:
+          - string
+          - 'null'
+          description: The user's email address
+        ipAddress:
+          type:
+          - string
+          - 'null'
+          description: The user's IP address
+        locale:
+          type: string
+          description: The player's IETF BCP 47 locale
+          example: en-US
+        playerCountry:
+          type: string
+          description: The player's ISO 3166-1 alpha-2 country
+          example: US
+        items:
+          type: array
+          description: The items acquired in this purchase
+          items:
+            $ref: '#/components/schemas/PurchaseItem'
+        payment:
+          type:
+          - object
+          - 'null'
+          description: The payment details for this purchase
+          required:
+          - vendor
+          - method
+          properties:
+            vendor:
+              type: string
+              description: The payment vendor used for this purchase
+            method:
+              type:
+              - string
+              - 'null'
+              description: The payment method used for this purchase, if available (e.g. free purchases)
+        referral:
+          type:
+          - object
+          - 'null'
+          description: Information about the referral that led to this purchase
+          properties:
+            source:
+              type:
+              - string
+              - 'null'
+              enum:
+              - facebook
+              - discord
+              - google
+              - twitter
+              - tiktok
+              - youtube
+              - chatgpt
+              - support
+              - unknown
+              - null
+              description: The source of the referral
+            method:
+              type:
+              - string
+              - 'null'
+              enum:
+              - utm
+              - click_id
+              - referer
+              - null
+              description: The method used to derive the referral source
+            host:
+              type:
+              - string
+              - 'null'
+              description: The host of the referral, from the HTTP `referer` header
+        claimedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The ISO timestamp of when this purchase was marked as claimed
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: INVALID_ITEM_ERROR
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Item missing both price tier and price.
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    PurchaseBundleItem:
+      type: object
+      required:
+      - sku
+      - name
+      - quantity
+      properties:
+        sku:
+          type: string
+          description: External identifier
+        name:
+          type: string
+          description: Name of item, for display in checkout
+        quantity:
+          type: integer
+          description: Number of this item in purchase
+    ClientCreateCheckoutRequest:
+      oneOf:
+      - allOf:
+        - $ref: '#/components/schemas/BaseClientCreateCheckoutRequest'
+        - type: object
+          required:
+          - successUrl
+          properties:
+            successUrl:
+              type:
+              - string
+              - 'null'
+              description: URL to redirect to upon successful checkout
+              format: uri
+            cancelUrl:
+              type: string
+              description: URL to redirect to upon checkout cancellation
+              format: uri
+      - allOf:
+        - $ref: '#/components/schemas/BaseClientCreateCheckoutRequest'
+        - type: object
+          required:
+          - returnUrl
+          properties:
+            returnUrl:
+              type: string
+              description: Default URL to redirect to if set
+              format: uri
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

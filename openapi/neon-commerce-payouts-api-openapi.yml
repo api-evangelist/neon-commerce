@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: Account Payouts API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Payouts
+paths:
+  /payouts:
+    get:
+      summary: List all of your Payouts
+      operationId: getPayouts
+      responses:
+        '200':
+          description: A list of Payout objects
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - payouts
+                properties:
+                  payouts:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - id
+                      - createdAt
+                      - payoutDate
+                      - amount
+                      - reportId
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of this Payout
+                        createdAt:
+                          type: string
+                          format: date-time
+                          description: The date that this Payout was created. This will be some time after the `payoutDate`.
+                        payoutDate:
+                          type: string
+                          format: date-time
+                          description: This defines the latest possible transaction included in this Payout. For example, if the `payoutDate` is set to Feb. 1 and you get paid out monthly, the Payout will include all transactions between Jan. 1 and Feb. 1. The Payout may also include transactions before that date if there are any backdated transactions in this period. See the Payout report for a list of all transactions included in this Payout.
+                        amount:
+                          type: number
+                          description: The amount paid out in cents
+                        reportId:
+                          type:
+                          - string
+                          - 'null'
+                          description: The ID of the Payout report object. Use the Reports API to retrieve the URL of the Payout report CSV. This may not be set if the full report is still being generated.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Payouts
+components:
+  schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: payoutId
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Payout not found
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: PAYOUT_NOT_FOUND
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Payout not found
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

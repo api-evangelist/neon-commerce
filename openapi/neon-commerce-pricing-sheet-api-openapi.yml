@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: Account Pricing Sheet API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Pricing Sheet
+paths:
+  /pricing-sheet:
+    get:
+      summary: Get your active pricing sheet. If you don't have a custom pricing sheet, the default Neon pricing sheet is returned.
+      operationId: getActivePricingSheet
+      parameters:
+      - in: query
+        allowReserved: true
+        name: onlyEnabledCountries
+        schema:
+          type: boolean
+        description: If true, only countries enabled for this environment are returned in the countries field, and the tiers field is filtered to those enabled countries
+      responses:
+        '200':
+          description: Pricing sheet successfully returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: The name for this pricing sheet
+                  tiers:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      additionalProperties:
+                        type: number
+                  countries:
+                    type: object
+                    description: Countries present in the pricing sheet, with their enabled status and currency
+                    additionalProperties:
+                      type: object
+                      properties:
+                        isEnabled:
+                          type: boolean
+                          description: Whether this country is enabled for the environment
+                        currency:
+                          type: string
+                          description: The currency code for this country
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Pricing Sheet
+components:
+  schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: items.0
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Item missing both price tier and price.
+        context:
+          type: object
+          description: Additional context about the error
+          additionalProperties: true
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: INVALID_ITEM_ERROR
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Item missing both price tier and price.
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

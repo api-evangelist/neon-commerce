@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: Account API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Account
+paths:
+  /account/merge:
+    post:
+      summary: Merge player accounts
+      operationId: mergeAccounts
+      description: API to initiate the merging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - sourceAccountId
+              - targetAccountId
+              properties:
+                sourceAccountId:
+                  type: string
+                  description: The ID of the account that will be merged into the target account.
+                targetAccountId:
+                  type: string
+                  description: The ID of the account into which a source account will be merged.
+      responses:
+        '200':
+          description: Successfully merged the accounts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountIds:
+                    type: array
+                    description: List of account IDs that were merged
+                    items:
+                      type: string
+                    example:
+                    - '123456'
+                    - '654321'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/AlreadyMerged'
+        '500':
+          $ref: '#/components/responses/APIError'
+      tags:
+      - Account
+  /account/unmerge:
+    post:
+      summary: Unmerge player accounts
+      operationId: unmergeAccounts
+      description: API to initiate the unmerging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - unmergeAccountId
+              properties:
+                unmergeAccountId:
+                  type: string
+                  description: The ID of the account that will be unmerged.
+      responses:
+        '200':
+          description: Successfully unmerged the accounts or nothing to unmerge
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountIds:
+                    type: array
+                    description: List of account IDs that were involved in unmerging
+                    items:
+                      type: string
+                    example:
+                    - '123456'
+                    - '654321'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/CannotBeUnmerged'
+        '500':
+          $ref: '#/components/responses/APIError'
+      tags:
+      - Account
+components:
+  responses:
+    APIError:
+      description: Response for general API errors.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    CannotBeUnmerged:
+      description: Response when trying to unmerge an account that has accounts merged into it.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    Unauthorized:
+      description: Response for unauthorized requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    AlreadyMerged:
+      description: Response when trying to merge an account that has already been merged.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  schemas:
+    APIError:
+      description: Response for API errors
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: AUTH_CODE_NOT_FOUND
+        message:
+          type: string
+          description: A human readable description of the error
+          example: The provided authorization code was not found
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            type: object
+            required:
+            - source
+            - message
+            properties:
+              source:
+                type: string
+                description: Specific entity that caused this error
+                example: code
+              message:
+                type: string
+                description: Human readable description of the error for this entity (defined in `source`)
+                example: The provided authorization code was not found
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

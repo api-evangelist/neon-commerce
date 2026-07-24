@@ -1,0 +1,515 @@
+openapi: 3.1.0
+info:
+  title: Account Subscriptions API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Subscriptions
+paths:
+  /subscriptions/{subscriptionId}/cancel:
+    post:
+      summary: Cancel a subscription
+      operationId: cancelSubscription
+      description: 'Cancel a subscription.
+
+        '
+      parameters:
+      - in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+          description: The subscription ID to query for
+      responses:
+        '200':
+          description: Subscription canceled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Subscriptions
+  /subscriptions/{subscriptionId}/update-payment-method:
+    post:
+      summary: Generate a payment method update link
+      operationId: generateUpdatePaymentMethodUrl
+      description: 'Returns a redirect URL where the user can update their subscription''s payment method. The URL expires after 1 hour.
+
+        '
+      parameters:
+      - in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+          description: A valid subscription ID
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                returnUrl:
+                  type: string
+                  format: uri
+                  description: The URL to return to after updating the payment method. It's only used in the embedded flow.
+                  example: https://example.com/return
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - redirectUrl
+                - token
+                - subscription
+                - expiresAt
+                properties:
+                  redirectUrl:
+                    type: string
+                    format: uri
+                    description: URL to redirect the user to for updating their payment method
+                  token:
+                    type: string
+                    description: 'Single-use token authorizing the payment method update. Already encoded in `redirectUrl` — only needed separately if you''re bypassing the redirect by mounting the update flow with `neon.startEmbeddedSubscriptionUpdatePaymentMethod`.
+
+                      '
+                  subscription:
+                    type: object
+                    required:
+                    - token
+                    properties:
+                      token:
+                        type: string
+                        description: 'The subscription''s stable path token (same value as on the create response). Pass this as `subscriptionToken` to `neon.startEmbeddedSubscriptionUpdatePaymentMethod` when integrating embedded mode without persisting the token from create time.
+
+                          '
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    description: When the redirect URL and token expire
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Subscriptions
+  /subscriptions/{subscriptionId}:
+    get:
+      summary: Returns a subscription's details.
+      description: Can be used to get the status of a particular subscription.
+      operationId: getSubscription
+      parameters:
+      - in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+          description: A valid subscription ID
+      responses:
+        '200':
+          description: Returns the subscription object associated with the passed-in ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Subscriptions
+  /subscriptions:
+    post:
+      summary: Create a subscription
+      operationId: postSubscription
+      description: 'Create a subscription. Once the subscription is created, redirect the user to the `returnUrl`.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - sku
+              - name
+              - price
+              - currency
+              - imageUrl
+              - country
+              - accountId
+              properties:
+                sku:
+                  type: string
+                  description: Unique subscription SKU
+                  example: GOLD-1234
+                name:
+                  type: string
+                  minLength: 1
+                  description: Customer-facing subscription name
+                  example: Gold Membership
+                price:
+                  type: integer
+                  minimum: 0
+                  description: Subscription price, expressed in 100x the base unit of the currency; read more about prices [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api)
+                  example: 9999
+                imageUrl:
+                  type: string
+                  format: uri
+                  description: URL for subscription image
+                  example: https://example.com/images/gold-membership.png
+                currency:
+                  type: string
+                  description: ISO 4217 currency code
+                  example: USD
+                  enum:
+                  - AED
+                  - ALL
+                  - AMD
+                  - ARS
+                  - AUD
+                  - BRL
+                  - CAD
+                  - CLP
+                  - CNY
+                  - CZK
+                  - DKK
+                  - EGP
+                  - EUR
+                  - GBP
+                  - GEL
+                  - HKD
+                  - IDR
+                  - ILS
+                  - INR
+                  - ISK
+                  - JPY
+                  - KRW
+                  - KZT
+                  - MAD
+                  - MXN
+                  - MYR
+                  - NGN
+                  - NOK
+                  - NZD
+                  - PEN
+                  - PHP
+                  - PKR
+                  - PLN
+                  - RON
+                  - RSD
+                  - RUB
+                  - SAR
+                  - SEK
+                  - SGD
+                  - THB
+                  - TRY
+                  - TWD
+                  - UAH
+                  - USD
+                  - UYU
+                  - UZS
+                  - KES
+                  - TZS
+                  - ZAR
+                frequency:
+                  type: string
+                  default: monthly
+                  description: Billing frequency
+                  example: monthly
+                  enum:
+                  - monthly
+                accountId:
+                  description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+                    '
+                  type: string
+                  example: player_987654
+                  minLength: 1
+                accountDisplayName:
+                  type:
+                  - string
+                  - 'null'
+                  description: The display name of the user's account, if available
+                returnUrl:
+                  type:
+                  - string
+                  - 'null'
+                  format: uri
+                  description: URL to redirect to upon completion of the subscription creation flow.
+                  example: https://example.com/subscription/return
+                storeUrl:
+                  type: string
+                  format: uri
+                  description: The URL of your store
+                  example: https://example.com
+                externalReferenceId:
+                  type:
+                  - string
+                  - 'null'
+                  description: A reference to this transaction, like an internal purchase ID
+                  example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
+                locale:
+                  type: string
+                  description: The user's language, in IETF BCP 47 tag
+                  default: en-US
+                  example: en-US
+                country:
+                  type: string
+                  description: 'The physical location of the player as an ISO 3166-1 code; also used to derive currency. See [International Support](https://docs.neonpay.com/docs/international), as well as the note in [Subscriptions](https://docs.neonpay.com/docs/subscriptions-beta), for a full list of supported countries.
+
+                    '
+                  example: US
+                externalMetadata:
+                  type:
+                  - object
+                  - 'null'
+                  additionalProperties: true
+                  description: 'Arbitrary JSON object for tracking metadata used in analytics and webhooks.
+
+                    DO NOT include sensitive data or authentication tokens.
+
+                    '
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - subscription
+                - redirectUrl
+                - token
+                properties:
+                  redirectUrl:
+                    type: string
+                  token:
+                    type: string
+                    description: 'Token identifying this subscription for embedded checkout. Already encoded in `redirectUrl` — only needed separately if you''re bypassing the redirect by mounting the subscription flow with `neon.startEmbeddedSubscription`.
+
+                      '
+                  subscription:
+                    $ref: '#/components/schemas/SubscriptionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      tags:
+      - Subscriptions
+components:
+  schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: subscriptionSku
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Subscription not found
+    SubscriptionResponse:
+      type: object
+      required:
+      - id
+      - sku
+      - name
+      - price
+      - currency
+      - status
+      - imageUrl
+      - country
+      - externalReferenceId
+      - externalMetadata
+      properties:
+        id:
+          type: string
+          description: The ID Of this subscription
+          example: 123e4567-e89b-12d3-a456-426614174000
+        sku:
+          type: string
+          description: Unique subscription SKU
+          example: GOLD-1234
+        name:
+          type: string
+          minLength: 1
+          description: Customer-facing subscription name
+          example: Gold Membership
+        price:
+          type: integer
+          minimum: 0
+          description: Subscription price, expressed in 100x the base unit of the currency; read more about prices [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api)
+          example: 9999
+        currency:
+          type: string
+          description: ISO 4217 currency code
+          example: USD
+          enum:
+          - AED
+          - ALL
+          - AMD
+          - ARS
+          - AUD
+          - BRL
+          - CAD
+          - CLP
+          - CNY
+          - CZK
+          - DKK
+          - EGP
+          - EUR
+          - GBP
+          - GEL
+          - HKD
+          - IDR
+          - ILS
+          - INR
+          - ISK
+          - JPY
+          - KRW
+          - KZT
+          - MAD
+          - MXN
+          - MYR
+          - NGN
+          - NOK
+          - NZD
+          - PEN
+          - PHP
+          - PKR
+          - PLN
+          - RON
+          - RSD
+          - RUB
+          - SAR
+          - SEK
+          - SGD
+          - THB
+          - TRY
+          - TWD
+          - UAH
+          - USD
+          - UYU
+          - UZS
+          - KES
+          - TZS
+          - ZAR
+        status:
+          type: string
+          description: Current status of the subscription
+          enum:
+          - active
+          - inactive
+          - pending_cancellation
+          - canceled
+          - expired
+          example: active
+        frequency:
+          type: string
+          default: monthly
+          description: Billing frequency for the subscription
+          example: monthly
+          enum:
+          - monthly
+        accountId:
+          description: 'A unique identifier for the player or account **in your system** who should receive the purchased items. Neon includes this value in fulfillment webhooks so you can credit the correct user.
+
+            '
+          type: string
+          example: player_987654
+          minLength: 1
+        accountDisplayName:
+          type:
+          - string
+          - 'null'
+          description: 'Public-facing account name. Could be:
+
+            * Gamertag (e.g., "GreatGamer123")
+
+            * Real name (e.g., "John Smith")
+
+            '
+          example: GreatGamer123
+        imageUrl:
+          type: string
+          format: uri
+          description: URI for subscription image
+          example: https://example.com/images/gold-membership.png
+        externalReferenceId:
+          type:
+          - string
+          - 'null'
+          description: Optional UUID for external reference tracking
+          example: e7ec4567-e89b-12d3-a456-426614174000
+        externalMetadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+          description: 'Arbitrary JSON object for tracking metadata used in analytics and webhooks.
+
+            `null` if no metadata was supplied when the subscription was created.
+
+            DO NOT include sensitive data or authentication tokens.
+
+            '
+        locale:
+          type: string
+          description: IETF BCP 47 language tag
+          default: en-US
+          example: en-US
+        country:
+          type: string
+          description: Player country
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: UNHANDLED_ERROR
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Could not create a subscription
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

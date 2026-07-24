@@ -1,0 +1,1308 @@
+openapi: 3.1.0
+info:
+  title: Account Storefront API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Storefront
+paths:
+  /storefront/items:
+    post:
+      summary: Create items
+      operationId: createStorefrontItems
+      description: 'Create items. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).
+
+        If any operation fails, the error is returned and all changes are reverted.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Item'
+      responses:
+        '201':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+  /storefront/offer-groups:
+    post:
+      summary: Create an offer group
+      description: 'Offer groups are used to group offers in the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).
+
+        This operation takes a list of offer groups and adds them to your existing offer groups. If any operation fails, all changes are reverted and the error is returned.
+
+        '
+      operationId: createStorefrontOfferGroups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/OfferGroup'
+      responses:
+        '201':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+  /storefront/offers:
+    post:
+      summary: Create offers
+      operationId: createStorefrontOffers
+      description: 'An offer is the resource that players purchase on the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).
+
+        This operation takes a list of offer objects and adds them to your existing offers. If any operation fails, all changes are reverted and the error is returned.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Offer'
+      responses:
+        '201':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+    get:
+      summary: Get offers
+      operationId: getStorefrontOffers
+      description: Get a paginated list of offers.
+      parameters:
+      - in: query
+        allowReserved: true
+        name: limit
+        required: false
+        schema:
+          type: integer
+          default: 20
+          minimum: 1
+          maximum: 100
+      - in: query
+        allowReserved: true
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+          description: 'A cursor for use in pagination. An offer SKU that defines your place in the list of offers. It''ll fetch the next page of the list.
+
+            '
+      - in: query
+        allowReserved: true
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+          description: 'A cursor for use in pagination. An offer SKU that defines your place in the list of offers. It''ll fetch the previous page of the list.
+
+            '
+      responses:
+        '200':
+          description: Offers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Offer'
+                  links:
+                    type: object
+                    required:
+                    - previous
+                    - next
+                    properties:
+                      previous:
+                        type:
+                        - string
+                        - 'null'
+                        description: 'Link to paginate to the previous page of the list. If null, there is no previous page.
+
+                          '
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                        description: 'Link to paginate to the next page of the list. If null, there is no next page.
+
+                          '
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+  /storefront/item/{code}:
+    delete:
+      summary: Delete an item
+      operationId: deleteStorefrontItem
+      description: Delete an item by its code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+          example: gem
+      responses:
+        '200':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+    get:
+      summary: Get an item by code
+      operationId: getStorefrontItem
+      description: Get an item by its code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+          example: gem
+      responses:
+        '200':
+          description: Item retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+    put:
+      summary: Update an item by code
+      operationId: updateStorefrontItem
+      description: Update an item. This replaces the existing item with the input data.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+          example: gem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+      responses:
+        '201':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+  /storefront/offer/{sku}:
+    delete:
+      summary: Delete an offer
+      operationId: deleteStorefrontOffer
+      description: Delete an offer by its SKU.
+      parameters:
+      - in: path
+        name: sku
+        required: true
+        schema:
+          type: string
+          example: 500_GEMS
+      responses:
+        '200':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      tags:
+      - Storefront
+    get:
+      summary: Get an offer by SKU
+      operationId: getStorefrontOffer
+      description: Get an offer by its SKU.
+      parameters:
+      - in: path
+        name: sku
+        required: true
+        schema:
+          type: string
+          example: 500_GEMS
+      responses:
+        '200':
+          description: Offer retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+    put:
+      summary: Update an offer by SKU
+      operationId: updateStorefrontOffer
+      description: Update an offer. This replaces the existing offer with the input data.
+      parameters:
+      - in: path
+        name: sku
+        required: true
+        schema:
+          type: string
+          example: 500_GEMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Offer'
+      responses:
+        '200':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+  /storefront/offer-group/{code}:
+    delete:
+      summary: Delete an offer group
+      operationId: deleteStorefrontOfferGroup
+      description: Delete an offer by its code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+          example: promoted
+      responses:
+        '200':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+    get:
+      summary: Get an offer group by code
+      operationId: getStorefrontOfferGroup
+      description: Get an offer group by its code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+          example: promoted
+      responses:
+        '200':
+          description: Offer group retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferGroup'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+    put:
+      summary: Update an offer group by code
+      operationId: updateStorefrontOfferGroup
+      description: Update an offer group. This replaces the existing offer group with the input data.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+          example: promoted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferGroup'
+      responses:
+        '201':
+          description: Empty.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+  /storefront/prices:
+    get:
+      summary: Get localized pricing by IP address.
+      operationId: getRegionalPricingByIpAddress
+      security:
+      - ClientKey: []
+      parameters:
+      - in: query
+        allowReserved: true
+        name: ip
+        required: true
+        description: The IP address of the user
+        schema:
+          type: string
+      responses:
+        '200':
+          description: IP address parsed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - isSupported
+                - isFallback
+                properties:
+                  isSupported:
+                    type: boolean
+                    description: True if this IP can be served prices (either locally or via Global Store fallback), false otherwise
+                  isFallback:
+                    type: boolean
+                    description: True when prices are served via Global Store fallback (USD) because the country is env-disabled or globally unsupported. Always false when `isSupported` is false or when prices are served locally.
+                  prices:
+                    type: object
+                    description: Map of offer SKU to localized price
+                    additionalProperties: true
+                  country:
+                    type: string
+                    description: The country used for pricing (may be "US" if Global Store fallback is applied)
+                  currency:
+                    type: string
+                    description: The currency of the included prices
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      tags:
+      - Storefront
+  /storefront/theme:
+    get:
+      summary: Get a storefront theme
+      description: Get a storefront theme
+      operationId: getTheme
+      responses:
+        '201':
+          $ref: '#/components/responses/Theme'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+    put:
+      summary: Update the theme for a storefront
+      description: Programatically update the configuration for a theme
+      operationId: updateTheme
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Theme'
+      responses:
+        '200':
+          description: Empty
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+      tags:
+      - Storefront
+  /storefront/callbacks:
+    post:
+      summary: Register a URL to handle events throughout the storefront and checkout flow.
+      description: Learn more about callbacks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks).
+      operationId: subscribeToCallbacks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - url
+              properties:
+                url:
+                  description: The destination URL for these callbacks
+                  type: string
+                  format: uri
+                  example: https://gameUrl.com/account.getInventory
+                secret:
+                  description: A shared secret used to sign every callback. If not provided, Neon will generate a secret.
+                  type: string
+                enabledEvents:
+                  description: The set of API calls this URL will handle
+                  type: array
+                  default:
+                  - account.getInventory
+                  items:
+                    type: string
+                    enum:
+                    - account.getInventory
+                eventVersion:
+                  description: The version of schema to be used for calls to this URL
+                  default: 1
+                  type: number
+                hooksToExpire:
+                  description: 'Any callback IDs to expire.
+
+
+                    Only one URL can be registered to listen to events for a specific callback. If you register a new
+
+                    URL, you''ll need to expire the old URLs first. You can do so by passing their IDs here.
+
+                    '
+                  type: array
+                  items:
+                    type: string
+                    description: Callback ID to expire
+      responses:
+        '201':
+          description: Callback registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - secret
+                - ids
+                properties:
+                  secret:
+                    type: string
+                    description: The secret used to sign this callback's data, either passed in or generated by Neon
+                  ids:
+                    type: array
+                    description: The created callback IDs
+                    items:
+                      type: string
+                      description: The UUID of the created callback
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      callbacks:
+        account.getInventory:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`account.getInventory`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      type: object
+                      description: Request body for event version 1
+                      properties:
+                        data:
+                          type: object
+                          description: User-supplied data used to look up an account
+                          required:
+                          - account
+                          properties:
+                            account:
+                              type: string
+                              description: The user's unique account ID
+              responses:
+                '200':
+                  description: The account's purchase limits
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/PlayerInventory'
+                '401':
+                  description: No account matching the provided data could be found; Neon will not retry these requests
+        account.validate:
+          '{$request.body#/url}':
+            post:
+              security: []
+              parameters:
+              - $ref: '#/components/parameters/NeonSignature'
+              - in: header
+                name: X-Neon-Webhook-Type
+                required: true
+                schema:
+                  type: string
+                  description: The type of this request (`account.validate`).
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      type: object
+                      description: Request body for event version 1
+                      properties:
+                        data:
+                          type: object
+                          description: User-supplied data used to look up an account
+                          required:
+                          - accountId
+                          properties:
+                            accountId:
+                              type: string
+                              maxLength: 1000
+                              description: The user's unique account ID
+              responses:
+                '200':
+                  description: Additional information about the user's account
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        required:
+                        - isValid
+                        properties:
+                          isValid:
+                            type: boolean
+                            description: Whether or not this account ID corresponds to a valid account.
+                          accountId:
+                            type:
+                            - string
+                            - 'null'
+                            description: The corrected or normalized account ID, if available. If provided, this will be used instead of the input account ID for fulfillment.
+                          displayName:
+                            type:
+                            - string
+                            - 'null'
+                            description: 'The display name for the player. This will be used instead of the `accountId` for display if provided. This can be used when the player ID is not meant to be player-facing. Some common examples are a custom gamertag (e.g. "GreatGamer123"), the player''s name (e.g. "John Smith"), or an email address (e.g. "johnsmith@gmail.com").
+
+                              '
+                          metadata:
+                            type: object
+                            description: 'Additional metadata that you''d like to track alongside events for this user. This data will be included in analytics events and webhooks. It should not include any sensitive or internal data like internal authentication tokens. Common use cases are analytics session IDs or device IDs.
+
+                              '
+                            additionalProperties: true
+                '401':
+                  description: No account matching the provided data could be found; Neon will not retry these requests
+      tags:
+      - Storefront
+components:
+  parameters:
+    NeonSignature:
+      in: header
+      name: X-Neon-Digest
+      required: true
+      schema:
+        type: string
+        description: 'The signature of this request. The signing key used is returned when the callbacks are generated.
+
+          To verify the signature, convert the request body to a JSON string, compute an HMAC with the SHA-256 hash function using the signing key as the key and the JSONified request body as the message.
+
+          '
+  schemas:
+    ItemText:
+      type: object
+      description: A Neon localized text object for an Item. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
+      required:
+      - nameSingular
+      - namePlural
+      properties:
+        nameSingular:
+          type: string
+          description: The translated singular form of this item.
+          example: gem
+        namePlural:
+          type: string
+          description: The translated plural form of this item.
+          example: gems
+        description:
+          type:
+          - string
+          - 'null'
+          description: A translated description for this item.
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: 0.imageFileName
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: 'No images were found matching the file name: gems.png'
+    Offer:
+      type: object
+      required:
+      - sku
+      - priceTierCode
+      - isTargetedOffer
+      - shouldPreviewTargetedOffer
+      - shouldHideOfferWhenClaimed
+      - groups
+      - imageFileName
+      - backgroundImageFileName
+      - items
+      - text
+      properties:
+        sku:
+          type: string
+          description: The unique SKU for this item. This SKU is used for API operations, and to identify the offer during fulfillment.
+        priceTierCode:
+          description: The price tier code for this item. Read more about price tiers [here](https://neonpay.readme.io/docs/pricing).
+          type: string
+        isTargetedOffer:
+          description: Whether the item should only be displayed based on player-specific information (e.g. reaching a certain in-game level).
+          type: boolean
+          default: false
+        shouldPreviewTargetedOffer:
+          description: Whether the targeted offer should be displayed if it is not yet unlocked. Only used if `isTargetedOffer` is set to `true`.
+          type: boolean
+          default: false
+        shouldHideOfferWhenClaimed:
+          description: Flag to indicate whether the offer should be hidden once it has been claimed.
+          type: boolean
+          example: true
+          default: false
+        isHidden:
+          description: Flag to indicate whether the offer should be hidden from the storefront.
+          type: boolean
+          example: false
+          default: false
+        containsRandomizedContent:
+          description: Flag to indicate whether this offer contains randomized content (e.g., loot boxes). Used for jurisdiction-based restrictions.
+          type: boolean
+          example: false
+          default: false
+        buttonLayout:
+          type:
+          - string
+          - 'null'
+          enum:
+          - null
+          - ADD_TO_CART
+          - BUY_NOW
+          - ADD_TO_CART_AND_BUY_NOW
+          description: Controls which purchase button(s) are shown on the offer card. Null defaults to add-to-cart behaviour.
+        limit:
+          description: Number to be used if the offer should be limited to a certain number or purchases per user.
+          type:
+          - integer
+          - 'null'
+        timeLimits:
+          type: array
+          items:
+            type: object
+            description: Time limits to be set for this offer, if the offer is time-limited.
+            required:
+            - previewDate
+            - startDate
+            - endDate
+            properties:
+              previewDate:
+                description: The time (in UTC) at which the item will first be visible on the storefront.
+                type:
+                - string
+                - 'null'
+                format: date-time
+                example: '2023-06-23T20:00:00.000Z'
+              startDate:
+                description: The time (in UTC) at which the item will first be available for purchase.
+                type:
+                - string
+                - 'null'
+                format: date-time
+                example: '2023-06-23T20:00:00.000Z'
+              endDate:
+                description: The time (in UTC) at which the item will no longer be available for purchase.
+                type:
+                - string
+                - 'null'
+                format: date-time
+                example: '2023-06-23T20:00:00.000Z'
+        groups:
+          type: array
+          description: Offer group configuration for this offer. Offer groups can be created by calling `POST /storefront/offer-groups`, and must be created prior to calling this endpoint.
+          items:
+            type: object
+            required:
+            - code
+            - order
+            - style
+            properties:
+              code:
+                type: string
+                description: The group's code. This is the value of `code` you passed when calling `POST /storefront/groups`.
+              order:
+                type: number
+                description: The priority of this offer within its group. Lower values show up earlier.
+              style:
+                description: How this item should be rendered. Promoted items are displayed more prominently in their group.
+                type: string
+                default: default
+        imageFileName:
+          description: The file name of this offer's image. This is the value of `fileName` you passed in when calling `POST /assets/inventory-images`.
+          type:
+          - string
+          - 'null'
+          example: gem-24x24.png
+        backgroundImageFileName:
+          description: The file name of this offer's background image. This is the value of `fileName` you passed in when calling `POST /assets/inventory-images`.
+          type:
+          - string
+          - 'null'
+          example: gem-background.png
+        items:
+          type: array
+          description: The items included in this offer. Items can be created by calling `POST /storefront/items`, and must be created prior to calling this endpoint.
+          items:
+            type: object
+            required:
+            - code
+            - quantity
+            - text
+            properties:
+              code:
+                type: string
+                description: The item's code. This is the value of `code` you passed when calling `POST /storefront/items`.
+              quantity:
+                type: number
+                description: The number of this item to be included in this offer.
+              originalQuantity:
+                type:
+                - number
+                - 'null'
+                description: The number of this item to be included in this offer excluding any bonus amounts (i.e. `originalQuantity = quantity - web bonus`).
+              text:
+                type: object
+                description: Subtitles for this item within the offer in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
+                additionalProperties:
+                  $ref: '#/components/schemas/OfferItemText'
+        text:
+          type: object
+          description: Text for this offer in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
+          additionalProperties:
+            $ref: '#/components/schemas/OfferText'
+    PlayerInventory:
+      type: array
+      items:
+        type: object
+        required:
+        - sku
+        - purchased
+        properties:
+          sku:
+            type: string
+            description: The offer SKU
+          purchased:
+            type: number
+            minimum: 0
+            description: The amount of this offer the user has already purchased
+          limit:
+            type:
+            - number
+            - 'null'
+            minimum: 0
+            description: The total number of this offer the user may purchase. If null, there is no limit. If zero, the limit is 0
+          startTime:
+            anyOf:
+            - type:
+              - string
+              - 'null'
+              description: The time from which this restriction should be made effective, if applicable, expressed as an ISO 8601 string
+            - type:
+              - number
+              - 'null'
+              description: The time from which this restriction should be made effective, if applicable, expressed in milliseconds since the start of the epoch
+          durationInSeconds:
+            type:
+            - number
+            - 'null'
+            minimum: 0
+            description: The number of seconds after `startTime` for which this restriction should be effective. If not passed, the restriction is indefinitely effective
+    OfferGroupText:
+      type: object
+      description: A Neon localized text object for an Offer Group. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+          description: The translated label for this offer group, e.g. "Gems".
+        description:
+          type:
+          - string
+          - 'null'
+          description: A translated description for this offer group.
+        headerImageFileName:
+          type:
+          - string
+          - 'null'
+          example: currency-banner.png
+          description: The inventory image file name for this offer group's header image. This image will appear in a storefront as a banner above the offer group.
+        subheaderImageFileName:
+          type:
+          - string
+          - 'null'
+          example: currency-banner-subheader.png
+          description: The inventory image file name for this offer group's subheader image. This image will appear in a storefront as a subheader banner above the offer group.
+    Item:
+      description: Items are the base unit of any offer, like gems or gold. Offers are made up of items with quantities (e.g. 500 gold).
+      type: object
+      required:
+      - code
+      - imageFileName
+      - text
+      properties:
+        code:
+          type: string
+          description: A unique code for this item. This code is used for all API operations, like adding this item to an offer.
+          example: gem
+        imageFileName:
+          type: string
+          description: The file name of this item's image. This is the value of `fileName` you passed in when calling `POST /assets/inventory-images`.
+          example: gem-24x24.png
+        text:
+          description: Names and descriptions for this offer group in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ItemText'
+    OfferGroup:
+      description: Offer groups are used to group and display offers in a storefront.
+      type: object
+      required:
+      - code
+      - priority
+      - text
+      properties:
+        code:
+          description: A unique code for this group. This code is used for all API operations, like linking new or existing offers to this group.
+          type: string
+          example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
+        priority:
+          description: Priorities determine where an offer group appears in the storefront. The lower the priority, the earlier the group appears. Priorities default to 0.
+          type: integer
+        text:
+          description: Names and descriptions for this offer group in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/OfferGroupText'
+    Theme:
+      type: object
+      required:
+      - colors
+      - shouldShowTitle
+      - gameIconLogoUrl
+      - gameNameLogoUrl
+      - backgroundUrl
+      - shopHeaderUrl
+      - shopHeaderLogoUrl
+      - emailLogoUrl
+      - appIconUrl
+      - faviconUrl
+      - socialPreviewUrl
+      - brandLogos
+      - components
+      properties:
+        colors:
+          type: object
+          required:
+          - brandColor
+          properties:
+            brandColor:
+              type: string
+              description: The brand color as a hex color. This is used as a highlight color in storefront and checkout for things like buttons, focus states, etc.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            backgroundColor:
+              type:
+              - string
+              - 'null'
+              description: The main page background color (as a hex color). Only used for custom themes.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            backgroundElevatedColor:
+              type:
+              - string
+              - 'null'
+              description: The secondary background color (as a hex code) used for things like the header, cards, and modals.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            offerBackgroundFallbackColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used as the default background for your offer images in storefront and checkout.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            borderColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used as a border color for certain UI elements.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            inputBorderColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used as a border color for input elements.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            inputOutlineColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used as an outline color for input elements (when focused).
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            inputErrorColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used as a border color for input elements (when an error occurs).
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            primaryTextColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used for the primary text color.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            secondaryTextColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used for secondary text (e.g. subtitles, descriptions).
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            brandForegroundColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used to place atop a branded color moment in buttons and labels.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            placeholderTextColor:
+              type:
+              - string
+              - 'null'
+              description: A hex color used for placeholder copy inside of empty input fields.
+              pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+            promoBannerColor:
+              type:
+              - string
+              - 'null'
+              description: Used for the promo banner background color
+              example: '#fe5c2c'
+            drawerElevatedColor:
+              type:
+              - string
+              - 'null'
+              description: Used for any drawer's elevated background color
+              example: '#fe5c2c'
+        shouldShowTitle:
+          type: boolean
+          default: true
+          description: A boolean which determines if we show your shop name in the header of your storefront.
+        gameIconLogoUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL of your game icon (usually square).
+        gameNameLogoUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL of your game logo as text only.
+        backgroundUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL that's used as the background for certain pages in storefront and checkout, usually when the page is displayed as a modal.
+        shopHeaderUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL used for the storefront header banner.
+        shopHeaderLogoUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL used for your logo that shows up in the center of the storefront header banner.
+        emailLogoUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL that is displayed in emails to your customers.
+        appIconUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL that is used for your app icon.
+        faviconUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL of your favicon.
+        socialPreviewUrl:
+          type:
+          - string
+          - 'null'
+          description: The brand image URL that is used as your storefront's social preview image.
+        checkoutButtonBackgroundCss:
+          type:
+          - string
+          - 'null'
+        checkoutButtonBorderRadiusInPx:
+          type:
+          - string
+          - 'null'
+        brandLogos:
+          type: array
+          description: A list of brand logos that is shown in the footer of your storefront.
+          items:
+            type: object
+            required:
+            - imageUrl
+            - linkUrl
+            - height
+            - width
+            - text
+            properties:
+              imageUrl:
+                type: string
+                description: The brand image URL for this brand logo.
+              linkUrl:
+                type:
+                - string
+                - 'null'
+                description: The destination URL when a user clicks on this brand logo.
+              height:
+                type:
+                - number
+                - 'null'
+                description: The desired display height of this image.
+              width:
+                type:
+                - number
+                - 'null'
+                description: The desired display width of this image.
+              text:
+                type: object
+                description: The image alt text for this image in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. en-US.
+                additionalProperties:
+                  type: object
+                  required:
+                  - imageAltText
+                  properties:
+                    imageAltText:
+                      type: string
+                      description: The alt text for this image.
+        components:
+          type: object
+          required:
+          - row
+          - featured
+          properties:
+            row:
+              type: object
+              required:
+              - buttonBackgroundUrl
+              - strikethroughColor
+              properties:
+                buttonBackgroundUrl:
+                  type:
+                  - string
+                  - 'null'
+                  description: The brand image URL for the button background image.
+                strikethroughColor:
+                  type:
+                  - string
+                  - 'null'
+                  pattern: ^#?([a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$
+                  description: The hex color for the strikethrough.
+            featured:
+              type: object
+              required:
+              - buttonBackgroundUrl
+              properties:
+                buttonBackgroundUrl:
+                  type:
+                  - string
+                  - 'null'
+                  description: The brand image URL for the button background image.
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: INVALID_IMAGE_FILE_NAME
+        message:
+          type: string
+          description: A human readable description of the error
+          example: 'No images were found matching the file name: gems.png'
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+        context:
+          type: object
+          description: Additional structured context about the error
+          additionalProperties: true
+    OfferItemText:
+      type: object
+      description: A Neon localized text object for an Item within an Offer. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
+      properties:
+        subtitle:
+          description: The translated base portion of the subtitle, used to provide context on this item.
+          type:
+          - string
+          - 'null'
+          example: 100 credits
+        highlightedSubtitle:
+          description: The translated highlighted portion of the subtitle, used to highlight any additional value gained from this purchase.
+          type:
+          - string
+          - 'null'
+          example: +10 extra credits
+    OfferText:
+      type: object
+      description: A Neon localized text object for an Offer. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
+      required:
+      - name
+      - description
+      properties:
+        name:
+          description: The translated name of this offer.
+          type: string
+          example: 110 Gems
+        description:
+          description: The translated description for this offer.
+          type:
+          - string
+          - 'null'
+          example: Get 100 gold every day you log in to play.
+        bannerText:
+          description: The translated banner text for this offer.
+          type:
+          - string
+          - 'null'
+          example: Great Value
+        promoText:
+          description: The translated promo text for this offer.
+          type:
+          - string
+          - 'null'
+          example: Great Value
+        theme:
+          description: The translated theme for this offer.
+          type:
+          - string
+          - 'null'
+          example: Great Value
+        subtitle:
+          description: The translated base portion of the subtitle, used to provide context on this item.
+          type:
+          - string
+          - 'null'
+          example: 100 credits
+        highlightedSubtitle:
+          description: The translated highlighted portion of the subtitle, used to highlight any additional value gained from this purchase.
+          type:
+          - string
+          - 'null'
+          example: +10 extra credits
+  responses:
+    Theme:
+      description: The theme for a storefront
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Theme'
+    Conflict:
+      description: The request conflicts with the current state of the resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    BadRequest:
+      description: An error response from an invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    InvalidApiKey:
+      description: An error response from an invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '

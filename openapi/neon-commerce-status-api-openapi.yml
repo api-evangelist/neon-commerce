@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: Account Status API
+  description: The Account API is used for managing player accounts.
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security:
+- GlobalApiKey: []
+tags:
+- name: Status
+paths:
+  /status:
+    get:
+      summary: Get the current status of the Neon API
+      operationId: getStatus
+      responses:
+        '200':
+          description: Current status of the Neon API
+          content:
+            application/json:
+              schema:
+                type: object
+                readOnly: true
+                required:
+                - updatedAt
+                - status
+                properties:
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the last status update
+                  status:
+                    type: string
+                    description: "The current status of the Neon API\nPossible values are:\n - ok: Services are fully operational\n - degraded: Services are most functioning, but increased latency\n - partial_outage: Some components are not working\n - major_outage: Critical functionality is unavailable\n"
+                    enum:
+                    - ok
+                    - degraded
+                    - partial_outage
+                    - major_outage
+      tags:
+      - Status
+components:
+  securitySchemes:
+    GlobalApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+
+        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+
+        '
