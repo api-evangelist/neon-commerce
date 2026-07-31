@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.neonpay.com/docs/embedded-checkout + about-embedded-checkout
+families:
+- name: Neon Checkout
+  kind: embedded/hosted checkout
+  loader: '@neonpay/js (Neon.js)'
+  surfaces:
+  - Embedded Checkout (in-page)
+  - Hosted Checkout (redirect)
+  - Direct Checkout (in-game redirect)
+  - Serverless Checkout
+  note: Client-side checkout UI loaded via Neon.js; embedded checkout requires a checkoutToken.
+- name: Neon Shop
+  kind: hosted storefront
+  surfaces:
+  - Themed web storefront with configurable Shop/Checkout themes
+  note: Fully hosted, brandable storefront; theme configured via Storefront API updateTheme.

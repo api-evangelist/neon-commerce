@@ -1,0 +1,98 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ ($ref + id-reference fields
+entities:
+- name: Checkout
+  id_field: id
+  domain: checkout
+  notes: Standalone checkout; transitions to Purchase on completion.
+- name: Purchase
+  id_field: id
+  domain: purchase
+  notes: Finalized transaction created from a Checkout or storefront flow.
+- name: Refund
+  id_field: id
+  domain: purchase
+- name: Dispute
+  id_field: id
+  domain: purchase
+- name: Invoice
+  id_field: id
+  domain: purchase
+  notes: Subscription billing invoice.
+- name: Subscription
+  id_field: subscriptionId
+  domain: subscriptions
+- name: Offer
+  id_field: sku
+  domain: storefront
+  notes: The resource players purchase; keyed by SKU.
+- name: OfferGroup
+  id_field: code
+  domain: storefront
+- name: Item
+  id_field: code
+  domain: storefront
+  notes: Fulfillment unit granted by an Offer.
+- name: Theme
+  id_field: null
+  domain: storefront
+  notes: Storefront theme config (singleton per environment).
+- name: Image
+  id_field: imageId
+  domain: assets
+  notes: Brand image or inventory image.
+- name: Payout
+  id_field: id
+  domain: payout
+- name: Report
+  id_field: reportId
+  domain: reports
+- name: PlayerAccount
+  id_field: accountId
+  domain: account
+relationships:
+- from: Purchase
+  to: Checkout
+  type: belongs_to
+  via: checkoutId
+- from: Purchase
+  to: Offer
+  type: has_many
+  via: items
+- from: Purchase
+  to: Refund
+  type: has_many
+  via: refunds
+- from: Purchase
+  to: Dispute
+  type: has_one
+  via: dispute
+- from: Checkout
+  to: Item
+  type: has_many
+  via: items
+- from: Offer
+  to: Item
+  type: has_many
+  via: items
+- from: OfferGroup
+  to: Offer
+  type: has_many
+  via: offers
+- from: Subscription
+  to: Invoice
+  type: has_many
+  via: invoices
+- from: Invoice
+  to: InvoiceRefund
+  type: has_many
+  via: refunds
+- from: Offer
+  to: Image
+  type: has_one
+  via: inventoryImage
+- from: PlayerAccount
+  to: Purchase
+  type: has_many
+  via: accountId

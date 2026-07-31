@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ securitySchemes + conventions
+standards:
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; API-key auth only.
+- id: oidc
+  conforms: false
+- id: api-key-auth
+  conforms: true
+  evidence: apiKey securitySchemes in header (X-Api-Key/X-Client-Key/X-Client-Token).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Custom APIError envelope, not application/problem+json.
+- id: cursor-pagination
+  conforms: true
+  evidence: limit/startingAfter/endingBefore + links.next/previous.
+- id: webhook-hmac-signing
+  conforms: true
+  evidence: HMAC-SHA256 signatures via x-neon-digest / X-Neon-Signature-*.
+- id: idempotency
+  conforms: false
+  evidence: No documented idempotency-key header.
+- id: pci-dss
+  conforms: true
+  evidence: Merchant-of-record card processing (hosted/embedded checkout); card data not handled by developer.
+    Formal certification not publicly documented at probe time.

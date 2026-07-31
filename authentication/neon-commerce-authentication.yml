@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/neon-commerce-account-openapi.yml, openapi/neon-commerce-assets-openapi.yml,
+  openapi/neon-commerce-auth-openapi.yml, openapi/neon-commerce-checkout-openapi.yml, openapi/neon-commerce-payout-openapi.yml,
+  openapi/neon-commerce-purchase-openapi.yml, openapi/neon-commerce-reports-openapi.yml, openapi/neon-commerce-storefront-openapi.yml,
+  openapi/neon-commerce-subscriptions-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: GlobalApiKey
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  description: |-
+    Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+    production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+  sources:
+  - openapi/neon-commerce-account-openapi.yml
+  - openapi/neon-commerce-assets-openapi.yml
+  - openapi/neon-commerce-auth-openapi.yml
+  - openapi/neon-commerce-checkout-openapi.yml
+  - openapi/neon-commerce-payout-openapi.yml
+  - openapi/neon-commerce-purchase-openapi.yml
+  - openapi/neon-commerce-reports-openapi.yml
+  - openapi/neon-commerce-storefront-openapi.yml
+  - openapi/neon-commerce-subscriptions-openapi.yml
+- name: ClientKey
+  type: apiKey
+  in: header
+  parameter: X-Client-Key
+  description: |-
+    Your Client key, used for client-side requests. Sandbox keys are prefixed with `ck_sandbox_`;
+    production keys are prefixed with `ck_`. Find your keys in the Neon dashboard.
+  sources:
+  - openapi/neon-commerce-auth-openapi.yml
+  - openapi/neon-commerce-storefront-openapi.yml
+- name: ClientToken
+  type: apiKey
+  in: header
+  parameter: X-Client-Token
+  description: |-
+    A short-lived client token obtained from the `/client/token` endpoint, used for
+    client-side requests to the Neon APIs.
+  sources:
+  - openapi/neon-commerce-checkout-openapi.yml
+  - openapi/neon-commerce-purchase-openapi.yml

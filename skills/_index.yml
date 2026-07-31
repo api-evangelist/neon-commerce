@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/ operationIds (grounded, verified)
+skills:
+- file: neon-commerce-sell-via-checkout.md
+  name: Sell a game item with Neon Checkout
+  api: openapi/neon-commerce-checkout-openapi.yml
+  operations:
+  - createCheckout
+  - getCheckout
+  - subscribeToWebhooks
+  - getPurchase
+- file: neon-commerce-setup-storefront.md
+  name: Set up a Neon storefront catalog
+  api: openapi/neon-commerce-storefront-openapi.yml
+  operations:
+  - createStorefrontItems
+  - createStorefrontOffers
+  - createStorefrontOfferGroups
+  - getStorefrontOffers
+  - updateTheme
+- file: neon-commerce-refund-and-reconcile.md
+  name: Refund and reconcile a Neon purchase
+  api: openapi/neon-commerce-purchase-openapi.yml
+  operations:
+  - findPurchase
+  - getPurchase
+  - refundPurchase
+  - getPurchaseRefunds

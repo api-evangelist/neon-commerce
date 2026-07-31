@@ -1,0 +1,154 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/ (48 operations across 10 Neon APIs)
+server:
+  name: neon-commerce
+  transport: http
+  note: No official hosted MCP server published as of probe date; tool list derived from OpenAPI operations.
+tools:
+- name: mergeAccounts
+  description: Merge player accounts
+  source_operation: openapi/neon-commerce-account-openapi.yml#mergeAccounts
+- name: unmergeAccounts
+  description: Unmerge player accounts
+  source_operation: openapi/neon-commerce-account-openapi.yml#unmergeAccounts
+- name: createBrandImage
+  description: Upload a brand image
+  source_operation: openapi/neon-commerce-assets-openapi.yml#createBrandImage
+- name: getBrandImages
+  description: Returns the list of brand images associated with the environment
+  source_operation: openapi/neon-commerce-assets-openapi.yml#getBrandImages
+- name: createInventoryImage
+  description: Upload an inventory image.
+  source_operation: openapi/neon-commerce-assets-openapi.yml#createInventoryImage
+- name: getInventoryImages
+  description: Returns the list of inventory images associated with the environment
+  source_operation: openapi/neon-commerce-assets-openapi.yml#getInventoryImages
+- name: deleteBrandImage
+  description: Mark a brand image as deleted.
+  source_operation: openapi/neon-commerce-assets-openapi.yml#deleteBrandImage
+- name: deleteInventoryImage
+  description: Mark an inventory image as deleted.
+  source_operation: openapi/neon-commerce-assets-openapi.yml#deleteInventoryImage
+- name: createClientToken
+  description: Retrieve a client token
+  source_operation: openapi/neon-commerce-auth-openapi.yml#createClientToken
+- name: createToken
+  description: Retrieve a token
+  source_operation: openapi/neon-commerce-auth-openapi.yml#createToken
+- name: createCheckout
+  description: Create a checkout
+  source_operation: openapi/neon-commerce-checkout-openapi.yml#createCheckout
+- name: createCheckoutClient
+  description: Create a checkout using a client token
+  source_operation: openapi/neon-commerce-checkout-openapi.yml#createCheckoutClient
+- name: expireCheckout
+  description: Expire a checkout
+  source_operation: openapi/neon-commerce-checkout-openapi.yml#expireCheckout
+- name: getActivePricingSheet
+  description: Get your active pricing sheet. If you don't have a custom pricing sheet, the default Neon
+    pricing sheet is returned.
+  source_operation: openapi/neon-commerce-checkout-openapi.yml#getActivePricingSheet
+- name: getCheckout
+  description: Returns a checkout's details.
+  source_operation: openapi/neon-commerce-checkout-openapi.yml#getCheckout
+- name: getLocalizedPricingByIpAddressOrCountry
+  description: Get localized pricing by country or IP address.
+  source_operation: openapi/neon-commerce-checkout-openapi.yml#getLocalizedPricingByIpAddressOrCountry
+- name: getPayouts
+  description: List all of your Payouts
+  source_operation: openapi/neon-commerce-payout-openapi.yml#getPayouts
+- name: clientClaimPurchase
+  description: Mark an unclaimed purchase as claimed
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#clientClaimPurchase
+- name: clientGetPurchasesUnclaimed
+  description: Get all unclaimed purchases for a particular user
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#clientGetPurchasesUnclaimed
+- name: findPurchase
+  description: Search for a purchase by checkout ID or order number
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#findPurchase
+- name: getPurchase
+  description: Get a purchase
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#getPurchase
+- name: getPurchaseRefunds
+  description: Get all available refunds for a specific environment
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#getPurchaseRefunds
+- name: getPurchases
+  description: Get all available purchases for a specific environment
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#getPurchases
+- name: refundPurchase
+  description: Refunds a purchase.
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#refundPurchase
+- name: subscribeToWebhooks
+  description: Subscribe to purchase lifecycle events
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#subscribeToWebhooks
+- name: getReport
+  description: Retrieve Report details
+  source_operation: openapi/neon-commerce-reports-openapi.yml#getReport
+- name: getStatus
+  description: Get the current status of the Neon API
+  source_operation: openapi/neon-commerce-status-openapi.yml#getStatus
+- name: createStorefrontItems
+  description: Create items
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#createStorefrontItems
+- name: createStorefrontOfferGroups
+  description: Create an offer group
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#createStorefrontOfferGroups
+- name: createStorefrontOffers
+  description: Create offers
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#createStorefrontOffers
+- name: getStorefrontOffers
+  description: Get offers
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#getStorefrontOffers
+- name: deleteStorefrontItem
+  description: Delete an item
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#deleteStorefrontItem
+- name: getStorefrontItem
+  description: Get an item by code
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#getStorefrontItem
+- name: updateStorefrontItem
+  description: Update an item by code
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#updateStorefrontItem
+- name: deleteStorefrontOffer
+  description: Delete an offer
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#deleteStorefrontOffer
+- name: getStorefrontOffer
+  description: Get an offer by SKU
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#getStorefrontOffer
+- name: updateStorefrontOffer
+  description: Update an offer by SKU
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#updateStorefrontOffer
+- name: deleteStorefrontOfferGroup
+  description: Delete an offer group
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#deleteStorefrontOfferGroup
+- name: getStorefrontOfferGroup
+  description: Get an offer group by code
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#getStorefrontOfferGroup
+- name: updateStorefrontOfferGroup
+  description: Update an offer group by code
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#updateStorefrontOfferGroup
+- name: getRegionalPricingByIpAddress
+  description: Get localized pricing by IP address.
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#getRegionalPricingByIpAddress
+- name: getTheme
+  description: Get a storefront theme
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#getTheme
+- name: updateTheme
+  description: Update the theme for a storefront
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#updateTheme
+- name: subscribeToCallbacks
+  description: Register a URL to handle events throughout the storefront and checkout flow.
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#subscribeToCallbacks
+- name: cancelSubscription
+  description: Cancel a subscription
+  source_operation: openapi/neon-commerce-subscriptions-openapi.yml#cancelSubscription
+- name: generateUpdatePaymentMethodUrl
+  description: Generate a payment method update link
+  source_operation: openapi/neon-commerce-subscriptions-openapi.yml#generateUpdatePaymentMethodUrl
+- name: getSubscription
+  description: Returns a subscription's details.
+  source_operation: openapi/neon-commerce-subscriptions-openapi.yml#getSubscription
+- name: postSubscription
+  description: Create a subscription
+  source_operation: openapi/neon-commerce-subscriptions-openapi.yml#postSubscription

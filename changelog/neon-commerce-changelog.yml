@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.neonpay.com/changelog
+scheme: dated-weekly
+current_version: '1'
+entries:
+- title: Added US Fallback option for Unsupported Countries in Storefront
+  breaking: false
+  highlights:
+  - US fallback for unsupported checkout countries in the storefront.
+- title: 'Checkout Security Update: Embedded Checkout Now Requires checkoutToken'
+  breaking: true
+  highlights:
+  - Embedded Checkout now requires a checkoutToken.
+- title: Updated Pricing Features
+  breaking: false
+  highlights:
+  - Pricing page/feature updates.
+- date: November 24
+  title: 'Changelog: Monday, November 24'
+  breaking: false
+  highlights:
+  - Added itemsSubtotalAmount and totalExcludingTaxesAmount fields; deprecated subtotalAmount.
+  - 61 Neon Checkout QA bug fixes.
+- date: November 4
+  title: 'Weekly Changelog: Tuesday, November 4'
+  breaking: false
+  highlights:
+  - Weekly checkout/storefront fixes.

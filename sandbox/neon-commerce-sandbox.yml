@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.neonpay.com/docs/test-inputs + environments-and-api-keys
+modes:
+  separation: key-prefix
+  sandbox_prefixes:
+  - pk_sandbox_
+  - ck_sandbox_
+  - gk_sandbox_
+  production_prefixes:
+  - pk_
+  - ck_
+  - gk_
+  note: Sandbox Shops/Checkouts do not move money. Keys are scoped to a property (title) and environment.
+test_cards:
+  default: 4242 4242 4242 4242
+  default_note: Works for United States, Argentina, Brazil, Mexico, Peru and ~19 other countries.
+  cvc:
+    default: '123'
+    Argentina: '200'
+    Brazil: '123'
+    Chile: '123'
+    Mexico: '200'
+    Peru: '200'
+  country_specific:
+    United Kingdom: 4000 0082 6000 0000
+    Spain: 4000 0072 4000 0007
+    Canada: 4000 0012 4000 0000
+    Austria: 4000 0004 0000 0008
+    UAE: 4000 0078 4000 0001
+    Saudi Arabia: 4000 0068 2000 0007
+    Finland: 4000 0024 6000 0001
+    France: 4000 0025 0000 0003
+    Germany: 4000 0027 6000 0016
+    Japan: 4000 0039 2000 0003
+    Thailand: 4000 0076 4000 0003
+    Malaysia: 4000 0045 8000 0002
+    Taiwan: 4000 0015 8000 0008
+    Singapore: 4000 0070 2000 0003
+    Hong Kong: 4000 0034 4000 0004
+    New Zealand: 4000 0055 4000 0008
+    China: 4000 0015 6000 0002
+    Uruguay: 4000 0085 8000 0003
+    Czech Republic: 4000 0020 3000 0002
+    Estonia: 4000 0023 3000 0009
+    Netherlands: 4000 0052 8000 0002
+    Chile: 4051 8856 0044 6623
+    India (Visa): 4100 2800 0000 1007
+    India (Mastercard): 5500 6700 0000 1002
+paypal:
+  note: Create a PayPal sandbox account at developer.paypal.com; sandbox buyer format sb-<random>@personal.example.com.
+warning: Test values captured verbatim from Neon docs; sandbox only, no money movement.

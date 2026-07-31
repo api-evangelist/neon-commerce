@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.neonpay.com/reference + openapi/
+authentication:
+  style: API key in header
+  schemes:
+  - EnvironmentApiKey (X-Api-Key, pk_/pk_sandbox_)
+  - GlobalApiKey (X-Api-Key, gk_/gk_sandbox_)
+  - ClientKey (X-Client-Key, ck_/ck_sandbox_)
+  - ClientToken (X-Client-Token, 24h TTL)
+  ref: authentication/neon-commerce-authentication.yml
+idempotency:
+  supported: false
+  note: 'No idempotency-key header is documented in the OpenAPI or docs. Bulk storefront create operations
+    are transactional: ''if any operation fails, all changes are reverted and the error is returned.'''
+pagination:
+  style: cursor
+  params:
+  - limit
+  - startingAfter
+  - endingBefore
+  response_fields:
+  - data[]
+  - links.previous
+  - links.next
+  note: Cursor pagination via opaque startingAfter/endingBefore; response carries a links object with
+    previous/next.
+versioning:
+  scheme: unversioned-additive
+  note: No URI/header version. Neon avoids backwards-incompatible changes by adding fields and deprecating
+    old ones rather than versioning (see changelog). Webhook payloads are explicitly versioned (V1/V2
+    schemas) and pinned at subscription time.
+error_envelope:
+  shape: custom
+  fields:
+  - statusCode
+  - code (stable programmatic string)
+  - message
+  - errors[] (ErrorDetail)
+  note: Not RFC 9457 problem+json; a custom APIError object with a stable 'code'. See errors/neon-commerce-problem-types.yml.
+webhooks:
+  signing: HMAC-SHA256
+  header: x-neon-digest (webhooks/callbacks); X-Neon-Signature-* for signed serverless client responses
+  verification: Recreate HMAC-SHA256 over the raw body with your shared secret; serverless responses sign
+    {timestamp}.{responseBody} verified with the dashboard public key.
+  retries: Webhooks retried up to 36h; callbacks up to 3x; exponential backoff 2^attempt - 1 seconds.
+  ref: asyncapi/neon-commerce-webhooks-asyncapi.yml
+cross_links:
+- errors/neon-commerce-problem-types.yml
+- errors/neon-commerce-decline-codes.yml
+- lifecycle/neon-commerce-lifecycle.yml
+- authentication/neon-commerce-authentication.yml

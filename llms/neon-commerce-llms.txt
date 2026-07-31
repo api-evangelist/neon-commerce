@@ -1,0 +1,137 @@
+# Neon Documentation
+
+> Use the Neon API to manage your Neon storefront and checkout experience.
+
+## Guides
+- [Welcome to Neon](https://docs.neonpay.com/docs/getting-started.md)
+- [Product Overview](https://docs.neonpay.com/docs/product-overview.md): What you can build with Neon
+- [Support](https://docs.neonpay.com/docs/support.md)
+- [About Neon Console](https://docs.neonpay.com/docs/about-neon-console.md)
+- [Transactions](https://docs.neonpay.com/docs/reporting.md)
+- [Environment-Level Transaction Reports](https://docs.neonpay.com/docs/environment-level-transaction-reports.md): View and export filtered transaction history for a specific environment in CSV format.
+- [Developer-Level Transaction Reports](https://docs.neonpay.com/docs/developer-level-transaction-reports.md)
+- [Payouts](https://docs.neonpay.com/docs/payouts-and-reports.md): Review your Payout history and get detailed reporting.
+- [Insights](https://docs.neonpay.com/docs/insights.md): Explore and visualize the data behind your business
+- [Enabling Neon Shop](https://docs.neonpay.com/docs/how-to-enable-webshop.md)
+- [Integrate Offers](https://docs.neonpay.com/docs/integrate-and-manage-offers.md)
+- [Promo Codes](https://docs.neonpay.com/docs/promo-codes.md)
+- [First-Time Purchase Discounts](https://docs.neonpay.com/docs/first-purchase-discounts.md)
+- [Daily Streaks](https://docs.neonpay.com/docs/console-about-daily-streaks.md): Drive repeat user engagement via daily promotions
+- [Shop Theme](https://docs.neonpay.com/docs/storefront-images.md): Configure the look and feel of your shop
+- [Checkout Theme](https://docs.neonpay.com/docs/theming.md): Configure the look and feel of your Neon Checkout
+- [Pricing Sheets](https://docs.neonpay.com/docs/pricing-sheet.md)
+- [Environments and API Keys](https://docs.neonpay.com/docs/environments-and-api-keys.md)
+- [Webhooks and Callbacks](https://docs.neonpay.com/docs/console-register-webhooks-and-callbacks.md)
+- [Event Data Exports](https://docs.neonpay.com/docs/analytics.md): Configure hourly JSONL data exports of event data to AWS S3 or Google Cloud Storage
+- [About Neon Shop](https://docs.neonpay.com/docs/storefront.md)
+- [High-Level Flow](https://docs.neonpay.com/docs/high-level-flow.md): Review the main steps required to implement and launch Neon Shop
+- [Inventory Setup](https://docs.neonpay.com/docs/offers.md)
+- [Offer Images](https://docs.neonpay.com/docs/offer-images.md)
+- [Text Localization](https://docs.neonpay.com/docs/text-localization.md)
+- [Player & Game Authentication](https://docs.neonpay.com/docs/players-game-auth.md)
+- [Authentication API](https://docs.neonpay.com/docs/authentication-api.md)
+- [Auth API User Behavior](https://docs.neonpay.com/docs/auth-api-user-behavior.md)
+- [Offer Segmentation](https://docs.neonpay.com/docs/offer-segmentation.md)
+- [Web Purchase Limits](https://docs.neonpay.com/docs/web-purchase-limits.md): **Web Purchase Limits** allow developers to configure purchase limits on offers without making any changes to their inventory endpoint.
+- [Daily Streaks](https://docs.neonpay.com/docs/daily-streaks.md)
+- [Randomized Content](https://docs.neonpay.com/docs/randomized-content.md): Understand how Neon handles offers that contain paid randomized content, such as loot boxes, across different jurisdictions.
+- [Testing and Launching Your Store](https://docs.neonpay.com/docs/testing-and-launching.md)
+- [About Neon Checkout](https://docs.neonpay.com/docs/checkout.md)
+- [About Direct Checkout](https://docs.neonpay.com/docs/about-direct-checkout.md)
+- [High-Level Flow](https://docs.neonpay.com/docs/high-level-flow-1.md)
+- [In-Game Payments](https://docs.neonpay.com/docs/accept-payments-with-neon-in-games.md): Accept Payments with Neon in iOS & Android Games
+- [About Embedded Checkout](https://docs.neonpay.com/docs/about-embedded-checkout.md)
+- [Integration Guide: Embedded Checkout](https://docs.neonpay.com/docs/embedded-checkout.md)
+- [About Hosted Checkout](https://docs.neonpay.com/docs/about-hosted-checkout.md)
+- [High-Level Flow](https://docs.neonpay.com/docs/high-level-flow-hosted-checkout.md)
+- [Initiating a Hosted Checkout](https://docs.neonpay.com/docs/creating-a-checkout.md)
+- [About Serverless Checkout](https://docs.neonpay.com/docs/about-serverless-checkout.md)
+- [High-Level Flow](https://docs.neonpay.com/docs/high-level-flow-serverless-checkout.md)
+- [Integration Guide: Serverless Checkout](https://docs.neonpay.com/docs/serverless-checkout.md): If you don't have a game server, use Neon's suite of tools to manage and track inventory.
+- [Unity Signature Verification Example](https://docs.neonpay.com/docs/unity-signature-verification-example.md)
+- [Tracking Consent](https://docs.neonpay.com/docs/tracking-consent.md): Learn how Neon handles cookie consent, how consent affects analytics, and how to pass consent into embedded checkout.
+- [Payment Methods](https://docs.neonpay.com/docs/payment-methods.md)
+- [Custom Checkout Domains](https://docs.neonpay.com/docs/custom-checkout-domains.md): Use a custom domain your checkout
+- [Subscriptions (beta)](https://docs.neonpay.com/docs/subscriptions-beta.md)
+- [Webhooks and Callbacks](https://docs.neonpay.com/docs/webhooks-and-callbacks.md)
+- [Webhook: purchase.completed](https://docs.neonpay.com/docs/purchasecompleted.md)
+- [Webhook: payment.failed](https://docs.neonpay.com/docs/paymentfailed.md)
+- [Webhook: refund.processed](https://docs.neonpay.com/docs/refundsuccessful.md)
+- [Callback: account.getInventory](https://docs.neonpay.com/docs/accountgetinventory.md)
+- [Callback: account.validate](https://docs.neonpay.com/docs/callback-accountvalidate.md)
+- [Webhook: dispute.opened](https://docs.neonpay.com/docs/disputeopened.md)
+- [Webhook: dispute.closed](https://docs.neonpay.com/docs/disputeclosed.md)
+- [Webhook: checkout.abandoned](https://docs.neonpay.com/docs/checkoutabandoned.md)
+- [Webhook: cart.abandoned](https://docs.neonpay.com/docs/cartabandoned.md)
+- [Post-Purchase Management](https://docs.neonpay.com/docs/post-purchase-management.md)
+- [Updating Your Game](https://docs.neonpay.com/docs/fulfillment.md)
+- [Get Purchase Details](https://docs.neonpay.com/docs/get-purchase-details.md)
+- [Refunds](https://docs.neonpay.com/docs/refunds.md)
+- [Get All Purchases](https://docs.neonpay.com/docs/get-all-purchases.md)
+- [Purchase Referral Attribution](https://docs.neonpay.com/docs/purchase-referral-attribution.md): *For Storefront Developers Only
+- [Disputes](https://docs.neonpay.com/docs/disputes.md)
+- [About Merchant of Record (MoR)](https://docs.neonpay.com/docs/merchant-of-record-mor.md)
+- [International Support & Currencies](https://docs.neonpay.com/docs/currencies.md)
+- [Country Mismatches](https://docs.neonpay.com/docs/country-mismatches.md): Understand what happens when the Checkout country does not match the Player's payment method country.
+- [Test Inputs](https://docs.neonpay.com/docs/test-inputs.md): Simulate payments in sandbox mode
+- [Migrating from Xsolla to Neon](https://docs.neonpay.com/docs/migrating-from-xsolla-to-neon.md)
+- [Pricing](https://docs.neonpay.com/docs/pricing.md)
+- [Analytics](https://docs.neonpay.com/docs/analytics-general.md): Neon provides multiple ways to understand and access transaction and event data
+
+## API Reference
+- [Merge player accounts](https://docs.neonpay.com/reference/mergeaccounts.md): API to initiate the merging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments.
+- [Unmerge player accounts](https://docs.neonpay.com/reference/unmergeaccounts.md): API to initiate the unmerging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments.
+- [Returns the list of brand images associated with the environment](https://docs.neonpay.com/reference/getbrandimages.md): Brand images can be used for customizing the storefront or checkout experience
+- [Upload a brand image](https://docs.neonpay.com/reference/createbrandimage.md): Brand images can be used for customizing the storefront or checkout experience
+- [Mark a brand image as deleted.](https://docs.neonpay.com/reference/deletebrandimage.md): The deleted image's url will continue to work but the image won't be assignable.
+- [Returns the list of inventory images associated with the environment](https://docs.neonpay.com/reference/getinventoryimages.md): Inventory images can be associated with offers and/or items within the same environment.
+- [Upload an inventory image.](https://docs.neonpay.com/reference/createinventoryimage.md): Inventory images can be associated with offers and/or items within the same environment.
+- [Mark an inventory image as deleted.](https://docs.neonpay.com/reference/deleteinventoryimage.md): The deleted image's url will continue to work but the image won't be assignable.
+- [Retrieve a client token](https://docs.neonpay.com/reference/createclienttoken.md): This endpoint issues a client token that can be used with client-side requests to the Neon APIs. Expires in 24 hours.
+- [Retrieve a token](https://docs.neonpay.com/reference/createtoken.md): In order to authenticate a shop user with your game, you need to link the player "code" with your internal player account ID. This endpoint does that linking and returns a unique token that can be used to redirect the player back to the shop with an authenticated session.
+- [Create a checkout](https://docs.neonpay.com/reference/createcheckout.md): Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. On success, we'll send a `purchase.completed` event to your webhook listener. On payment failure, we'll send a `payment.failed` event to your webhook listener. Don't use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.
+- [Returns a checkout's details.](https://docs.neonpay.com/reference/getcheckout.md): Can be used to get the status of a particular checkout.
+- [Expire a checkout](https://docs.neonpay.com/reference/expirecheckout.md): Expire a checkout. This will expire the checkout corresponding to the provided checkoutId regardless of the current status.
+- [Get localized pricing by country or IP address.](https://docs.neonpay.com/reference/getlocalizedpricingbyipaddressorcountry.md)
+- [Get your active pricing sheet. If you don't have a custom pricing sheet, the default Neon pricing sheet is returned.](https://docs.neonpay.com/reference/getactivepricingsheet.md)
+- [Create a checkout using a client token](https://docs.neonpay.com/reference/createcheckoutclient.md): Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. See [Create a checkout using a client token](https://docs.neonpay.com/reference/createcheckoutclient) for more information. Don't use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.
+- [List all of your Payouts](https://docs.neonpay.com/reference/getpayouts.md)
+- [Get all available purchases for a specific environment](https://docs.neonpay.com/reference/getpurchases.md)
+- [Get a purchase](https://docs.neonpay.com/reference/getpurchase.md): Get a purchase by its ID
+- [Refunds a purchase.
+](https://docs.neonpay.com/reference/refundpurchase.md): Refunds are typically handled by Neon. Please reach out to Neon to determine if you qualify for access to this API.
+- [Search for a purchase by checkout ID or order number](https://docs.neonpay.com/reference/findpurchase.md)
+- [Subscribe to purchase lifecycle events](https://docs.neonpay.com/reference/subscribetowebhooks.md): Learn more about webhooks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks).
+- [Mark an unclaimed purchase as claimed](https://docs.neonpay.com/reference/clientclaimpurchase.md): Mark a purchase as claimed. This is required if you are using a serverless flow. The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.
+- [Get all unclaimed purchases for a particular user](https://docs.neonpay.com/reference/clientgetpurchasesunclaimed.md): Returns a data object containing the list of unclaimed purchases for the user. The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.
+- [Get all available refunds for a specific environment](https://docs.neonpay.com/reference/getpurchaserefunds.md)
+- [Retrieve Report details](https://docs.neonpay.com/reference/getreport.md)
+- [Get the current status of the Neon API](https://docs.neonpay.com/reference/getstatus.md)
+- [Register a URL to handle events throughout the storefront and checkout flow.](https://docs.neonpay.com/reference/subscribetocallbacks.md): Learn more about callbacks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks).
+- [Get an item by code](https://docs.neonpay.com/reference/getstorefrontitem.md): Get an item by its code.
+- [Update an item by code](https://docs.neonpay.com/reference/updatestorefrontitem.md): Update an item. This replaces the existing item with the input data.
+- [Delete an item](https://docs.neonpay.com/reference/deletestorefrontitem.md): Delete an item by its code.
+- [Create items](https://docs.neonpay.com/reference/createstorefrontitems.md): Create items. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers). If any operation fails, the error is returned and all changes are reverted.
+- [Get an offer group by code](https://docs.neonpay.com/reference/getstorefrontoffergroup.md): Get an offer group by its code.
+- [Update an offer group by code](https://docs.neonpay.com/reference/updatestorefrontoffergroup.md): Update an offer group. This replaces the existing offer group with the input data.
+- [Delete an offer group](https://docs.neonpay.com/reference/deletestorefrontoffergroup.md): Delete an offer by its code.
+- [Create an offer group](https://docs.neonpay.com/reference/createstorefrontoffergroups.md): Offer groups are used to group offers in the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers). This operation takes a list of offer groups and adds them to your existing offer groups. If any operation fails, all changes are reverted and the error is returned.
+- [Create offers](https://docs.neonpay.com/reference/createstorefrontoffers.md): An offer is the resource that players purchase on the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers). This operation takes a list of offer objects and adds them to your existing offers. If any operation fails, all changes are reverted and the error is returned.
+- [Get offers](https://docs.neonpay.com/reference/getstorefrontoffers.md): Get a paginated list of offers.
+- [Get an offer by SKU](https://docs.neonpay.com/reference/getstorefrontoffer.md): Get an offer by its SKU.
+- [Update an offer by SKU](https://docs.neonpay.com/reference/updatestorefrontoffer.md): Update an offer. This replaces the existing offer with the input data.
+- [Delete an offer](https://docs.neonpay.com/reference/deletestorefrontoffer.md): Delete an offer by its SKU.
+- [Get localized pricing by IP address.](https://docs.neonpay.com/reference/getregionalpricingbyipaddress.md)
+- [Get a storefront theme](https://docs.neonpay.com/reference/gettheme.md): Get a storefront theme
+- [Update the theme for a storefront](https://docs.neonpay.com/reference/updatetheme.md): Programatically update the configuration for a theme
+- [Create a subscription](https://docs.neonpay.com/reference/postsubscription.md): Create a subscription. Once the subscription is created, redirect the user to the `returnUrl`.
+- [Returns a subscription's details.](https://docs.neonpay.com/reference/getsubscription.md): Can be used to get the status of a particular subscription.
+- [Cancel a subscription](https://docs.neonpay.com/reference/cancelsubscription.md): Cancel a subscription.
+- [Generate a payment method update link](https://docs.neonpay.com/reference/generateupdatepaymentmethodurl.md): Returns a redirect URL where the user can update their subscription's payment method. The URL expires after 1 hour.
+
+## Changelog
+- [Added US Fallback option for Unsupported Countries in Storefront](https://docs.neonpay.com/changelog/added-us-fallback-option-for-unsupported-countries-in-storefront.md)
+- [Checkout Security Update: Embedded Checkout Now Requires checkoutToken](https://docs.neonpay.com/changelog/checkout-security-update-embedded-checkout-now-requires-checkouttoken.md)
+- [Updated Pricing Features](https://docs.neonpay.com/changelog/updated-pricing-page.md)
+- [Changelog: Monday, November 24](https://docs.neonpay.com/changelog/changelog-monday-november-24.md)
+- [Weekly Changelog: Tuesday, November 4](https://docs.neonpay.com/changelog/weekly-changelog-tuesday-november-4.md)

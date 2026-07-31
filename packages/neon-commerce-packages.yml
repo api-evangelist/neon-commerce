@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+source: npm registry (@neonpay scope) + github.com/neon-xyz
+packages:
+- language: javascript
+  registry: npm
+  name: '@neonpay/sdk'
+  url: https://www.npmjs.com/package/@neonpay/sdk
+  install: npm install @neonpay/sdk
+  description: Neon backend Node.js/TypeScript SDK.
+  repository: https://github.com/neon-xyz/neon-js
+  official: true
+- language: javascript
+  registry: npm
+  name: '@neonpay/js'
+  url: https://www.npmjs.com/package/@neonpay/js
+  install: npm install @neonpay/js
+  description: Neon.js client-side loading utility for embedded/hosted checkout.
+  repository: https://github.com/neon-xyz/neon-js
+  official: true

@@ -1,0 +1,38 @@
+{
+  "provider": "neon-commerce",
+  "sources": [
+    "neon-commerce-account-api-openapi.yml",
+    "neon-commerce-assets-api-openapi.yml",
+    "neon-commerce-auth-api-openapi.yml",
+    "neon-commerce-checkout-api-openapi.yml",
+    "neon-commerce-client-api-openapi.yml",
+    "neon-commerce-payouts-api-openapi.yml",
+    "neon-commerce-prices-api-openapi.yml",
+    "neon-commerce-pricing-sheet-api-openapi.yml",
+    "neon-commerce-purchases-api-openapi.yml",
+    "neon-commerce-reports-api-openapi.yml",
+    "neon-commerce-status-api-openapi.yml",
+    "neon-commerce-storefront-api-openapi.yml",
+    "neon-commerce-subscriptions-api-openapi.yml"
+  ],
+  "outputs": [
+    "neon-commerce-account-api-openapi.yml",
+    "neon-commerce-assets-api-openapi.yml",
+    "neon-commerce-auth-api-openapi.yml",
+    "neon-commerce-checkout-api-openapi.yml",
+    "neon-commerce-client-api-openapi.yml",
+    "neon-commerce-payouts-api-openapi.yml",
+    "neon-commerce-prices-api-openapi.yml",
+    "neon-commerce-pricing-sheet-api-openapi.yml",
+    "neon-commerce-purchases-api-openapi.yml",
+    "neon-commerce-reports-api-openapi.yml",
+    "neon-commerce-status-api-openapi.yml",
+    "neon-commerce-storefront-api-openapi.yml",
+    "neon-commerce-subscriptions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,491 @@
+openapi: 3.1.0
+info:
+  title: Auth API
+  description: The Auth API is used for authenticating players
+  version: '1'
+servers:
+- url: https://api.neonpay.com
+security: []
+paths:
+  /client/token:
+    post:
+      summary: Retrieve a client token
+      operationId: createClientToken
+      description: 'This endpoint issues a client token that can be used with client-side requests to
+        the Neon APIs. Expires in 24 hours.
+
+        '
+      security:
+      - ClientKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - accountId
+              properties:
+                accountId:
+                  description: 'A unique identifier for the player or account **in your system** who should
+                    receive the purchased items. Neon includes this value in fulfillment webhooks so you
+                    can credit the correct user.
+
+                    '
+                  type: string
+                  example: player_987654
+                  minLength: 1
+                accountDisplayName:
+                  type:
+                  - string
+                  - 'null'
+                  description: 'The display name for the player. This will be used instead of the `accountId`
+                    for display if provided. This can be used when the player ID is not meant to be player-facing.
+                    Some common examples are a custom gamertag (e.g. "GreatGamer123"), the player''s name
+                    (e.g. "John Smith"), or an email address (e.g. "johnsmith@gmail.com").
+
+                    '
+                pricingSheetName:
+                  type:
+                  - string
+                  - 'null'
+                metadata:
+                  type:
+                  - object
+                  - 'null'
+                  description: 'Additional metadata that you''d like to track alongside events for this
+                    user. This data will be included in analytics events and webhooks. It should not include
+                    any sensitive or internal data like internal authentication tokens. Common use cases
+                    are analytics session IDs or device IDs.
+
+                    '
+                  additionalProperties: true
+                fraudMetadata:
+                  type: object
+                  description: 'Metadata used to help prevent fraud.
+
+                    '
+                  properties:
+                    customer:
+                      type: object
+                      description: 'Metadata about the customer making a checkout.
+
+                        '
+                      properties:
+                        creationTime:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                          description: 'The time the customer was created.
+
+                            '
+                        socialSignOnType:
+                          type: string
+                          description: 'The social sign-in type of the customer in game.
+
+                            '
+                          enum:
+                          - google
+                          - apple
+                          - facebook
+                          - twitter
+                          - yahoo
+                          - microsoft
+                          - wechat
+                          - github
+                          - linkedin
+                          - amazon
+                          - other
+                        platform:
+                          type: string
+                          description: 'The platform the customer is using.
+
+                            '
+                          enum:
+                          - web
+                          - ios
+                          - android
+                          - macos
+                          - windows
+                          - linux
+                          - other
+                        sessionCount:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The number of sessions the customer has had in the app.
+
+                            '
+                        levelInApp:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The level of the customer in the app.
+
+                            '
+                        followersInApp:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The number of followers the customer has in the app.
+
+                            '
+                        isOnLatestAppVersion:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer is on the latest version of the app.
+
+                            '
+                        hasLinkedSocialAccount:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer has linked a social account in the app.
+
+                            '
+                        finishedGameSetup:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer has finished the game setup.
+
+                            '
+                        isKnownUser:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer is a known user in the app.
+
+                            '
+                    latestLoginIp:
+                      type: object
+                      description: 'An object of IP information.
+
+                        '
+                      properties:
+                        ipAddress:
+                          type:
+                          - string
+                          - 'null'
+                          description: The IP address the customer logged in from
+                        country:
+                          type:
+                          - string
+                          - 'null'
+                          description: The country the IP address is located in, as an ISO 3166-1 code
+                        city:
+                          type:
+                          - string
+                          - 'null'
+                          description: The city the IP address is located in
+                        region:
+                          type:
+                          - string
+                          - 'null'
+                          description: The region the IP address is located in
+      responses:
+        '201':
+          description: The client token was successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - token
+                - expiresAt
+                - expiresInSeconds
+                properties:
+                  token:
+                    type: string
+                    description: 'The token to use for client-side requests to Neon APIs. This token expires
+                      and should be re-requested frequently.
+
+                      '
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    description: 'The time at which the client token expires.
+
+                      '
+                    example: '2023-06-23T20:00:00.000Z'
+                  expiresInSeconds:
+                    type: integer
+                    description: 'The time in seconds until the client token expires.
+
+                      '
+        '400':
+          $ref: '#/components/responses/APIError'
+        '401':
+          $ref: '#/components/responses/APIError'
+        '500':
+          $ref: '#/components/responses/APIError'
+  /auth/token:
+    post:
+      summary: Retrieve a token
+      operationId: createToken
+      description: 'In order to authenticate a shop user with your game, you need to link the player "code"
+        with your internal player account ID. This endpoint does that linking and returns a unique token
+        that can be used to redirect the player back to the shop with an authenticated session.
+
+        '
+      security:
+      - EnvironmentApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - accountId
+              properties:
+                code:
+                  type:
+                  - string
+                  - 'null'
+                  description: The authentication code provided by the player via deep link or manually.
+                  example: ABCD-1234
+                accountId:
+                  description: 'A unique identifier for the player or account **in your system** who should
+                    receive the purchased items. Neon includes this value in fulfillment webhooks so you
+                    can credit the correct user.
+
+                    '
+                  type: string
+                  example: player_987654
+                  minLength: 1
+                accountDisplayName:
+                  type:
+                  - string
+                  - 'null'
+                  description: 'The display name for the player. This will be used instead of the `accountId`
+                    for display if provided. This can be used when the player ID is not meant to be player-facing.
+                    Some common examples are a custom gamertag (e.g. "GreatGamer123"), the player''s name
+                    (e.g. "John Smith"), or an email address (e.g. "johnsmith@gmail.com").
+
+                    '
+                pricingSheetName:
+                  type: string
+                metadata:
+                  type:
+                  - object
+                  - 'null'
+                  description: 'Additional metadata that you''d like to track alongside events for this
+                    user. This data will be included in analytics events and webhooks. It should not include
+                    any sensitive or internal data like internal authentication tokens. Common use cases
+                    are analytics session IDs or device IDs.
+
+                    '
+                  additionalProperties: true
+                fraudMetadata:
+                  type: object
+                  description: 'Metadata used to help prevent fraud.
+
+                    '
+                  properties:
+                    customer:
+                      type: object
+                      description: 'Metadata about the customer making a checkout.
+
+                        '
+                      properties:
+                        creationTime:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                          description: 'The time the customer was created.
+
+                            '
+                        socialSignOnType:
+                          type: string
+                          description: 'The social sign-in type of the customer in game.
+
+                            '
+                          enum:
+                          - google
+                          - apple
+                          - facebook
+                          - twitter
+                          - yahoo
+                          - microsoft
+                          - wechat
+                          - github
+                          - linkedin
+                          - amazon
+                          - other
+                        platform:
+                          type: string
+                          description: 'The platform the customer is using.
+
+                            '
+                          enum:
+                          - web
+                          - ios
+                          - android
+                          - macos
+                          - windows
+                          - linux
+                          - other
+                        sessionCount:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The number of sessions the customer has had in the app.
+
+                            '
+                        levelInApp:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The level of the customer in the app.
+
+                            '
+                        followersInApp:
+                          type:
+                          - integer
+                          - 'null'
+                          description: 'The number of followers the customer has in the app.
+
+                            '
+                        isOnLatestAppVersion:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer is on the latest version of the app.
+
+                            '
+                        hasLinkedSocialAccount:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer has linked a social account in the app.
+
+                            '
+                        finishedGameSetup:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer has finished the game setup.
+
+                            '
+                        isKnownUser:
+                          type:
+                          - boolean
+                          - 'null'
+                          description: 'Whether the customer is a known user in the app.
+
+                            '
+                    latestLoginIp:
+                      type: object
+                      description: 'An object of IP information.
+
+                        '
+                      properties:
+                        ipAddress:
+                          type:
+                          - string
+                          - 'null'
+                          description: The IP address the customer logged in from
+                        country:
+                          type:
+                          - string
+                          - 'null'
+                          description: The country the IP address is located in, as an ISO 3166-1 code
+                        city:
+                          type:
+                          - string
+                          - 'null'
+                          description: The city the IP address is located in
+                        region:
+                          type:
+                          - string
+                          - 'null'
+                          description: The region the IP address is located in
+      responses:
+        '201':
+          description: The authentication token was successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - token
+                properties:
+                  token:
+                    type: string
+                    description: 'The authentication token to use when redirecting the player to the shop.
+                      It should be included as a query parameter called `token` on your shop URL. This
+                      token expires and should not be used more than once.
+
+                      '
+        '400':
+          $ref: '#/components/responses/APIError'
+        '401':
+          $ref: '#/components/responses/APIError'
+        '500':
+          $ref: '#/components/responses/APIError'
+components:
+  responses:
+    APIError:
+      description: Response for API errors
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - code
+            - message
+            properties:
+              statusCode:
+                type: number
+                description: The HTTP response code
+                example: 400
+              code:
+                type: string
+                description: An error code that is static and can be used for programmatic error handling
+                example: AUTH_CODE_NOT_FOUND
+              message:
+                type: string
+                description: A human readable description of the error
+                example: The provided authorization code was not found
+              errors:
+                type: array
+                description: A list of more detailed errors about specific errors for specific entities
+                items:
+                  type: object
+                  required:
+                  - source
+                  - message
+                  properties:
+                    source:
+                      type: string
+                      description: Specific entity that caused this error
+                      example: code
+                    message:
+                      type: string
+                      description: Human readable description of the error for this entity (defined in
+                        `source`)
+                      example: The provided authorization code was not found
+  securitySchemes:
+    ClientKey:
+      type: apiKey
+      in: header
+      name: X-Client-Key
+      description: 'Your Client key, used for client-side requests. Sandbox keys are prefixed with `ck_sandbox_`;
+
+        production keys are prefixed with `ck_`. Find your keys in the Neon dashboard.
+
+        '
+    EnvironmentApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed
+        with `pk_sandbox_`;
+
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
+
+        '

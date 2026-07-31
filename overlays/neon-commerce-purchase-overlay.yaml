@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Neon purchase API
+  version: 1.0.0
+extends: openapi/neon-commerce-purchase-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: neon-commerce
+    x-apievangelist-source: docs.neonpay.com/reference (ReadMe embedded OpenAPI 3.1)
+    x-apievangelist-enriched: '2026-07-20'

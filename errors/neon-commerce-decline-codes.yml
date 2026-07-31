@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.neonpay.com/docs/paymentfailed
+note: Neon is merchant of record; payment failure reasons are surfaced on the payment.failed webhook 'data.code'
+  field. status may be INVALID_PAYMENT_METHOD.
+envelope_field: data.code (payment.failed webhook)
+decline_codes:
+- code: expired_card
+  meaning: The card has expired.
+  action: Ask buyer for a different card.
+- code: incorrect_cvc
+  meaning: The CVC/CVV was incorrect.
+  action: Re-enter CVC or use another card.
+- code: incorrect_number
+  meaning: The card number is incorrect.
+  action: Re-enter the card number.
+- code: incorrect_zip
+  meaning: The postal/ZIP code did not match.
+  action: Re-enter billing postal code.
+- code: invalid_exp_month
+  meaning: The expiration month is invalid.
+  action: Re-enter expiration.
+- code: invalid_exp_year
+  meaning: The expiration year is invalid.
+  action: Re-enter expiration.
+- code: invalid_number
+  meaning: The card number is invalid.
+  action: Re-enter the card number.
+- code: unexpected_country
+  meaning: Card country did not match the checkout country.
+  action: Use a card from the expected country; see country-mismatches docs.
+- code: insufficient_funds
+  meaning: The card had insufficient funds.
+  action: Buyer should use a different payment method.
+- code: declined
+  meaning: The payment was declined by the issuer.
+  action: Buyer should contact issuer or use another method.
+- code: failed
+  meaning: The payment failed for an unspecified reason.
+  action: Retry or use another payment method.

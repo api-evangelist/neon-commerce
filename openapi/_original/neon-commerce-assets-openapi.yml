@@ -1,0 +1,237 @@
+openapi: 3.1.0
+info:
+  title: Assets API
+  description: Manage the assets that support a  storefront experience and/or standalone checkout.
+  version: 1.0.0
+servers:
+- url: https://api.neonpay.com
+security:
+- EnvironmentApiKey: []
+paths:
+  /assets/brand-images:
+    post:
+      summary: Upload a brand image
+      description: Brand images can be used for customizing the storefront or checkout experience
+      operationId: createBrandImage
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fileName:
+                  description: The name that will be used to refer to this image in the Neon system. If
+                    the name isn't provided, the file name will be used.
+                  type: string
+                file:
+                  description: The image file as either a png, jpeg, or jpg file.
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Returns the image record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+    get:
+      summary: Returns the list of brand images associated with the environment
+      description: Brand images can be used for customizing the storefront or checkout experience
+      operationId: getBrandImages
+      responses:
+        '201':
+          description: Returns the brand image record
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+  /assets/inventory-images:
+    post:
+      summary: Upload an inventory image.
+      description: Inventory images can be associated with offers and/or items within the same environment.
+      operationId: createInventoryImage
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fileName:
+                  description: The name that will be used to refer to this image in the Neon system. If
+                    the name isn't provided, the file name will be used.
+                  type: string
+                file:
+                  description: The image file as either a png, jpeg, or jpg file.
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Returns the item-image record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+    get:
+      summary: Returns the list of inventory images associated with the environment
+      description: Inventory images can be associated with offers and/or items within the same environment.
+      operationId: getInventoryImages
+      responses:
+        '201':
+          description: Returns the storefront's inventory image records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+  /assets/brand-images/{imageId}:
+    delete:
+      summary: Mark a brand image as deleted.
+      description: The deleted image's url will continue to work but the image won't be assignable.
+      operationId: deleteBrandImage
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        description: The UUID for the brand image
+        schema:
+          type: string
+          example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
+      responses:
+        '204':
+          description: The brand image has been marked as deleted
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+  /assets/inventory-images/{imageId}:
+    delete:
+      summary: Mark an inventory image as deleted.
+      description: The deleted image's url will continue to work but the image won't be assignable.
+      operationId: deleteInventoryImage
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        description: The UUID for the item image
+        schema:
+          type: string
+          example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
+      responses:
+        '204':
+          description: The inventory image has been marked as deleted
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidApiKey'
+components:
+  schemas:
+    Image:
+      type: object
+      required:
+      - id
+      - relativeUrl
+      - url
+      - fileName
+      - mimeType
+      - createdAt
+      - updatedAt
+      properties:
+        id:
+          description: The Neon id of the image record
+          type: string
+        relativeUrl:
+          description: The relative url of the image
+          type: string
+        url:
+          description: The full url of the image
+          type: string
+        fileName:
+          description: The file name for the image. This will be used to reference the image in the dashboard
+            but won't appear in the storefront or checkout experience.
+          type: string
+        mimeType:
+          description: The image file's mimetype
+          type: string
+          example: image/png
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: INVALID_ITEM_IMAGE_TYPE
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: file
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.
+  responses:
+    InvalidApiKey:
+      description: Invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+  securitySchemes:
+    EnvironmentApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed
+        with `pk_sandbox_`;
+
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
+
+        '

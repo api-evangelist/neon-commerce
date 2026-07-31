@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ APIError responses + payment.failed webhook
+format: custom-error-code
+envelope:
+  schema: APIError
+  fields:
+  - statusCode
+  - code
+  - message
+  - errors[]
+  content_type: application/json
+status_codes:
+- 200
+- 201
+- 204
+- 400
+- 401
+- 404
+- 409
+- 500
+problems:
+- code: AUTH_CODE_NOT_FOUND
+  status: 400
+  title: Player auth code not found
+  source_operation: openapi/neon-commerce-auth-openapi.yml#createToken
+- code: CHECKOUT_NOT_FOUND
+  status: 404
+  title: Checkout not found
+  source_operation: openapi/neon-commerce-checkout-openapi.yml#getCheckout
+- code: PURCHASE_NOT_FOUND
+  status: 404
+  title: Purchase not found
+  source_operation: openapi/neon-commerce-purchase-openapi.yml#getPurchase
+- code: PAYOUT_NOT_FOUND
+  status: 404
+  title: Payout not found
+  source_operation: openapi/neon-commerce-payout-openapi.yml#getPayouts
+- code: REPORT_NOT_FOUND
+  status: 404
+  title: Report not found
+  source_operation: openapi/neon-commerce-reports-openapi.yml#getReport
+- code: INVALID_ITEM_ERROR
+  status: 400
+  title: Invalid storefront item
+  source_operation: openapi/neon-commerce-storefront-openapi.yml#createStorefrontItems
+- code: INVALID_ITEM_IMAGE_TYPE
+  status: 400
+  title: Invalid item image type
+  source_operation: openapi/neon-commerce-assets-openapi.yml#createInventoryImage
+- code: INVALID_IMAGE_FILE_NAME
+  status: 400
+  title: Invalid image file name
+  source_operation: openapi/neon-commerce-assets-openapi.yml#createBrandImage
+- code: UNHANDLED_ERROR
+  status: 500
+  title: Unhandled server error

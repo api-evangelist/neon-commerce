@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.neonpay.com/changelog + openapi/
+versioning:
+  scheme: unversioned-additive
+  current: '1'
+  note: APIs are unversioned; Neon adds fields and deprecates rather than breaking. Webhook payload schemas
+    are explicitly versioned (V1/V2).
+deprecation:
+  policy: additive-deprecation
+  sunset_header: false
+  note: Deprecations announced in the changelog; deprecated fields remain available (e.g. subtotalAmount
+    superseded by itemsSubtotalAmount/totalExcludingTaxesAmount). No RFC 8594 Sunset header documented.
+status:
+  status_api: https://docs.neonpay.com/reference/getstatus
+  public_status_page: null
+  uptime_claimed: 99.9%
+  note: Operational status exposed via the Status API (GET /status); no dedicated public status page host
+    found (status.neonpay.com does not resolve).
+deprecated_operations: []
+deprecated_fields:
+- Checkout/Purchase.subtotalAmount (use itemsSubtotalAmount / totalExcludingTaxesAmount)

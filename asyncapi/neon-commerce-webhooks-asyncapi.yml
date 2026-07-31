@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: derived
+source: https://docs.neonpay.com/docs/webhooks-and-callbacks + openapi/neon-commerce-purchase-openapi.yml
+  webhook schemas
+spec_type: Webhooks
+transport:
+  delivery: HTTP POST to subscriber URL
+  subscribe_operations:
+  - openapi/neon-commerce-purchase-openapi.yml#subscribeToWebhooks
+  - openapi/neon-commerce-storefront-openapi.yml#subscribeToCallbacks
+  signing: HMAC-SHA256 via x-neon-digest header (shared secret)
+  retries: Webhooks up to 36h; callbacks up to 3x; backoff 2^attempt - 1 s
+  versioning: Event versions pinned at subscription; V1/V2 payload schemas
+events:
+- event: purchase.completed
+  schema: PurchaseWebhookV2
+  signals: A purchase finished successfully.
+- event: payment.failed
+  schema: PaymentFailedWebhook
+  signals: A payment attempt failed; carries a decline code (see errors/neon-commerce-decline-codes.yml).
+- event: refund.processed
+  schema: RefundWebhookV2
+  signals: A refund was processed.
+- event: dispute.opened
+  schema: DisputeWebhook
+  signals: A chargeback/dispute was opened.
+- event: dispute.closed
+  schema: DisputeWebhook
+  signals: A dispute was resolved/closed.
+- event: checkout.abandoned
+  schema: CheckoutAbandonedWebhook
+  signals: A checkout was abandoned.
+- event: cart.abandoned
+  schema: CartAbandonedWebhook
+  signals: A cart was abandoned.
+callbacks:
+- callback: account.getInventory
+  signals: Neon requests the player's inventory from your server.
+- callback: account.validate
+  signals: Neon asks your server to validate a player account.

@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: Status API
+  description: The Status API can be used to check the status of Neon services
+  version: 1.0.0
+servers:
+- url: https://status-api.neonpay.com
+security: []
+paths:
+  /status:
+    get:
+      summary: Get the current status of the Neon API
+      operationId: getStatus
+      responses:
+        '200':
+          description: Current status of the Neon API
+          content:
+            application/json:
+              schema:
+                type: object
+                readOnly: true
+                required:
+                - updatedAt
+                - status
+                properties:
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the last status update
+                  status:
+                    type: string
+                    description: "The current status of the Neon API\nPossible values are:\n - ok: Services\
+                      \ are fully operational\n - degraded: Services are most functioning, but increased\
+                      \ latency\n - partial_outage: Some components are not working\n - major_outage:\
+                      \ Critical functionality is unavailable\n"
+                    enum:
+                    - ok
+                    - degraded
+                    - partial_outage
+                    - major_outage
+components: {}
