@@ -229,6 +229,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/neon-commerce-account-overlay.yaml
 - type: DomainSecurity
   url: security/neon-commerce-domain-security.yml
 - type: AgenticAccess
