@@ -1,0 +1,667 @@
+{
+  "item": [
+    {
+      "id": "fabe25db-7e74-45f5-9be4-90f39556e6a2",
+      "name": "Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "022ac22b-bd55-46be-9e3a-cd54ec7b0c59",
+          "name": "Merge player accounts",
+          "request": {
+            "name": "Merge player accounts",
+            "description": {
+              "content": "API to initiate the merging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceAccountId\": \"<string>\",\n  \"targetAccountId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51bb4815-97c0-41fe-aa07-7f134f2d0b66",
+              "name": "Successfully merged the accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceAccountId\": \"<string>\",\n  \"targetAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountIds\": [\n    \"123456\",\n    \"654321\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d10c0da0-b531-4e82-86b2-2de7c18c0615",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceAccountId\": \"<string>\",\n  \"targetAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4686f0f6-ca4b-4e0a-9a40-82ca77d19a30",
+              "name": "Response for unauthorized requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceAccountId\": \"<string>\",\n  \"targetAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c720f45a-7a79-458a-8b07-4889d6c27350",
+              "name": "Response when trying to merge an account that has already been merged.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceAccountId\": \"<string>\",\n  \"targetAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e137918-0ff5-4a53-88ae-8063580423c1",
+              "name": "Response for general API errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceAccountId\": \"<string>\",\n  \"targetAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8854d341-75f5-42c1-98c1-c6489013f7d5",
+          "name": "Unmerge player accounts",
+          "request": {
+            "name": "Unmerge player accounts",
+            "description": {
+              "content": "API to initiate the unmerging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "unmerge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unmergeAccountId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e2a6203-d858-4504-bb16-dcbbe7485a7a",
+              "name": "Successfully unmerged the accounts or nothing to unmerge",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "unmerge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unmergeAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountIds\": [\n    \"123456\",\n    \"654321\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d88160a6-37c5-4d4a-ac0c-5d09327579f6",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "unmerge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unmergeAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b69024b1-8acb-4de4-a7d4-e5f9f3b3b3e2",
+              "name": "Response for unauthorized requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "unmerge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unmergeAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02a29a6b-2fe9-46fa-b0ca-28db1438f646",
+              "name": "Response when trying to unmerge an account that has accounts merged into it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "unmerge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unmergeAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87fcf82e-c4f7-4bb8-9f35-0ca1d6557308",
+              "name": "Response for general API errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "unmerge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unmergeAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6b519d68-f21e-45de-813e-7cbcc9840b7a",
+    "name": "Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

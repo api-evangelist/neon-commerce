@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Pricing Sheet API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pricing Sheet",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get your active pricing sheet. If you don't have a custom pricing sheet, the default Neon pricing sheet is returned.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/pricing-sheet",
+            "params": [
+              {
+                "name": "onlyEnabledCountries",
+                "value": "",
+                "type": "query",
+                "description": "If true, only countries enabled for this environment are returned in the countries field, and the tiers field is filtered to those enabled countries"
+              }
+            ]
+          },
+          "docs": "Get your active pricing sheet. If you don't have a custom pricing sheet, the default Neon pricing sheet is returned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

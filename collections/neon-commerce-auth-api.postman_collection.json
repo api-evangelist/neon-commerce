@@ -1,0 +1,305 @@
+{
+  "item": [
+    {
+      "id": "7b3d9f5e-a9fd-4543-a654-f1fb71c677d2",
+      "name": "Auth",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5ef01b3-5fed-4385-b8d5-9ff48032dc9b",
+          "name": "Retrieve a token",
+          "request": {
+            "name": "Retrieve a token",
+            "description": {
+              "content": "In order to authenticate a shop user with your game, you need to link the player \"code\" with your internal player account ID. This endpoint does that linking and returns a unique token that can be used to redirect the player back to the shop with an authenticated session.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"code\": \"<string,null>\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 1295.4266881373655,\n    \"key_1\": 4229.000197072342,\n    \"key_2\": 719,\n    \"key_3\": \"string\",\n    \"key_4\": \"string\"\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91129dfe-ebb9-40f0-98ea-604ddee324b6",
+              "name": "The authentication token was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"code\": \"ABCD-1234\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 2722.1958557535486,\n    \"key_1\": 8790\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb1fdb59-aec8-4690-837b-78e6028475cb",
+              "name": "Response for API errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"code\": \"ABCD-1234\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 2722.1958557535486,\n    \"key_1\": 8790\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d4fca3f-da65-41da-b91f-0892cf26dcc3",
+              "name": "Response for API errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"code\": \"ABCD-1234\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 2722.1958557535486,\n    \"key_1\": 8790\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba446956-faf1-45f8-bd21-7aa33f1aa0d8",
+              "name": "Response for API errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"code\": \"ABCD-1234\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 2722.1958557535486,\n    \"key_1\": 8790\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e3a5743a-907f-4ebe-862e-4484476a32fd",
+    "name": "Account Auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

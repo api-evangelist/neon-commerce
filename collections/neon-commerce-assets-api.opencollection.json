@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Assets API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of brand images associated with the environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/assets/brand-images"
+          },
+          "docs": "Brand images can be used for customizing the storefront or checkout experience"
+        },
+        {
+          "info": {
+            "name": "Upload a brand image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/assets/brand-images",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Brand images can be used for customizing the storefront or checkout experience"
+        },
+        {
+          "info": {
+            "name": "Returns the list of inventory images associated with the environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/assets/inventory-images"
+          },
+          "docs": "Inventory images can be associated with offers and/or items within the same environment."
+        },
+        {
+          "info": {
+            "name": "Upload an inventory image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/assets/inventory-images",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Inventory images can be associated with offers and/or items within the same environment."
+        },
+        {
+          "info": {
+            "name": "Mark a brand image as deleted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neonpay.com/assets/brand-images/:imageId",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID for the brand image"
+              }
+            ]
+          },
+          "docs": "The deleted image's url will continue to work but the image won't be assignable."
+        },
+        {
+          "info": {
+            "name": "Mark an inventory image as deleted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neonpay.com/assets/inventory-images/:imageId",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID for the item image"
+              }
+            ]
+          },
+          "docs": "The deleted image's url will continue to work but the image won't be assignable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,730 @@
+{
+  "item": [
+    {
+      "id": "352b1584-1ef6-4268-9fe7-d33cf67ca22b",
+      "name": "Subscriptions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "179ab0f0-bf5a-45a6-b0e0-813bfdf84f8b",
+          "name": "Cancel a subscription",
+          "request": {
+            "name": "Cancel a subscription",
+            "description": {
+              "content": "Cancel a subscription.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4c70753-6938-4d11-a4bd-64fbdfb11ef2",
+              "name": "Subscription canceled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"sku\": \"GOLD-1234\",\n  \"name\": \"Gold Membership\",\n  \"price\": 9999,\n  \"currency\": \"USD\",\n  \"status\": \"active\",\n  \"imageUrl\": \"https://example.com/images/gold-membership.png\",\n  \"country\": \"string\",\n  \"externalReferenceId\": \"e7ec4567-e89b-12d3-a456-426614174000\",\n  \"externalMetadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"frequency\": \"monthly\",\n  \"accountId\": \"player_987654\",\n  \"accountDisplayName\": \"GreatGamer123\",\n  \"locale\": \"en-US\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17483840-00e4-4786-bbcb-5145739d6f0a",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"UNHANDLED_ERROR\",\n  \"message\": \"Could not create a subscription\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    },\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8981a7a4-2eb0-4e5d-a910-f3939c893506",
+          "name": "Generate a payment method update link",
+          "request": {
+            "name": "Generate a payment method update link",
+            "description": {
+              "content": "Returns a redirect URL where the user can update their subscription's payment method. The URL expires after 1 hour.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "update-payment-method"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"returnUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e0e7597-b0e1-4d5b-9bd7-10ea2aea5c64",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "update-payment-method"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"returnUrl\": \"https://example.com/return\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"redirectUrl\": \"http://AOew.otqLz47VFFGL7FxcrXbiJyrJ2XcS0po4\",\n  \"token\": \"string\",\n  \"subscription\": {\n    \"token\": \"string\"\n  },\n  \"expiresAt\": \"2007-04-21T02:09:20.739Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bce5633b-626b-4d18-9480-24c3c4d3eca2",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "update-payment-method"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"returnUrl\": \"https://example.com/return\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"UNHANDLED_ERROR\",\n  \"message\": \"Could not create a subscription\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    },\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3984be26-f401-4eb6-a60e-7b01c3547303",
+          "name": "Returns a subscription's details.",
+          "request": {
+            "name": "Returns a subscription's details.",
+            "description": {
+              "content": "Can be used to get the status of a particular subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf0fce71-fa7e-4de1-9097-576fc3063bdb",
+              "name": "Returns the subscription object associated with the passed-in ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"sku\": \"GOLD-1234\",\n  \"name\": \"Gold Membership\",\n  \"price\": 9999,\n  \"currency\": \"USD\",\n  \"status\": \"active\",\n  \"imageUrl\": \"https://example.com/images/gold-membership.png\",\n  \"country\": \"string\",\n  \"externalReferenceId\": \"e7ec4567-e89b-12d3-a456-426614174000\",\n  \"externalMetadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"frequency\": \"monthly\",\n  \"accountId\": \"player_987654\",\n  \"accountDisplayName\": \"GreatGamer123\",\n  \"locale\": \"en-US\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98d685b6-0364-410e-9a4f-521f63f0e49d",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"UNHANDLED_ERROR\",\n  \"message\": \"Could not create a subscription\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    },\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a668308f-1b18-4e0d-bddc-6f00bfbcaa6d",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"UNHANDLED_ERROR\",\n  \"message\": \"Could not create a subscription\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    },\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "676be54f-e51b-4902-af18-329b43095cb0",
+          "name": "Create a subscription",
+          "request": {
+            "name": "Create a subscription",
+            "description": {
+              "content": "Create a subscription. Once the subscription is created, redirect the user to the `returnUrl`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"country\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"frequency\": \"monthly\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"returnUrl\": \"<string,null-uri>\",\n  \"storeUrl\": \"<uri>\",\n  \"externalReferenceId\": \"<string,null>\",\n  \"locale\": \"en-US\",\n  \"externalMetadata\": {\n    \"key_0\": 4173\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6186d51a-4b34-4423-a4ef-4790f5cfb368",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"GOLD-1234\",\n  \"name\": \"Gold Membership\",\n  \"price\": 9999,\n  \"currency\": \"USD\",\n  \"imageUrl\": \"https://example.com/images/gold-membership.png\",\n  \"country\": \"US\",\n  \"accountId\": \"player_987654\",\n  \"frequency\": \"monthly\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"returnUrl\": \"https://example.com/subscription/return\",\n  \"storeUrl\": \"https://example.com\",\n  \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"locale\": \"en-US\",\n  \"externalMetadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": false,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscription\": {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"sku\": \"GOLD-1234\",\n    \"name\": \"Gold Membership\",\n    \"price\": 9999,\n    \"currency\": \"USD\",\n    \"status\": \"active\",\n    \"imageUrl\": \"https://example.com/images/gold-membership.png\",\n    \"country\": \"string\",\n    \"externalReferenceId\": \"e7ec4567-e89b-12d3-a456-426614174000\",\n    \"externalMetadata\": {\n      \"key_0\": 671\n    },\n    \"frequency\": \"monthly\",\n    \"accountId\": \"player_987654\",\n    \"accountDisplayName\": \"GreatGamer123\",\n    \"locale\": \"en-US\"\n  },\n  \"redirectUrl\": \"string\",\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8935ba21-bf46-40e9-abdd-08eda1fe1f27",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"GOLD-1234\",\n  \"name\": \"Gold Membership\",\n  \"price\": 9999,\n  \"currency\": \"USD\",\n  \"imageUrl\": \"https://example.com/images/gold-membership.png\",\n  \"country\": \"US\",\n  \"accountId\": \"player_987654\",\n  \"frequency\": \"monthly\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"returnUrl\": \"https://example.com/subscription/return\",\n  \"storeUrl\": \"https://example.com\",\n  \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"locale\": \"en-US\",\n  \"externalMetadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": false,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"UNHANDLED_ERROR\",\n  \"message\": \"Could not create a subscription\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    },\n    {\n      \"source\": \"subscriptionSku\",\n      \"message\": \"Subscription not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b1b76c5d-6f2d-46c6-9ec9-e0355cbd6c03",
+    "name": "Account Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

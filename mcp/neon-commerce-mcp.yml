@@ -152,3 +152,9 @@ tools:
 - name: postSubscription
   description: Create a subscription
   source_operation: openapi/neon-commerce-subscriptions-openapi.yml#postSubscription
+deployment:
+  mode: none
+  verified: derived
+  tools: 48
+  checked: '2026-08-12'
+  source: catalog MCP census

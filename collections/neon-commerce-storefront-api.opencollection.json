@@ -1,0 +1,333 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Storefront API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Storefront",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/storefront/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create items. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).\nIf any operation fails, the error is returned and all changes are reverted.\n"
+        },
+        {
+          "info": {
+            "name": "Create an offer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/storefront/offer-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Offer groups are used to group offers in the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).\nThis operation takes a list of offer groups and adds them to your existing offer groups. If any operation fails, all changes are reverted and the error is returned.\n"
+        },
+        {
+          "info": {
+            "name": "Get offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/storefront/offers",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startingAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endingBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a paginated list of offers."
+        },
+        {
+          "info": {
+            "name": "Create offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/storefront/offers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "An offer is the resource that players purchase on the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).\nThis operation takes a list of offer objects and adds them to your existing offers. If any operation fails, all changes are reverted and the error is returned.\n"
+        },
+        {
+          "info": {
+            "name": "Get an item by code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/storefront/item/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an item by its code."
+        },
+        {
+          "info": {
+            "name": "Update an item by code",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.neonpay.com/storefront/item/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an item. This replaces the existing item with the input data."
+        },
+        {
+          "info": {
+            "name": "Delete an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neonpay.com/storefront/item/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an item by its code."
+        },
+        {
+          "info": {
+            "name": "Get an offer by SKU",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/storefront/offer/:sku",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an offer by its SKU."
+        },
+        {
+          "info": {
+            "name": "Update an offer by SKU",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.neonpay.com/storefront/offer/:sku",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an offer. This replaces the existing offer with the input data."
+        },
+        {
+          "info": {
+            "name": "Delete an offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neonpay.com/storefront/offer/:sku",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an offer by its SKU."
+        },
+        {
+          "info": {
+            "name": "Get an offer group by code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/storefront/offer-group/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an offer group by its code."
+        },
+        {
+          "info": {
+            "name": "Update an offer group by code",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.neonpay.com/storefront/offer-group/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an offer group. This replaces the existing offer group with the input data."
+        },
+        {
+          "info": {
+            "name": "Delete an offer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neonpay.com/storefront/offer-group/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an offer by its code."
+        },
+        {
+          "info": {
+            "name": "Get localized pricing by IP address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/storefront/prices",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "The IP address of the user"
+              }
+            ]
+          },
+          "docs": "Get localized pricing by IP address."
+        },
+        {
+          "info": {
+            "name": "Get a storefront theme",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/storefront/theme"
+          },
+          "docs": "Get a storefront theme"
+        },
+        {
+          "info": {
+            "name": "Update the theme for a storefront",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.neonpay.com/storefront/theme",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Programatically update the configuration for a theme"
+        },
+        {
+          "info": {
+            "name": "Register a URL to handle events throughout the storefront and checkout flow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/storefront/callbacks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Learn more about callbacks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

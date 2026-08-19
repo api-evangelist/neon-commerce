@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Purchases API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Purchases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for a purchase by checkout ID or order number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/purchases/search",
+            "params": [
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "checkoutId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for a purchase by checkout ID or order number"
+        },
+        {
+          "info": {
+            "name": "Get a purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/purchases/:purchaseId",
+            "params": [
+              {
+                "name": "purchaseId",
+                "value": "",
+                "type": "path",
+                "description": "The purchase ID"
+              }
+            ]
+          },
+          "docs": "Get a purchase by its ID"
+        },
+        {
+          "info": {
+            "name": "Get all available refunds for a specific environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/purchases/refunds",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter refunds created on or after this date (inclusive)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter refunds created before this date (exclusive)"
+              },
+              {
+                "name": "startingAfter",
+                "value": "",
+                "type": "query",
+                "description": "A cursor for use in pagination. An object ID that defines your place in the list of refunds. It'll fetch the next page of the list.\n"
+              },
+              {
+                "name": "endingBefore",
+                "value": "",
+                "type": "query",
+                "description": "A cursor for use in pagination. An object ID that defines your place in the list of refunds. It'll fetch the previous page of the list.\n"
+              }
+            ]
+          },
+          "docs": "Get all available refunds for a specific environment"
+        },
+        {
+          "info": {
+            "name": "Get all available purchases for a specific environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/purchases",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startingAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endingBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all available purchases for a specific environment"
+        },
+        {
+          "info": {
+            "name": "Refunds a purchase.\n",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/purchases/:purchaseId/refund",
+            "params": [
+              {
+                "name": "purchaseId",
+                "value": "",
+                "type": "path",
+                "description": "A valid purchase ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refunds are typically handled by Neon. Please reach out to Neon to determine if you qualify for access to this API.\n"
+        },
+        {
+          "info": {
+            "name": "Subscribe to purchase lifecycle events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/purchases/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Learn more about webhooks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

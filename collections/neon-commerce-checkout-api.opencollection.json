@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Checkout API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checkout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/checkout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. On success, we'll send a `purchase.completed` event to your webhook listener. On payment failure, we'll send a `payment.failed` event to your webhook listener.\nDon't use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.\n"
+        },
+        {
+          "info": {
+            "name": "Expire a checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/checkout/:checkoutId/expire",
+            "params": [
+              {
+                "name": "checkoutId",
+                "value": "",
+                "type": "path",
+                "description": "A valid checkout ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Expire a checkout. This will expire the checkout corresponding to the provided checkoutId regardless of the current status.\n"
+        },
+        {
+          "info": {
+            "name": "Returns a checkout's details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/checkout/:checkoutId",
+            "params": [
+              {
+                "name": "checkoutId",
+                "value": "",
+                "type": "path",
+                "description": "A valid checkout ID."
+              }
+            ]
+          },
+          "docs": "Can be used to get the status of a particular checkout."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

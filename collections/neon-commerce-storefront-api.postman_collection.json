@@ -1,0 +1,3615 @@
+{
+  "item": [
+    {
+      "id": "c278bcc8-a656-4e83-9206-1e8a323c0d8d",
+      "name": "Storefront",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07ec2442-9fc3-4516-af16-0ff5f12a9325",
+          "name": "Create items",
+          "request": {
+            "name": "Create items",
+            "description": {
+              "content": "Create items. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).\nIf any operation fails, the error is returned and all changes are reverted.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"code\": \"<string>\",\n    \"imageFileName\": \"<string>\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"<string>\",\n        \"namePlural\": \"<string>\",\n        \"description\": \"<string,null>\"\n      },\n      \"key_1\": {\n        \"nameSingular\": \"<string>\",\n        \"namePlural\": \"<string>\",\n        \"description\": \"<string,null>\"\n      }\n    }\n  },\n  {\n    \"code\": \"<string>\",\n    \"imageFileName\": \"<string>\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"<string>\",\n        \"namePlural\": \"<string>\",\n        \"description\": \"<string,null>\"\n      },\n      \"key_1\": {\n        \"nameSingular\": \"<string>\",\n        \"namePlural\": \"<string>\",\n        \"description\": \"<string,null>\"\n      },\n      \"key_2\": {\n        \"nameSingular\": \"<string>\",\n        \"namePlural\": \"<string>\",\n        \"description\": \"<string,null>\"\n      },\n      \"key_3\": {\n        \"nameSingular\": \"<string>\",\n        \"namePlural\": \"<string>\",\n        \"description\": \"<string,null>\"\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67e6b04b-b37d-4169-8ee0-b41e7832a8ea",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"code\": \"gem\",\n    \"imageFileName\": \"gem-24x24.png\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      },\n      \"key_1\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      }\n    }\n  },\n  {\n    \"code\": \"gem\",\n    \"imageFileName\": \"gem-24x24.png\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": \"string\"\n      },\n      \"key_1\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      },\n      \"key_2\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": \"string\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84c511d4-fb40-4443-96aa-2de5e1ee17b3",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"code\": \"gem\",\n    \"imageFileName\": \"gem-24x24.png\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      },\n      \"key_1\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      }\n    }\n  },\n  {\n    \"code\": \"gem\",\n    \"imageFileName\": \"gem-24x24.png\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": \"string\"\n      },\n      \"key_1\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      },\n      \"key_2\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": \"string\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": false,\n    \"key_1\": 1995.1490002973283,\n    \"key_2\": 2119,\n    \"key_3\": 5628,\n    \"key_4\": 2436.0829413588503\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a0a9b66-e0af-4196-83e2-084e8ea68c3f",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"code\": \"gem\",\n    \"imageFileName\": \"gem-24x24.png\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      },\n      \"key_1\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      }\n    }\n  },\n  {\n    \"code\": \"gem\",\n    \"imageFileName\": \"gem-24x24.png\",\n    \"text\": {\n      \"key_0\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": \"string\"\n      },\n      \"key_1\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": null\n      },\n      \"key_2\": {\n        \"nameSingular\": \"gem\",\n        \"namePlural\": \"gems\",\n        \"description\": \"string\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": false,\n    \"key_1\": 1995.1490002973283,\n    \"key_2\": 2119,\n    \"key_3\": 5628,\n    \"key_4\": 2436.0829413588503\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "549bb6d6-2f2e-4088-8e90-2f5521fc7e54",
+          "name": "Create an offer group",
+          "request": {
+            "name": "Create an offer group",
+            "description": {
+              "content": "Offer groups are used to group offers in the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).\nThis operation takes a list of offer groups and adds them to your existing offer groups. If any operation fails, all changes are reverted and the error is returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offer-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"code\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"<string,null>\",\n        \"description\": \"<string,null>\",\n        \"headerImageFileName\": \"<string,null>\",\n        \"subheaderImageFileName\": \"<string,null>\"\n      },\n      \"key_1\": {\n        \"label\": \"<string,null>\",\n        \"description\": \"<string,null>\",\n        \"headerImageFileName\": \"<string,null>\",\n        \"subheaderImageFileName\": \"<string,null>\"\n      }\n    }\n  },\n  {\n    \"code\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"<string,null>\",\n        \"description\": \"<string,null>\",\n        \"headerImageFileName\": \"<string,null>\",\n        \"subheaderImageFileName\": \"<string,null>\"\n      },\n      \"key_1\": {\n        \"label\": \"<string,null>\",\n        \"description\": \"<string,null>\",\n        \"headerImageFileName\": \"<string,null>\",\n        \"subheaderImageFileName\": \"<string,null>\"\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a7a8a68-c7ae-4519-b19c-424996b9f99f",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n    \"priority\": 9433,\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_1\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      }\n    }\n  },\n  {\n    \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n    \"priority\": 7388,\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_1\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_2\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e25c2a36-f02e-439d-b7b3-e33db1be8dca",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n    \"priority\": 9433,\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_1\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      }\n    }\n  },\n  {\n    \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n    \"priority\": 7388,\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_1\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_2\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6128121d-dac5-4333-b0c7-213c2b5636b3",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n    \"priority\": 9433,\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_1\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      }\n    }\n  },\n  {\n    \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n    \"priority\": 7388,\n    \"text\": {\n      \"key_0\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_1\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      },\n      \"key_2\": {\n        \"label\": \"string\",\n        \"description\": null,\n        \"headerImageFileName\": \"currency-banner.png\",\n        \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf541f89-8f44-4357-9c3b-2bb711dfb6a6",
+          "name": "Create offers",
+          "request": {
+            "name": "Create offers",
+            "description": {
+              "content": "An offer is the resource that players purchase on the storefront. Read more about inventory setup [here](https://neonpay.readme.io/docs/offers).\nThis operation takes a list of offer objects and adds them to your existing offers. If any operation fails, all changes are reverted and the error is returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"sku\": \"<string>\",\n    \"priceTierCode\": \"<string>\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": false,\n    \"groups\": [\n      {\n        \"code\": \"<string>\",\n        \"order\": \"<number>\",\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"<string>\",\n        \"order\": \"<number>\",\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"<string,null>\",\n    \"backgroundImageFileName\": \"<string,null>\",\n    \"items\": [\n      {\n        \"code\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"<string,null>\",\n            \"highlightedSubtitle\": \"<string,null>\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"<string,null>\",\n            \"highlightedSubtitle\": \"<string,null>\"\n          }\n        },\n        \"originalQuantity\": \"<number,null>\"\n      },\n      {\n        \"code\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"<string,null>\",\n            \"highlightedSubtitle\": \"<string,null>\"\n          }\n        },\n        \"originalQuantity\": \"<number,null>\"\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"bannerText\": \"<string,null>\",\n        \"promoText\": \"<string,null>\",\n        \"theme\": \"<string,null>\",\n        \"subtitle\": \"<string,null>\",\n        \"highlightedSubtitle\": \"<string,null>\"\n      },\n      \"key_1\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"bannerText\": \"<string,null>\",\n        \"promoText\": \"<string,null>\",\n        \"theme\": \"<string,null>\",\n        \"subtitle\": \"<string,null>\",\n        \"highlightedSubtitle\": \"<string,null>\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"<string,null>\",\n    \"limit\": \"<integer,null>\",\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"<string,null-date-time>\",\n        \"startDate\": \"<string,null-date-time>\",\n        \"endDate\": \"<string,null-date-time>\"\n      },\n      {\n        \"previewDate\": \"<string,null-date-time>\",\n        \"startDate\": \"<string,null-date-time>\",\n        \"endDate\": \"<string,null-date-time>\"\n      }\n    ]\n  },\n  {\n    \"sku\": \"<string>\",\n    \"priceTierCode\": \"<string>\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": false,\n    \"groups\": [\n      {\n        \"code\": \"<string>\",\n        \"order\": \"<number>\",\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"<string>\",\n        \"order\": \"<number>\",\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"<string,null>\",\n    \"backgroundImageFileName\": \"<string,null>\",\n    \"items\": [\n      {\n        \"code\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"<string,null>\",\n            \"highlightedSubtitle\": \"<string,null>\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"<string,null>\",\n            \"highlightedSubtitle\": \"<string,null>\"\n          }\n        },\n        \"originalQuantity\": \"<number,null>\"\n      },\n      {\n        \"code\": \"<string>\",\n        \"quantity\": \"<number>\",\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"<string,null>\",\n            \"highlightedSubtitle\": \"<string,null>\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"<string,null>\",\n            \"highlightedSubtitle\": \"<string,null>\"\n          }\n        },\n        \"originalQuantity\": \"<number,null>\"\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"bannerText\": \"<string,null>\",\n        \"promoText\": \"<string,null>\",\n        \"theme\": \"<string,null>\",\n        \"subtitle\": \"<string,null>\",\n        \"highlightedSubtitle\": \"<string,null>\"\n      },\n      \"key_1\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"bannerText\": \"<string,null>\",\n        \"promoText\": \"<string,null>\",\n        \"theme\": \"<string,null>\",\n        \"subtitle\": \"<string,null>\",\n        \"highlightedSubtitle\": \"<string,null>\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"<string,null>\",\n    \"limit\": \"<integer,null>\",\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"<string,null-date-time>\",\n        \"startDate\": \"<string,null-date-time>\",\n        \"endDate\": \"<string,null-date-time>\"\n      },\n      {\n        \"previewDate\": \"<string,null-date-time>\",\n        \"startDate\": \"<string,null-date-time>\",\n        \"endDate\": \"<string,null-date-time>\"\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d0b7703-4eb1-4909-ad99-b9b4726ee1ef",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sku\": \"string\",\n    \"priceTierCode\": \"string\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": true,\n    \"groups\": [\n      {\n        \"code\": \"string\",\n        \"order\": 8478.707882058688,\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"string\",\n        \"order\": 3389.573381448725,\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"gem-24x24.png\",\n    \"backgroundImageFileName\": \"gem-background.png\",\n    \"items\": [\n      {\n        \"code\": \"string\",\n        \"quantity\": 4715.640426185804,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_2\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 5966.227406599461\n      },\n      {\n        \"code\": \"string\",\n        \"quantity\": 4541.199392373639,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_2\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_3\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_4\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 863.5124857430443\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      },\n      \"key_1\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"null\",\n    \"limit\": 6600,\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      },\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      }\n    ]\n  },\n  {\n    \"sku\": \"string\",\n    \"priceTierCode\": \"string\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": true,\n    \"groups\": [\n      {\n        \"code\": \"string\",\n        \"order\": 2595.842557670153,\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"string\",\n        \"order\": 7471.8816567138465,\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"gem-24x24.png\",\n    \"backgroundImageFileName\": \"gem-background.png\",\n    \"items\": [\n      {\n        \"code\": \"string\",\n        \"quantity\": 9619.132406570257,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 268.174297992817\n      },\n      {\n        \"code\": \"string\",\n        \"quantity\": 1604.270488147308,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 9731.830353017904\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"null\",\n    \"limit\": 852,\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      },\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51290938-3d4d-4924-998e-fb013b434f64",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sku\": \"string\",\n    \"priceTierCode\": \"string\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": true,\n    \"groups\": [\n      {\n        \"code\": \"string\",\n        \"order\": 8478.707882058688,\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"string\",\n        \"order\": 3389.573381448725,\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"gem-24x24.png\",\n    \"backgroundImageFileName\": \"gem-background.png\",\n    \"items\": [\n      {\n        \"code\": \"string\",\n        \"quantity\": 4715.640426185804,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_2\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 5966.227406599461\n      },\n      {\n        \"code\": \"string\",\n        \"quantity\": 4541.199392373639,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_2\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_3\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_4\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 863.5124857430443\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      },\n      \"key_1\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"null\",\n    \"limit\": 6600,\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      },\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      }\n    ]\n  },\n  {\n    \"sku\": \"string\",\n    \"priceTierCode\": \"string\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": true,\n    \"groups\": [\n      {\n        \"code\": \"string\",\n        \"order\": 2595.842557670153,\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"string\",\n        \"order\": 7471.8816567138465,\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"gem-24x24.png\",\n    \"backgroundImageFileName\": \"gem-background.png\",\n    \"items\": [\n      {\n        \"code\": \"string\",\n        \"quantity\": 9619.132406570257,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 268.174297992817\n      },\n      {\n        \"code\": \"string\",\n        \"quantity\": 1604.270488147308,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 9731.830353017904\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"null\",\n    \"limit\": 852,\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      },\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2e56df6-8713-492d-801e-a4daf6ae6d6f",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sku\": \"string\",\n    \"priceTierCode\": \"string\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": true,\n    \"groups\": [\n      {\n        \"code\": \"string\",\n        \"order\": 8478.707882058688,\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"string\",\n        \"order\": 3389.573381448725,\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"gem-24x24.png\",\n    \"backgroundImageFileName\": \"gem-background.png\",\n    \"items\": [\n      {\n        \"code\": \"string\",\n        \"quantity\": 4715.640426185804,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_2\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 5966.227406599461\n      },\n      {\n        \"code\": \"string\",\n        \"quantity\": 4541.199392373639,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_2\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_3\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_4\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 863.5124857430443\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      },\n      \"key_1\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"null\",\n    \"limit\": 6600,\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      },\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      }\n    ]\n  },\n  {\n    \"sku\": \"string\",\n    \"priceTierCode\": \"string\",\n    \"isTargetedOffer\": false,\n    \"shouldPreviewTargetedOffer\": false,\n    \"shouldHideOfferWhenClaimed\": true,\n    \"groups\": [\n      {\n        \"code\": \"string\",\n        \"order\": 2595.842557670153,\n        \"style\": \"default\"\n      },\n      {\n        \"code\": \"string\",\n        \"order\": 7471.8816567138465,\n        \"style\": \"default\"\n      }\n    ],\n    \"imageFileName\": \"gem-24x24.png\",\n    \"backgroundImageFileName\": \"gem-background.png\",\n    \"items\": [\n      {\n        \"code\": \"string\",\n        \"quantity\": 9619.132406570257,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          },\n          \"key_1\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 268.174297992817\n      },\n      {\n        \"code\": \"string\",\n        \"quantity\": 1604.270488147308,\n        \"text\": {\n          \"key_0\": {\n            \"subtitle\": \"100 credits\",\n            \"highlightedSubtitle\": \"+10 extra credits\"\n          }\n        },\n        \"originalQuantity\": 9731.830353017904\n      }\n    ],\n    \"text\": {\n      \"key_0\": {\n        \"name\": \"110 Gems\",\n        \"description\": \"Get 100 gold every day you log in to play.\",\n        \"bannerText\": \"Great Value\",\n        \"promoText\": \"Great Value\",\n        \"theme\": \"Great Value\",\n        \"subtitle\": \"100 credits\",\n        \"highlightedSubtitle\": \"+10 extra credits\"\n      }\n    },\n    \"isHidden\": false,\n    \"containsRandomizedContent\": false,\n    \"buttonLayout\": \"null\",\n    \"limit\": 852,\n    \"timeLimits\": [\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      },\n      {\n        \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n        \"startDate\": \"2023-06-23T20:00:00.000Z\",\n        \"endDate\": \"2023-06-23T20:00:00.000Z\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d89c0c3c-2609-4931-9f5b-0e18a8e767c6",
+          "name": "Get offers",
+          "request": {
+            "name": "Get offers",
+            "description": {
+              "content": "Get a paginated list of offers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endingBefore",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21a1e635-69b4-4daf-97db-45a2b54b505d",
+              "name": "Offers retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"sku\": \"string\",\n      \"priceTierCode\": \"string\",\n      \"isTargetedOffer\": false,\n      \"shouldPreviewTargetedOffer\": false,\n      \"shouldHideOfferWhenClaimed\": true,\n      \"groups\": [\n        {\n          \"code\": \"string\",\n          \"order\": 3594.95465179714,\n          \"style\": \"default\"\n        },\n        {\n          \"code\": \"string\",\n          \"order\": 1299.2376691532158,\n          \"style\": \"default\"\n        }\n      ],\n      \"imageFileName\": \"gem-24x24.png\",\n      \"backgroundImageFileName\": \"gem-background.png\",\n      \"items\": [\n        {\n          \"code\": \"string\",\n          \"quantity\": 1952.3359546231777,\n          \"text\": {\n            \"key_0\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            },\n            \"key_1\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            },\n            \"key_2\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            },\n            \"key_3\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            }\n          },\n          \"originalQuantity\": 3180.265085621119\n        },\n        {\n          \"code\": \"string\",\n          \"quantity\": 4088.599380483101,\n          \"text\": {\n            \"key_0\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            },\n            \"key_1\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            }\n          },\n          \"originalQuantity\": 3687.370232593984\n        }\n      ],\n      \"text\": {\n        \"key_0\": {\n          \"name\": \"110 Gems\",\n          \"description\": \"Get 100 gold every day you log in to play.\",\n          \"bannerText\": \"Great Value\",\n          \"promoText\": \"Great Value\",\n          \"theme\": \"Great Value\",\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        },\n        \"key_1\": {\n          \"name\": \"110 Gems\",\n          \"description\": \"Get 100 gold every day you log in to play.\",\n          \"bannerText\": \"Great Value\",\n          \"promoText\": \"Great Value\",\n          \"theme\": \"Great Value\",\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"isHidden\": false,\n      \"containsRandomizedContent\": false,\n      \"buttonLayout\": \"BUY_NOW\",\n      \"limit\": 7862,\n      \"timeLimits\": [\n        {\n          \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n          \"startDate\": \"2023-06-23T20:00:00.000Z\",\n          \"endDate\": \"2023-06-23T20:00:00.000Z\"\n        },\n        {\n          \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n          \"startDate\": \"2023-06-23T20:00:00.000Z\",\n          \"endDate\": \"2023-06-23T20:00:00.000Z\"\n        }\n      ]\n    },\n    {\n      \"sku\": \"string\",\n      \"priceTierCode\": \"string\",\n      \"isTargetedOffer\": false,\n      \"shouldPreviewTargetedOffer\": false,\n      \"shouldHideOfferWhenClaimed\": true,\n      \"groups\": [\n        {\n          \"code\": \"string\",\n          \"order\": 4043.500900216689,\n          \"style\": \"default\"\n        },\n        {\n          \"code\": \"string\",\n          \"order\": 954.018206290611,\n          \"style\": \"default\"\n        }\n      ],\n      \"imageFileName\": \"gem-24x24.png\",\n      \"backgroundImageFileName\": \"gem-background.png\",\n      \"items\": [\n        {\n          \"code\": \"string\",\n          \"quantity\": 5163.235675948968,\n          \"text\": {\n            \"key_0\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            },\n            \"key_1\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            },\n            \"key_2\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            }\n          },\n          \"originalQuantity\": 6497.832847824493\n        },\n        {\n          \"code\": \"string\",\n          \"quantity\": 4985.811201776038,\n          \"text\": {\n            \"key_0\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            },\n            \"key_1\": {\n              \"subtitle\": \"100 credits\",\n              \"highlightedSubtitle\": \"+10 extra credits\"\n            }\n          },\n          \"originalQuantity\": 1191.9971870818802\n        }\n      ],\n      \"text\": {\n        \"key_0\": {\n          \"name\": \"110 Gems\",\n          \"description\": \"Get 100 gold every day you log in to play.\",\n          \"bannerText\": \"Great Value\",\n          \"promoText\": \"Great Value\",\n          \"theme\": \"Great Value\",\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"isHidden\": false,\n      \"containsRandomizedContent\": false,\n      \"buttonLayout\": \"null\",\n      \"limit\": 2339,\n      \"timeLimits\": [\n        {\n          \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n          \"startDate\": \"2023-06-23T20:00:00.000Z\",\n          \"endDate\": \"2023-06-23T20:00:00.000Z\"\n        },\n        {\n          \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n          \"startDate\": \"2023-06-23T20:00:00.000Z\",\n          \"endDate\": \"2023-06-23T20:00:00.000Z\"\n        }\n      ]\n    }\n  ],\n  \"links\": {\n    \"previous\": \"string\",\n    \"next\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eac56a78-a0af-4de9-8206-223d958fc4ca",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64b6c0b0-61ea-4d02-9e1d-858a71957298",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4819907b-2fde-4fdd-a0f0-62666de8c4c1",
+          "name": "Delete an item",
+          "request": {
+            "name": "Delete an item",
+            "description": {
+              "content": "Delete an item by its code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "item",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aeb10245-c7e8-4035-9a3c-9934fc0f3f54",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb0faa8c-ab23-4338-8bf4-028a86035821",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4680b09-78d5-4f06-8c4b-efea6d5b0627",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78d102ef-3a30-4add-ba23-8bd5f4909aed",
+          "name": "Get an item by code",
+          "request": {
+            "name": "Get an item by code",
+            "description": {
+              "content": "Get an item by its code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "item",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dad96257-483a-428d-9fdf-b7acf7a24b30",
+              "name": "Item retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"gem\",\n  \"imageFileName\": \"gem-24x24.png\",\n  \"text\": {\n    \"key_0\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d5add39-07e2-4b2f-a42a-55f603c30af6",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "617154ca-2586-4ee8-810c-48b5a61f1882",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "784996b1-4a42-4cb9-acfd-eba3007c00b8",
+          "name": "Update an item by code",
+          "request": {
+            "name": "Update an item by code",
+            "description": {
+              "content": "Update an item. This replaces the existing item with the input data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "item",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"imageFileName\": \"<string>\",\n  \"text\": {\n    \"key_0\": {\n      \"nameSingular\": \"<string>\",\n      \"namePlural\": \"<string>\",\n      \"description\": \"<string,null>\"\n    },\n    \"key_1\": {\n      \"nameSingular\": \"<string>\",\n      \"namePlural\": \"<string>\",\n      \"description\": \"<string,null>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9c4dff9-f2b1-491f-b206-abb0d3b16113",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"gem\",\n  \"imageFileName\": \"gem-24x24.png\",\n  \"text\": {\n    \"key_0\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    },\n    \"key_1\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    },\n    \"key_2\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed9aba98-7bab-4b5f-854d-6afa00804a4f",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"gem\",\n  \"imageFileName\": \"gem-24x24.png\",\n  \"text\": {\n    \"key_0\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    },\n    \"key_1\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    },\n    \"key_2\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db816d79-da2b-478d-84b8-e8ee6b480441",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "item",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"gem\",\n  \"imageFileName\": \"gem-24x24.png\",\n  \"text\": {\n    \"key_0\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    },\n    \"key_1\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    },\n    \"key_2\": {\n      \"nameSingular\": \"gem\",\n      \"namePlural\": \"gems\",\n      \"description\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eca07561-9e48-4942-ab1f-df7ed43294b6",
+          "name": "Delete an offer",
+          "request": {
+            "name": "Delete an offer",
+            "description": {
+              "content": "Delete an offer by its SKU.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offer",
+                ":sku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sku",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "574f27a7-8fa7-4a55-aeea-3ce1b411830f",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86220078-c29a-43b6-94c9-624c8bd9eb80",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dac10556-c593-46bf-89fb-a4cc18a0dbe7",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40481db3-e651-4960-bcbc-abf66f093c7e",
+              "name": "The request conflicts with the current state of the resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": false,\n    \"key_1\": 1995.1490002973283,\n    \"key_2\": 2119,\n    \"key_3\": 5628,\n    \"key_4\": 2436.0829413588503\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f35f6c1f-9b3e-4760-9b54-ae2ba6d1b0cb",
+          "name": "Get an offer by SKU",
+          "request": {
+            "name": "Get an offer by SKU",
+            "description": {
+              "content": "Get an offer by its SKU.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offer",
+                ":sku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sku",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8837538a-2654-4a0b-8405-ff32e1150524",
+              "name": "Offer retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sku\": \"string\",\n  \"priceTierCode\": \"string\",\n  \"isTargetedOffer\": false,\n  \"shouldPreviewTargetedOffer\": false,\n  \"shouldHideOfferWhenClaimed\": true,\n  \"groups\": [\n    {\n      \"code\": \"string\",\n      \"order\": 1257.3969643599992,\n      \"style\": \"default\"\n    },\n    {\n      \"code\": \"string\",\n      \"order\": 4072.1399101936904,\n      \"style\": \"default\"\n    }\n  ],\n  \"imageFileName\": \"gem-24x24.png\",\n  \"backgroundImageFileName\": \"gem-background.png\",\n  \"items\": [\n    {\n      \"code\": \"string\",\n      \"quantity\": 8578.12274924867,\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        },\n        \"key_1\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": 8060.620529770358\n    },\n    {\n      \"code\": \"string\",\n      \"quantity\": 5880.98242597907,\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": 6201.076944471062\n    }\n  ],\n  \"text\": {\n    \"key_0\": {\n      \"name\": \"110 Gems\",\n      \"description\": \"Get 100 gold every day you log in to play.\",\n      \"bannerText\": \"Great Value\",\n      \"promoText\": \"Great Value\",\n      \"theme\": \"Great Value\",\n      \"subtitle\": \"100 credits\",\n      \"highlightedSubtitle\": \"+10 extra credits\"\n    },\n    \"key_1\": {\n      \"name\": \"110 Gems\",\n      \"description\": \"Get 100 gold every day you log in to play.\",\n      \"bannerText\": \"Great Value\",\n      \"promoText\": \"Great Value\",\n      \"theme\": \"Great Value\",\n      \"subtitle\": \"100 credits\",\n      \"highlightedSubtitle\": \"+10 extra credits\"\n    }\n  },\n  \"isHidden\": false,\n  \"containsRandomizedContent\": false,\n  \"buttonLayout\": \"null\",\n  \"limit\": 3119,\n  \"timeLimits\": [\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    },\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de4b72dc-3c35-4820-81a1-31d0b87d41de",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c475978-5354-4f34-8038-b1e92886e790",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "127f5d1b-b5d6-4425-86d4-48c36563b574",
+          "name": "Update an offer by SKU",
+          "request": {
+            "name": "Update an offer by SKU",
+            "description": {
+              "content": "Update an offer. This replaces the existing offer with the input data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offer",
+                ":sku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sku",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"<string>\",\n  \"priceTierCode\": \"<string>\",\n  \"isTargetedOffer\": false,\n  \"shouldPreviewTargetedOffer\": false,\n  \"shouldHideOfferWhenClaimed\": false,\n  \"groups\": [\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    }\n  ],\n  \"imageFileName\": \"<string,null>\",\n  \"backgroundImageFileName\": \"<string,null>\",\n  \"items\": [\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"<string,null>\",\n          \"highlightedSubtitle\": \"<string,null>\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"<string,null>\",\n          \"highlightedSubtitle\": \"<string,null>\"\n        },\n        \"key_1\": {\n          \"subtitle\": \"<string,null>\",\n          \"highlightedSubtitle\": \"<string,null>\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    }\n  ],\n  \"text\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"bannerText\": \"<string,null>\",\n      \"promoText\": \"<string,null>\",\n      \"theme\": \"<string,null>\",\n      \"subtitle\": \"<string,null>\",\n      \"highlightedSubtitle\": \"<string,null>\"\n    }\n  },\n  \"isHidden\": false,\n  \"containsRandomizedContent\": false,\n  \"buttonLayout\": \"<string,null>\",\n  \"limit\": \"<integer,null>\",\n  \"timeLimits\": [\n    {\n      \"previewDate\": \"<string,null-date-time>\",\n      \"startDate\": \"<string,null-date-time>\",\n      \"endDate\": \"<string,null-date-time>\"\n    },\n    {\n      \"previewDate\": \"<string,null-date-time>\",\n      \"startDate\": \"<string,null-date-time>\",\n      \"endDate\": \"<string,null-date-time>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "457fff3b-a80b-4b0c-bb69-110a16287050",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"<string>\",\n  \"priceTierCode\": \"<string>\",\n  \"isTargetedOffer\": false,\n  \"shouldPreviewTargetedOffer\": false,\n  \"shouldHideOfferWhenClaimed\": true,\n  \"groups\": [\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    }\n  ],\n  \"imageFileName\": \"gem-24x24.png\",\n  \"backgroundImageFileName\": \"gem-background.png\",\n  \"items\": [\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    }\n  ],\n  \"text\": {\n    \"key_0\": {\n      \"name\": \"110 Gems\",\n      \"description\": \"Get 100 gold every day you log in to play.\",\n      \"bannerText\": \"Great Value\",\n      \"promoText\": \"Great Value\",\n      \"theme\": \"Great Value\",\n      \"subtitle\": \"100 credits\",\n      \"highlightedSubtitle\": \"+10 extra credits\"\n    }\n  },\n  \"isHidden\": false,\n  \"containsRandomizedContent\": false,\n  \"buttonLayout\": \"<string,null>\",\n  \"limit\": \"<integer,null>\",\n  \"timeLimits\": [\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    },\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffc4f643-7d2e-4cc2-9228-866762adf40d",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"<string>\",\n  \"priceTierCode\": \"<string>\",\n  \"isTargetedOffer\": false,\n  \"shouldPreviewTargetedOffer\": false,\n  \"shouldHideOfferWhenClaimed\": true,\n  \"groups\": [\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    }\n  ],\n  \"imageFileName\": \"gem-24x24.png\",\n  \"backgroundImageFileName\": \"gem-background.png\",\n  \"items\": [\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    }\n  ],\n  \"text\": {\n    \"key_0\": {\n      \"name\": \"110 Gems\",\n      \"description\": \"Get 100 gold every day you log in to play.\",\n      \"bannerText\": \"Great Value\",\n      \"promoText\": \"Great Value\",\n      \"theme\": \"Great Value\",\n      \"subtitle\": \"100 credits\",\n      \"highlightedSubtitle\": \"+10 extra credits\"\n    }\n  },\n  \"isHidden\": false,\n  \"containsRandomizedContent\": false,\n  \"buttonLayout\": \"<string,null>\",\n  \"limit\": \"<integer,null>\",\n  \"timeLimits\": [\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    },\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14f2b08d-8b15-46d8-a69a-025dfaffd596",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"<string>\",\n  \"priceTierCode\": \"<string>\",\n  \"isTargetedOffer\": false,\n  \"shouldPreviewTargetedOffer\": false,\n  \"shouldHideOfferWhenClaimed\": true,\n  \"groups\": [\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"order\": \"<number>\",\n      \"style\": \"default\"\n    }\n  ],\n  \"imageFileName\": \"gem-24x24.png\",\n  \"backgroundImageFileName\": \"gem-background.png\",\n  \"items\": [\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"text\": {\n        \"key_0\": {\n          \"subtitle\": \"100 credits\",\n          \"highlightedSubtitle\": \"+10 extra credits\"\n        }\n      },\n      \"originalQuantity\": \"<number,null>\"\n    }\n  ],\n  \"text\": {\n    \"key_0\": {\n      \"name\": \"110 Gems\",\n      \"description\": \"Get 100 gold every day you log in to play.\",\n      \"bannerText\": \"Great Value\",\n      \"promoText\": \"Great Value\",\n      \"theme\": \"Great Value\",\n      \"subtitle\": \"100 credits\",\n      \"highlightedSubtitle\": \"+10 extra credits\"\n    }\n  },\n  \"isHidden\": false,\n  \"containsRandomizedContent\": false,\n  \"buttonLayout\": \"<string,null>\",\n  \"limit\": \"<integer,null>\",\n  \"timeLimits\": [\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    },\n    {\n      \"previewDate\": \"2023-06-23T20:00:00.000Z\",\n      \"startDate\": \"2023-06-23T20:00:00.000Z\",\n      \"endDate\": \"2023-06-23T20:00:00.000Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbf33baa-1961-4b32-bf84-b9310400ba6f",
+          "name": "Delete an offer group",
+          "request": {
+            "name": "Delete an offer group",
+            "description": {
+              "content": "Delete an offer by its code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offer-group",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f6a19c1-5118-4870-bcbf-87c6f7e48585",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0141d6d6-aa0c-4285-b956-f1d7b8490b7c",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c2567fe-230a-424f-b593-bece208045ee",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46574f0b-60d3-45a7-bd37-ab7f02b957ec",
+          "name": "Get an offer group by code",
+          "request": {
+            "name": "Get an offer group by code",
+            "description": {
+              "content": "Get an offer group by its code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offer-group",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09512f23-c9f9-4ed9-9f0e-7a43af5cd5cb",
+              "name": "Offer group retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"priority\": 5698,\n  \"text\": {\n    \"key_0\": {\n      \"label\": \"string\",\n      \"description\": null,\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bfae81a-8498-4f7e-adc3-014f9794fb0d",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07a43ff0-083f-4907-8a7e-ce75b9c1b955",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00826229-f497-4e9f-98ee-4860e38d8ee4",
+          "name": "Update an offer group by code",
+          "request": {
+            "name": "Update an offer group by code",
+            "description": {
+              "content": "Update an offer group. This replaces the existing offer group with the input data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "offer-group",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"text\": {\n    \"key_0\": {\n      \"label\": \"<string,null>\",\n      \"description\": \"<string,null>\",\n      \"headerImageFileName\": \"<string,null>\",\n      \"subheaderImageFileName\": \"<string,null>\"\n    },\n    \"key_1\": {\n      \"label\": \"<string,null>\",\n      \"description\": \"<string,null>\",\n      \"headerImageFileName\": \"<string,null>\",\n      \"subheaderImageFileName\": \"<string,null>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efd891ce-a450-4770-9cc9-bbe017290f25",
+              "name": "Empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"priority\": \"<integer>\",\n  \"text\": {\n    \"key_0\": {\n      \"label\": null,\n      \"description\": null,\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_1\": {\n      \"label\": null,\n      \"description\": \"string\",\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_2\": {\n      \"label\": null,\n      \"description\": null,\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_3\": {\n      \"label\": \"string\",\n      \"description\": \"string\",\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce9b147e-a6c3-4299-8a88-fad7d2e9a8d7",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"priority\": \"<integer>\",\n  \"text\": {\n    \"key_0\": {\n      \"label\": null,\n      \"description\": null,\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_1\": {\n      \"label\": null,\n      \"description\": \"string\",\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_2\": {\n      \"label\": null,\n      \"description\": null,\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_3\": {\n      \"label\": \"string\",\n      \"description\": \"string\",\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14e9ecf6-75ab-45d7-83b3-f408a2e68c18",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "offer-group",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"priority\": \"<integer>\",\n  \"text\": {\n    \"key_0\": {\n      \"label\": null,\n      \"description\": null,\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_1\": {\n      \"label\": null,\n      \"description\": \"string\",\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_2\": {\n      \"label\": null,\n      \"description\": null,\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    },\n    \"key_3\": {\n      \"label\": \"string\",\n      \"description\": \"string\",\n      \"headerImageFileName\": \"currency-banner.png\",\n      \"subheaderImageFileName\": \"currency-banner-subheader.png\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1454b211-4d8d-449b-846c-bcc8d779522b",
+          "name": "Get localized pricing by IP address.",
+          "request": {
+            "name": "Get localized pricing by IP address.",
+            "description": {},
+            "url": {
+              "path": [
+                "storefront",
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>",
+                  "description": "(Required) The IP address of the user"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ff7be1ec-f21d-4f6c-ba0e-e5162ae4e3be",
+              "name": "IP address parsed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSupported\": true,\n  \"isFallback\": true,\n  \"prices\": {\n    \"key_0\": 3913\n  },\n  \"country\": \"string\",\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fecc2fee-08a1-4bfc-bf3d-a66a30263b93",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6138f42e-1e74-43bf-ae80-b0d598f95634",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": false,\n    \"key_1\": 1995.1490002973283,\n    \"key_2\": 2119,\n    \"key_3\": 5628,\n    \"key_4\": 2436.0829413588503\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adbd7626-c06e-4495-a26c-3037efa24673",
+          "name": "Get a storefront theme",
+          "request": {
+            "name": "Get a storefront theme",
+            "description": {
+              "content": "Get a storefront theme",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "theme"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d120b431-3c9c-4d94-8a76-dd6342c06764",
+              "name": "The theme for a storefront",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"colors\": {\n    \"brandColor\": \"d96e\",\n    \"backgroundColor\": \"#e277\",\n    \"backgroundElevatedColor\": \"#d88352\",\n    \"offerBackgroundFallbackColor\": \"31db61\",\n    \"borderColor\": \"#744423\",\n    \"inputBorderColor\": \"ed2abc69\",\n    \"inputOutlineColor\": \"c50a2472\",\n    \"inputErrorColor\": \"f424949c\",\n    \"primaryTextColor\": \"ae135e\",\n    \"secondaryTextColor\": \"#0d2a2605\",\n    \"brandForegroundColor\": \"2018dd\",\n    \"placeholderTextColor\": \"#0f2a\",\n    \"promoBannerColor\": \"#fe5c2c\",\n    \"drawerElevatedColor\": \"#fe5c2c\"\n  },\n  \"shouldShowTitle\": true,\n  \"gameIconLogoUrl\": \"string\",\n  \"gameNameLogoUrl\": \"string\",\n  \"backgroundUrl\": \"string\",\n  \"shopHeaderUrl\": \"string\",\n  \"shopHeaderLogoUrl\": \"string\",\n  \"emailLogoUrl\": \"string\",\n  \"appIconUrl\": \"string\",\n  \"faviconUrl\": \"string\",\n  \"socialPreviewUrl\": \"string\",\n  \"brandLogos\": [\n    {\n      \"imageUrl\": \"string\",\n      \"linkUrl\": \"string\",\n      \"height\": 286.3790882166273,\n      \"width\": 3139.8099431192804,\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"string\"\n        }\n      }\n    },\n    {\n      \"imageUrl\": \"string\",\n      \"linkUrl\": \"string\",\n      \"height\": 5784.46496909178,\n      \"width\": 7602.3787821707565,\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"string\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"string\"\n        },\n        \"key_2\": {\n          \"imageAltText\": \"string\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"row\": {\n      \"buttonBackgroundUrl\": \"string\",\n      \"strikethroughColor\": \"b7a9\"\n    },\n    \"featured\": {\n      \"buttonBackgroundUrl\": \"string\"\n    }\n  },\n  \"checkoutButtonBackgroundCss\": \"string\",\n  \"checkoutButtonBorderRadiusInPx\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc558c80-3e13-486e-bbd0-ff9bbc02a7f3",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1da7170d-7636-4d68-b067-f97bca0e5abc",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "137d2066-4a9c-4c82-92d1-bcfbedfd3a07",
+          "name": "Update the theme for a storefront",
+          "request": {
+            "name": "Update the theme for a storefront",
+            "description": {
+              "content": "Programatically update the configuration for a theme",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "theme"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colors\": {\n    \"brandColor\": \"<string>\",\n    \"backgroundColor\": \"<string,null>\",\n    \"backgroundElevatedColor\": \"<string,null>\",\n    \"offerBackgroundFallbackColor\": \"<string,null>\",\n    \"borderColor\": \"<string,null>\",\n    \"inputBorderColor\": \"<string,null>\",\n    \"inputOutlineColor\": \"<string,null>\",\n    \"inputErrorColor\": \"<string,null>\",\n    \"primaryTextColor\": \"<string,null>\",\n    \"secondaryTextColor\": \"<string,null>\",\n    \"brandForegroundColor\": \"<string,null>\",\n    \"placeholderTextColor\": \"<string,null>\",\n    \"promoBannerColor\": \"<string,null>\",\n    \"drawerElevatedColor\": \"<string,null>\"\n  },\n  \"shouldShowTitle\": true,\n  \"gameIconLogoUrl\": \"<string,null>\",\n  \"gameNameLogoUrl\": \"<string,null>\",\n  \"backgroundUrl\": \"<string,null>\",\n  \"shopHeaderUrl\": \"<string,null>\",\n  \"shopHeaderLogoUrl\": \"<string,null>\",\n  \"emailLogoUrl\": \"<string,null>\",\n  \"appIconUrl\": \"<string,null>\",\n  \"faviconUrl\": \"<string,null>\",\n  \"socialPreviewUrl\": \"<string,null>\",\n  \"brandLogos\": [\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"row\": {\n      \"buttonBackgroundUrl\": \"<string,null>\",\n      \"strikethroughColor\": \"<string,null>\"\n    },\n    \"featured\": {\n      \"buttonBackgroundUrl\": \"<string,null>\"\n    }\n  },\n  \"checkoutButtonBackgroundCss\": \"<string,null>\",\n  \"checkoutButtonBorderRadiusInPx\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91e3fcd6-20fa-487f-8637-c960b5266a1a",
+              "name": "Empty",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colors\": {\n    \"brandColor\": \"<string>\",\n    \"backgroundColor\": \"<string,null>\",\n    \"backgroundElevatedColor\": \"<string,null>\",\n    \"offerBackgroundFallbackColor\": \"<string,null>\",\n    \"borderColor\": \"<string,null>\",\n    \"inputBorderColor\": \"<string,null>\",\n    \"inputOutlineColor\": \"<string,null>\",\n    \"inputErrorColor\": \"<string,null>\",\n    \"primaryTextColor\": \"<string,null>\",\n    \"secondaryTextColor\": \"<string,null>\",\n    \"brandForegroundColor\": \"<string,null>\",\n    \"placeholderTextColor\": \"<string,null>\",\n    \"promoBannerColor\": \"#fe5c2c\",\n    \"drawerElevatedColor\": \"#fe5c2c\"\n  },\n  \"shouldShowTitle\": true,\n  \"gameIconLogoUrl\": \"<string,null>\",\n  \"gameNameLogoUrl\": \"<string,null>\",\n  \"backgroundUrl\": \"<string,null>\",\n  \"shopHeaderUrl\": \"<string,null>\",\n  \"shopHeaderLogoUrl\": \"<string,null>\",\n  \"emailLogoUrl\": \"<string,null>\",\n  \"appIconUrl\": \"<string,null>\",\n  \"faviconUrl\": \"<string,null>\",\n  \"socialPreviewUrl\": \"<string,null>\",\n  \"brandLogos\": [\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_2\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_2\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"row\": {\n      \"buttonBackgroundUrl\": \"<string,null>\",\n      \"strikethroughColor\": \"<string,null>\"\n    },\n    \"featured\": {\n      \"buttonBackgroundUrl\": \"<string,null>\"\n    }\n  },\n  \"checkoutButtonBackgroundCss\": \"<string,null>\",\n  \"checkoutButtonBorderRadiusInPx\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a4a6672-95a7-4374-891d-13e5459e0263",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colors\": {\n    \"brandColor\": \"<string>\",\n    \"backgroundColor\": \"<string,null>\",\n    \"backgroundElevatedColor\": \"<string,null>\",\n    \"offerBackgroundFallbackColor\": \"<string,null>\",\n    \"borderColor\": \"<string,null>\",\n    \"inputBorderColor\": \"<string,null>\",\n    \"inputOutlineColor\": \"<string,null>\",\n    \"inputErrorColor\": \"<string,null>\",\n    \"primaryTextColor\": \"<string,null>\",\n    \"secondaryTextColor\": \"<string,null>\",\n    \"brandForegroundColor\": \"<string,null>\",\n    \"placeholderTextColor\": \"<string,null>\",\n    \"promoBannerColor\": \"#fe5c2c\",\n    \"drawerElevatedColor\": \"#fe5c2c\"\n  },\n  \"shouldShowTitle\": true,\n  \"gameIconLogoUrl\": \"<string,null>\",\n  \"gameNameLogoUrl\": \"<string,null>\",\n  \"backgroundUrl\": \"<string,null>\",\n  \"shopHeaderUrl\": \"<string,null>\",\n  \"shopHeaderLogoUrl\": \"<string,null>\",\n  \"emailLogoUrl\": \"<string,null>\",\n  \"appIconUrl\": \"<string,null>\",\n  \"faviconUrl\": \"<string,null>\",\n  \"socialPreviewUrl\": \"<string,null>\",\n  \"brandLogos\": [\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_2\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_2\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"row\": {\n      \"buttonBackgroundUrl\": \"<string,null>\",\n      \"strikethroughColor\": \"<string,null>\"\n    },\n    \"featured\": {\n      \"buttonBackgroundUrl\": \"<string,null>\"\n    }\n  },\n  \"checkoutButtonBackgroundCss\": \"<string,null>\",\n  \"checkoutButtonBorderRadiusInPx\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "704cd0b0-0558-466a-bc95-120acc3def20",
+              "name": "An error response from an invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "theme"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colors\": {\n    \"brandColor\": \"<string>\",\n    \"backgroundColor\": \"<string,null>\",\n    \"backgroundElevatedColor\": \"<string,null>\",\n    \"offerBackgroundFallbackColor\": \"<string,null>\",\n    \"borderColor\": \"<string,null>\",\n    \"inputBorderColor\": \"<string,null>\",\n    \"inputOutlineColor\": \"<string,null>\",\n    \"inputErrorColor\": \"<string,null>\",\n    \"primaryTextColor\": \"<string,null>\",\n    \"secondaryTextColor\": \"<string,null>\",\n    \"brandForegroundColor\": \"<string,null>\",\n    \"placeholderTextColor\": \"<string,null>\",\n    \"promoBannerColor\": \"#fe5c2c\",\n    \"drawerElevatedColor\": \"#fe5c2c\"\n  },\n  \"shouldShowTitle\": true,\n  \"gameIconLogoUrl\": \"<string,null>\",\n  \"gameNameLogoUrl\": \"<string,null>\",\n  \"backgroundUrl\": \"<string,null>\",\n  \"shopHeaderUrl\": \"<string,null>\",\n  \"shopHeaderLogoUrl\": \"<string,null>\",\n  \"emailLogoUrl\": \"<string,null>\",\n  \"appIconUrl\": \"<string,null>\",\n  \"faviconUrl\": \"<string,null>\",\n  \"socialPreviewUrl\": \"<string,null>\",\n  \"brandLogos\": [\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_2\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"imageUrl\": \"<string>\",\n      \"linkUrl\": \"<string,null>\",\n      \"height\": \"<number,null>\",\n      \"width\": \"<number,null>\",\n      \"text\": {\n        \"key_0\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_1\": {\n          \"imageAltText\": \"<string>\"\n        },\n        \"key_2\": {\n          \"imageAltText\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"row\": {\n      \"buttonBackgroundUrl\": \"<string,null>\",\n      \"strikethroughColor\": \"<string,null>\"\n    },\n    \"featured\": {\n      \"buttonBackgroundUrl\": \"<string,null>\"\n    }\n  },\n  \"checkoutButtonBackgroundCss\": \"<string,null>\",\n  \"checkoutButtonBorderRadiusInPx\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e42f7e30-d7a4-47cd-801e-8b9a4ab0e184",
+          "name": "Register a URL to handle events throughout the storefront and checkout flow.",
+          "request": {
+            "name": "Register a URL to handle events throughout the storefront and checkout flow.",
+            "description": {
+              "content": "Learn more about callbacks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "storefront",
+                "callbacks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"account.getInventory\"\n  ],\n  \"eventVersion\": 1,\n  \"hooksToExpire\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6461cae1-6cae-430b-a4ab-b929e71b811e",
+              "name": "Callback registered successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "callbacks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://gameUrl.com/account.getInventory\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"account.getInventory\"\n  ],\n  \"eventVersion\": 1,\n  \"hooksToExpire\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"secret\": \"string\",\n  \"ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84d56bf3-600a-4249-92c4-e33704ec79a3",
+              "name": "An error response from an invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "callbacks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://gameUrl.com/account.getInventory\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"account.getInventory\"\n  ],\n  \"eventVersion\": 1,\n  \"hooksToExpire\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": 5080.105627967282,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b47e24a-2133-4fa3-9bc3-ea715c5dd963",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "storefront",
+                    "callbacks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://gameUrl.com/account.getInventory\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"account.getInventory\"\n  ],\n  \"eventVersion\": 1,\n  \"hooksToExpire\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_IMAGE_FILE_NAME\",\n  \"message\": \"No images were found matching the file name: gems.png\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    },\n    {\n      \"source\": \"0.imageFileName\",\n      \"message\": \"No images were found matching the file name: gems.png\"\n    }\n  ],\n  \"context\": {\n    \"key_0\": false,\n    \"key_1\": 1995.1490002973283,\n    \"key_2\": 2119,\n    \"key_3\": 5628,\n    \"key_4\": 2436.0829413588503\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5b8df653-aa78-4766-b9fe-13fa6ae25eb9",
+    "name": "Account Storefront API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

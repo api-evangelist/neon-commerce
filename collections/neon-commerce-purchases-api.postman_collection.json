@@ -1,0 +1,1225 @@
+{
+  "item": [
+    {
+      "id": "58b7c524-6682-49f5-8464-c71ddb67783b",
+      "name": "Purchases",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a655a6f7-4957-4b55-8cc8-b6d0f7889a5e",
+          "name": "Search for a purchase by checkout ID or order number",
+          "request": {
+            "name": "Search for a purchase by checkout ID or order number",
+            "description": {},
+            "url": {
+              "path": [
+                "purchases",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orderNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "checkoutId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a947716-9f24-4004-944b-0a70df38c248",
+              "name": "The purchase associated with the given unique ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderNumber",
+                      "value": "ABCD-1234-EFGH"
+                    },
+                    {
+                      "key": "checkoutId",
+                      "value": "97937797-8675-496f-a219-198b3b3b7f63"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checkoutId\": \"string\",\n  \"currency\": \"string\",\n  \"date\": \"2011-09-19T05:37:26.107Z\",\n  \"events\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"chargeback\",\n      \"amount\": 6344.490526894264,\n      \"currency\": \"string\",\n      \"date\": \"1972-01-07T23:08:58.923Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"sale\",\n      \"amount\": 6751.500910667668,\n      \"currency\": \"string\",\n      \"date\": \"2016-07-30T16:53:24.729Z\"\n    }\n  ],\n  \"id\": \"string\",\n  \"initialCurrency\": \"string\",\n  \"initialPlayerCountry\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 4884.282402778268,\n      \"quantity\": 3112.4998675542593,\n      \"refundableQuantity\": 178.94014540884461,\n      \"referencePrice\": 1458.6811921506637,\n      \"referenceCurrency\": \"string\",\n      \"bundleContents\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 9178\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 5827\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 3208.369862755506,\n      \"quantity\": 2260.377649237897,\n      \"refundableQuantity\": 5725.606551470336,\n      \"referencePrice\": 2745.30575443393,\n      \"referenceCurrency\": \"string\",\n      \"bundleContents\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 3091\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 2182\n        }\n      ]\n    }\n  ],\n  \"itemsSubtotalAmount\": 8628.909824619855,\n  \"locale\": \"en-US\",\n  \"orderNumber\": \"string\",\n  \"payment\": {\n    \"vendor\": \"string\",\n    \"method\": \"string\"\n  },\n  \"playerCountry\": \"US\",\n  \"pricingSheetName\": \"string\",\n  \"status\": \"string\",\n  \"subtotalAmount\": 4934.604895141851,\n  \"taxAmount\": 5092.219974298198,\n  \"taxRate\": 3221.5056738318417,\n  \"totalAmount\": 2715.757479825287,\n  \"totalExcludingTaxAmount\": 1220.02506733079,\n  \"discountAmount\": 6592.117215707406,\n  \"promoCode\": \"string\",\n  \"fee\": {\n    \"fxRate\": 7185.150498190581,\n    \"feeAmount\": 2538.6844497105676,\n    \"netProceedsAmount\": 5731.466936190489,\n    \"settlementCurrency\": \"string\"\n  },\n  \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"externalMetadata\": \"\",\n  \"accountId\": \"player_987654\",\n  \"email\": \"string\",\n  \"ipAddress\": \"string\",\n  \"referral\": {\n    \"source\": \"facebook\",\n    \"method\": \"null\",\n    \"host\": \"string\"\n  },\n  \"claimedAt\": \"1981-05-13T16:18:59.996Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "254913a6-c4ba-48f7-8642-d220d99da1fd",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderNumber",
+                      "value": "ABCD-1234-EFGH"
+                    },
+                    {
+                      "key": "checkoutId",
+                      "value": "97937797-8675-496f-a219-198b3b3b7f63"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"PURCHASE_NOT_FOUND\",\n  \"message\": \"Purchase not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    },\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8777c5fc-4785-45cd-b506-7e97c6ccdf10",
+              "name": "Purchase is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderNumber",
+                      "value": "ABCD-1234-EFGH"
+                    },
+                    {
+                      "key": "checkoutId",
+                      "value": "97937797-8675-496f-a219-198b3b3b7f63"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"PURCHASE_NOT_FOUND\",\n    \"message\": \"Purchase not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "356334f3-9eb4-431f-a57a-d60952f9c650",
+          "name": "Get a purchase",
+          "request": {
+            "name": "Get a purchase",
+            "description": {
+              "content": "Get a purchase by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchases",
+                ":purchaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "purchaseId",
+                  "description": "(Required) The purchase ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0be8a235-26a1-408a-b71f-112782db8ef7",
+              "name": "The purchase object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    ":purchaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) The purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checkoutId\": \"string\",\n  \"currency\": \"string\",\n  \"date\": \"2011-09-19T05:37:26.107Z\",\n  \"events\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"chargeback\",\n      \"amount\": 6344.490526894264,\n      \"currency\": \"string\",\n      \"date\": \"1972-01-07T23:08:58.923Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"sale\",\n      \"amount\": 6751.500910667668,\n      \"currency\": \"string\",\n      \"date\": \"2016-07-30T16:53:24.729Z\"\n    }\n  ],\n  \"id\": \"string\",\n  \"initialCurrency\": \"string\",\n  \"initialPlayerCountry\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 4884.282402778268,\n      \"quantity\": 3112.4998675542593,\n      \"refundableQuantity\": 178.94014540884461,\n      \"referencePrice\": 1458.6811921506637,\n      \"referenceCurrency\": \"string\",\n      \"bundleContents\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 9178\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 5827\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 3208.369862755506,\n      \"quantity\": 2260.377649237897,\n      \"refundableQuantity\": 5725.606551470336,\n      \"referencePrice\": 2745.30575443393,\n      \"referenceCurrency\": \"string\",\n      \"bundleContents\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 3091\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 2182\n        }\n      ]\n    }\n  ],\n  \"itemsSubtotalAmount\": 8628.909824619855,\n  \"locale\": \"en-US\",\n  \"orderNumber\": \"string\",\n  \"payment\": {\n    \"vendor\": \"string\",\n    \"method\": \"string\"\n  },\n  \"playerCountry\": \"US\",\n  \"pricingSheetName\": \"string\",\n  \"status\": \"string\",\n  \"subtotalAmount\": 4934.604895141851,\n  \"taxAmount\": 5092.219974298198,\n  \"taxRate\": 3221.5056738318417,\n  \"totalAmount\": 2715.757479825287,\n  \"totalExcludingTaxAmount\": 1220.02506733079,\n  \"discountAmount\": 6592.117215707406,\n  \"promoCode\": \"string\",\n  \"fee\": {\n    \"fxRate\": 7185.150498190581,\n    \"feeAmount\": 2538.6844497105676,\n    \"netProceedsAmount\": 5731.466936190489,\n    \"settlementCurrency\": \"string\"\n  },\n  \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"externalMetadata\": \"\",\n  \"accountId\": \"player_987654\",\n  \"email\": \"string\",\n  \"ipAddress\": \"string\",\n  \"referral\": {\n    \"source\": \"facebook\",\n    \"method\": \"null\",\n    \"host\": \"string\"\n  },\n  \"claimedAt\": \"1981-05-13T16:18:59.996Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2991981b-98dc-4311-9795-946802c6b0d2",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    ":purchaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) The purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"PURCHASE_NOT_FOUND\",\n  \"message\": \"Purchase not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    },\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fed983ac-8f17-4b4a-b2c7-3e8b271a45c5",
+              "name": "Purchase is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    ":purchaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) The purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"PURCHASE_NOT_FOUND\",\n    \"message\": \"Purchase not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0765104-f8a5-4be0-b140-f5f9270d24ab",
+          "name": "Get all available refunds for a specific environment",
+          "request": {
+            "name": "Get all available refunds for a specific environment",
+            "description": {},
+            "url": {
+              "path": [
+                "purchases",
+                "refunds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter refunds created on or after this date (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter refunds created before this date (exclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "A cursor for use in pagination. An object ID that defines your place in the list of refunds. It'll fetch the next page of the list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endingBefore",
+                  "value": "<string>",
+                  "description": "A cursor for use in pagination. An object ID that defines your place in the list of refunds. It'll fetch the previous page of the list.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f43db9a1-f052-4e22-89c7-b7346b03b9be",
+              "name": "List of refunds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    "refunds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"purchaseId\": \"string\",\n      \"id\": \"string\",\n      \"refundId\": \"string\",\n      \"date\": \"2026-07-02T10:32:06.326Z\",\n      \"subtotalAmount\": 9498.440771014526,\n      \"taxAmount\": 3289.2217095515784,\n      \"totalAmount\": 8690.559788524366,\n      \"playerCountry\": \"US\",\n      \"initialCurrency\": \"string\",\n      \"initialPlayerCountry\": \"string\",\n      \"pricingSheetName\": \"string\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"quantity\": 9753.96919399397,\n          \"item\": {\n            \"id\": \"string\",\n            \"sku\": \"string\"\n          },\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 7714.519893475969,\n          \"referencePrice\": 6543.467745182506,\n          \"referenceCurrency\": \"string\",\n          \"refundableQuantity\": 7116.996430475369\n        },\n        {\n          \"id\": \"string\",\n          \"quantity\": 939.7754794807811,\n          \"item\": {\n            \"id\": \"string\",\n            \"sku\": \"string\"\n          },\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 6831.252103931913,\n          \"referencePrice\": 4807.07260451533,\n          \"referenceCurrency\": \"string\",\n          \"refundableQuantity\": 7492.93039686568\n        }\n      ],\n      \"payment\": {\n        \"vendor\": \"string\",\n        \"method\": \"string\"\n      },\n      \"currency\": \"string\",\n      \"accountId\": \"player_987654\",\n      \"externalReferenceId\": \"string\",\n      \"externalMetadata\": \"\"\n    },\n    {\n      \"purchaseId\": \"string\",\n      \"id\": \"string\",\n      \"refundId\": \"string\",\n      \"date\": \"2018-10-21T17:36:43.381Z\",\n      \"subtotalAmount\": 6413.547121046958,\n      \"taxAmount\": 9117.346679239903,\n      \"totalAmount\": 3895.484910242061,\n      \"playerCountry\": \"US\",\n      \"initialCurrency\": \"string\",\n      \"initialPlayerCountry\": \"string\",\n      \"pricingSheetName\": \"string\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"quantity\": 8125.474450695502,\n          \"item\": {\n            \"id\": \"string\",\n            \"sku\": \"string\"\n          },\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 3066.8029197690817,\n          \"referencePrice\": 7172.011293943118,\n          \"referenceCurrency\": \"string\",\n          \"refundableQuantity\": 6003.7950024652655\n        },\n        {\n          \"id\": \"string\",\n          \"quantity\": 4785.467532911749,\n          \"item\": {\n            \"id\": \"string\",\n            \"sku\": \"string\"\n          },\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 6021.712323871684,\n          \"referencePrice\": 9173.971571644879,\n          \"referenceCurrency\": \"string\",\n          \"refundableQuantity\": 5919.456201694154\n        }\n      ],\n      \"payment\": {\n        \"vendor\": \"string\",\n        \"method\": \"string\"\n      },\n      \"currency\": \"string\",\n      \"accountId\": \"player_987654\",\n      \"externalReferenceId\": \"string\",\n      \"externalMetadata\": \"\"\n    }\n  ],\n  \"links\": {\n    \"previous\": \"string\",\n    \"next\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86bb7690-fa7a-4226-bcb8-568296f27c76",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    "refunds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"PURCHASE_NOT_FOUND\",\n  \"message\": \"Purchase not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    },\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6de3e05c-1594-4670-98b8-7812623f705d",
+          "name": "Get all available purchases for a specific environment",
+          "request": {
+            "name": "Get all available purchases for a specific environment",
+            "description": {},
+            "url": {
+              "path": [
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endingBefore",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a6c70bc-1630-44ee-945d-291f72926812",
+              "name": "The list of purchases corresponding to the chosen filters (if any).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"checkoutId\": \"string\",\n      \"currency\": \"string\",\n      \"date\": \"1990-12-10T07:20:32.526Z\",\n      \"id\": \"string\",\n      \"initialCurrency\": \"string\",\n      \"initialPlayerCountry\": \"string\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 886.523745387523,\n          \"quantity\": 6867.990896131038,\n          \"refundableQuantity\": 9766.04759902781,\n          \"referencePrice\": 1743.132792649137,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 6997.819105556653,\n          \"quantity\": 9433.733095861135,\n          \"refundableQuantity\": 1703.1264645840238,\n          \"referencePrice\": 967.7149136683938,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"itemsSubtotalAmount\": 1212.7317924811475,\n      \"locale\": \"en-US\",\n      \"orderNumber\": \"string\",\n      \"payment\": {\n        \"vendor\": \"string\",\n        \"method\": \"string\"\n      },\n      \"playerCountry\": \"US\",\n      \"pricingSheetName\": \"string\",\n      \"refunds\": [\n        {\n          \"purchaseId\": \"string\",\n          \"id\": \"string\",\n          \"refundId\": \"string\",\n          \"date\": \"1976-04-28T20:27:39.659Z\",\n          \"subtotalAmount\": 6028.303082941587,\n          \"taxAmount\": 4839.93511484987,\n          \"totalAmount\": 8782.91673685921,\n          \"playerCountry\": \"US\",\n          \"initialCurrency\": \"string\",\n          \"initialPlayerCountry\": \"string\",\n          \"pricingSheetName\": \"string\",\n          \"items\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"payment\": {\n            \"vendor\": \"string\",\n            \"method\": \"string\"\n          },\n          \"currency\": \"string\",\n          \"accountId\": \"player_987654\",\n          \"externalReferenceId\": \"string\",\n          \"externalMetadata\": \"\"\n        },\n        {\n          \"purchaseId\": \"string\",\n          \"id\": \"string\",\n          \"refundId\": \"string\",\n          \"date\": \"2000-07-02T10:40:52.163Z\",\n          \"subtotalAmount\": 4109.797064782573,\n          \"taxAmount\": 5990.855886928541,\n          \"totalAmount\": 9011.54845297484,\n          \"playerCountry\": \"US\",\n          \"initialCurrency\": \"string\",\n          \"initialPlayerCountry\": \"string\",\n          \"pricingSheetName\": \"string\",\n          \"items\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"payment\": {\n            \"vendor\": \"string\",\n            \"method\": \"string\"\n          },\n          \"currency\": \"string\",\n          \"accountId\": \"player_987654\",\n          \"externalReferenceId\": \"string\",\n          \"externalMetadata\": \"\"\n        }\n      ],\n      \"status\": \"string\",\n      \"subtotalAmount\": 6282.19916248971,\n      \"taxAmount\": 3897.4334286307057,\n      \"taxRate\": 2212.259461793267,\n      \"totalAmount\": 7379.707009332737,\n      \"totalExcludingTaxAmount\": 6295.05031126589,\n      \"discountAmount\": 9545.841498568696,\n      \"promoCode\": \"string\",\n      \"fee\": {\n        \"fxRate\": 452.27427884374504,\n        \"feeAmount\": 4681.186330436157,\n        \"netProceedsAmount\": 944.2026344375887,\n        \"settlementCurrency\": \"string\"\n      },\n      \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n      \"externalMetadata\": \"\",\n      \"accountId\": \"player_987654\",\n      \"email\": \"string\",\n      \"ipAddress\": \"string\",\n      \"referral\": {\n        \"source\": \"youtube\",\n        \"method\": \"utm\",\n        \"host\": \"string\"\n      },\n      \"claimedAt\": \"2004-02-08T10:04:41.190Z\"\n    },\n    {\n      \"checkoutId\": \"string\",\n      \"currency\": \"string\",\n      \"date\": \"2020-08-10T05:29:19.644Z\",\n      \"id\": \"string\",\n      \"initialCurrency\": \"string\",\n      \"initialPlayerCountry\": \"string\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 1439.741236799963,\n          \"quantity\": 1504.2783742239951,\n          \"refundableQuantity\": 6180.090105659726,\n          \"referencePrice\": 2823.909891292854,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 3094.3917417547705,\n          \"quantity\": 2125.2660192112826,\n          \"refundableQuantity\": 3091.6410269209714,\n          \"referencePrice\": 6691.528183148686,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"itemsSubtotalAmount\": 336.5025546042311,\n      \"locale\": \"en-US\",\n      \"orderNumber\": \"string\",\n      \"payment\": {\n        \"vendor\": \"string\",\n        \"method\": \"string\"\n      },\n      \"playerCountry\": \"US\",\n      \"pricingSheetName\": \"string\",\n      \"refunds\": [\n        {\n          \"purchaseId\": \"string\",\n          \"id\": \"string\",\n          \"refundId\": \"string\",\n          \"date\": \"1975-01-11T08:12:41.412Z\",\n          \"subtotalAmount\": 6506.202906296647,\n          \"taxAmount\": 325.60055754171646,\n          \"totalAmount\": 3064.1140445124415,\n          \"playerCountry\": \"US\",\n          \"initialCurrency\": \"string\",\n          \"initialPlayerCountry\": \"string\",\n          \"pricingSheetName\": \"string\",\n          \"items\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"payment\": {\n            \"vendor\": \"string\",\n            \"method\": \"string\"\n          },\n          \"currency\": \"string\",\n          \"accountId\": \"player_987654\",\n          \"externalReferenceId\": \"string\",\n          \"externalMetadata\": \"\"\n        },\n        {\n          \"purchaseId\": \"string\",\n          \"id\": \"string\",\n          \"refundId\": \"string\",\n          \"date\": \"1954-09-04T08:23:14.788Z\",\n          \"subtotalAmount\": 5694.386651332387,\n          \"taxAmount\": 1592.140431046114,\n          \"totalAmount\": 7567.183029232666,\n          \"playerCountry\": \"US\",\n          \"initialCurrency\": \"string\",\n          \"initialPlayerCountry\": \"string\",\n          \"pricingSheetName\": \"string\",\n          \"items\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referencePrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"referenceCurrency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"refundableQuantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"payment\": {\n            \"vendor\": \"string\",\n            \"method\": \"string\"\n          },\n          \"currency\": \"string\",\n          \"accountId\": \"player_987654\",\n          \"externalReferenceId\": \"string\",\n          \"externalMetadata\": \"\"\n        }\n      ],\n      \"status\": \"string\",\n      \"subtotalAmount\": 3031.1285000560106,\n      \"taxAmount\": 1798.7863451304054,\n      \"taxRate\": 3478.207916556338,\n      \"totalAmount\": 5587.6007421967015,\n      \"totalExcludingTaxAmount\": 9041.716715630217,\n      \"discountAmount\": 2191.111150542955,\n      \"promoCode\": \"string\",\n      \"fee\": {\n        \"fxRate\": 8593.953162918551,\n        \"feeAmount\": 6070.142747632307,\n        \"netProceedsAmount\": 8972.917064968615,\n        \"settlementCurrency\": \"string\"\n      },\n      \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n      \"externalMetadata\": \"\",\n      \"accountId\": \"player_987654\",\n      \"email\": \"string\",\n      \"ipAddress\": \"string\",\n      \"referral\": {\n        \"source\": \"chatgpt\",\n        \"method\": \"utm\",\n        \"host\": \"string\"\n      },\n      \"claimedAt\": \"2013-08-01T21:18:47.672Z\"\n    }\n  ],\n  \"links\": {\n    \"previous\": \"string\",\n    \"next\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c829f68-9321-452d-9717-0c58a92b606f",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"PURCHASE_NOT_FOUND\",\n  \"message\": \"Purchase not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    },\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "352308ef-f9f6-45e1-bcba-1905e98f7de7",
+          "name": "Refunds a purchase.\n",
+          "request": {
+            "name": "Refunds a purchase.\n",
+            "description": {
+              "content": "Refunds are typically handled by Neon. Please reach out to Neon to determine if you qualify for access to this API.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchases",
+                ":purchaseId",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "purchaseId",
+                  "description": "(Required) A valid purchase ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fee\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b27038a-e8de-4906-b1a9-2c3253e86ca1",
+              "name": "Refund Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    ":purchaseId",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) A valid purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fee\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"purchaseId\": \"string\",\n  \"id\": \"string\",\n  \"refundId\": \"string\",\n  \"date\": \"1968-11-11T12:47:38.463Z\",\n  \"subtotalAmount\": 1561.5254139745828,\n  \"taxAmount\": 1418.2629510832755,\n  \"totalAmount\": 8449.208872366198,\n  \"playerCountry\": \"US\",\n  \"initialCurrency\": \"string\",\n  \"initialPlayerCountry\": \"string\",\n  \"pricingSheetName\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"quantity\": 408.90759530862294,\n      \"item\": {\n        \"id\": \"string\",\n        \"sku\": \"string\"\n      },\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 1747.997860294438,\n      \"referencePrice\": 3841.6840885818547,\n      \"referenceCurrency\": \"string\",\n      \"refundableQuantity\": 6916.74147192338\n    },\n    {\n      \"id\": \"string\",\n      \"quantity\": 849.7098759126742,\n      \"item\": {\n        \"id\": \"string\",\n        \"sku\": \"string\"\n      },\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9432.891264533977,\n      \"referencePrice\": 8240.206804042376,\n      \"referenceCurrency\": \"string\",\n      \"refundableQuantity\": 682.6907749702104\n    }\n  ],\n  \"payment\": {\n    \"vendor\": \"string\",\n    \"method\": \"string\"\n  },\n  \"currency\": \"string\",\n  \"accountId\": \"player_987654\",\n  \"externalReferenceId\": \"string\",\n  \"externalMetadata\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abdecfec-2fc0-4ea0-9cd0-6cdcd6f7989c",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    ":purchaseId",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) A valid purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fee\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"PURCHASE_NOT_FOUND\",\n  \"message\": \"Purchase not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    },\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50afd5ea-0540-446a-ae2d-235abb301844",
+              "name": "Purchase is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    ":purchaseId",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) A valid purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fee\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"PURCHASE_NOT_FOUND\",\n    \"message\": \"Purchase not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc586c1e-2fee-465d-8127-e6a69c84c5fb",
+          "name": "Subscribe to purchase lifecycle events",
+          "request": {
+            "name": "Subscribe to purchase lifecycle events",
+            "description": {
+              "content": "Learn more about webhooks [here](https://neonpay.readme.io/docs/webhooks-and-callbacks).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purchases",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"*\"\n  ],\n  \"eventVersion\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51f96fee-553a-49ec-8b71-e5a40a247162",
+              "name": "Webhook added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://gameUrl.com/purchase.completed\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"*\"\n  ],\n  \"eventVersion\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"secret\": \"string\",\n  \"ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abcbe525-57e6-4d51-99ca-438a44cf3b2b",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purchases",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://gameUrl.com/purchase.completed\",\n  \"secret\": \"<string>\",\n  \"enabledEvents\": [\n    \"*\"\n  ],\n  \"eventVersion\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"PURCHASE_NOT_FOUND\",\n  \"message\": \"Purchase not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    },\n    {\n      \"source\": \"purchaseId\",\n      \"message\": \"Purchase not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cd03024b-4dd5-480b-9664-401d66ff05d2",
+    "name": "Account Purchases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

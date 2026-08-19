@@ -1,0 +1,1202 @@
+{
+  "item": [
+    {
+      "id": "36e8280b-a7fc-4f4d-85ae-8e4f31257421",
+      "name": "Assets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "94a057d5-380f-413f-89c3-43df1f9a6fb3",
+          "name": "Upload a brand image",
+          "request": {
+            "name": "Upload a brand image",
+            "description": {
+              "content": "Brand images can be used for customizing the storefront or checkout experience",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "brand-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used."
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "The image file as either a png, jpeg, or jpg file."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ea52b426-f12c-47e5-b90d-82b1b7c3dbdf",
+              "name": "Returns the image record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The image file as either a png, jpeg, or jpg file.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"relativeUrl\": \"string\",\n  \"url\": \"string\",\n  \"fileName\": \"string\",\n  \"mimeType\": \"image/png\",\n  \"createdAt\": \"string\",\n  \"updatedAt\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cb48f16-8cf1-4599-87e2-a429c8556529",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The image file as either a png, jpeg, or jpg file.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfa4d137-9a3d-43f8-838a-c4b0017ba064",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The image file as either a png, jpeg, or jpg file.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6389040a-b27a-4c75-a4d0-9664115eb329",
+          "name": "Returns the list of brand images associated with the environment",
+          "request": {
+            "name": "Returns the list of brand images associated with the environment",
+            "description": {
+              "content": "Brand images can be used for customizing the storefront or checkout experience",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "brand-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27ea45b8-2445-4f00-a447-82813b5634ba",
+              "name": "Returns the brand image record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"relativeUrl\": \"string\",\n    \"url\": \"string\",\n    \"fileName\": \"string\",\n    \"mimeType\": \"image/png\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"relativeUrl\": \"string\",\n    \"url\": \"string\",\n    \"fileName\": \"string\",\n    \"mimeType\": \"image/png\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c0a6233-3331-487f-9c86-a82a9731a503",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ae09a19-b751-4817-84a6-66fbd8d5fd68",
+          "name": "Upload an inventory image.",
+          "request": {
+            "name": "Upload an inventory image.",
+            "description": {
+              "content": "Inventory images can be associated with offers and/or items within the same environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "inventory-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used."
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "The image file as either a png, jpeg, or jpg file."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b18e0320-549e-47df-930e-ce4d4d60ceb8",
+              "name": "Returns the item-image record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The image file as either a png, jpeg, or jpg file.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"relativeUrl\": \"string\",\n  \"url\": \"string\",\n  \"fileName\": \"string\",\n  \"mimeType\": \"image/png\",\n  \"createdAt\": \"string\",\n  \"updatedAt\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44caf77f-ae18-4ea4-b2b7-eeccdad1e362",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The image file as either a png, jpeg, or jpg file.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5e2dd4a-64c9-468c-8121-55afbc809239",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The name that will be used to refer to this image in the Neon system. If the name isn't provided, the file name will be used.",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The image file as either a png, jpeg, or jpg file.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d799139-4ca3-4a25-8a3b-8d28127a8322",
+          "name": "Returns the list of inventory images associated with the environment",
+          "request": {
+            "name": "Returns the list of inventory images associated with the environment",
+            "description": {
+              "content": "Inventory images can be associated with offers and/or items within the same environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "inventory-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8e896ed-d7d0-4b1e-a809-2e6d97b6234b",
+              "name": "Returns the storefront's inventory image records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"relativeUrl\": \"string\",\n    \"url\": \"string\",\n    \"fileName\": \"string\",\n    \"mimeType\": \"image/png\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"relativeUrl\": \"string\",\n    \"url\": \"string\",\n    \"fileName\": \"string\",\n    \"mimeType\": \"image/png\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "066c4c9c-7d41-48cd-878e-68f6e79aa839",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e1cc1ad-274a-48f1-beb1-78dc39aa5779",
+          "name": "Mark a brand image as deleted.",
+          "request": {
+            "name": "Mark a brand image as deleted.",
+            "description": {
+              "content": "The deleted image's url will continue to work but the image won't be assignable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "brand-images",
+                ":imageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "imageId",
+                  "description": "(Required) The UUID for the brand image"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d66d2d1-f9db-4345-879d-a443c92677cf",
+              "name": "The brand image has been marked as deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The UUID for the brand image"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa9b8f8a-5bc9-4113-bc31-f1b016e439b2",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The UUID for the brand image"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99a6738d-8b86-43e8-a315-28ca447e6aa2",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "brand-images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The UUID for the brand image"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "263853dc-9524-41cc-8cae-be69797748ae",
+          "name": "Mark an inventory image as deleted.",
+          "request": {
+            "name": "Mark an inventory image as deleted.",
+            "description": {
+              "content": "The deleted image's url will continue to work but the image won't be assignable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "inventory-images",
+                ":imageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "imageId",
+                  "description": "(Required) The UUID for the item image"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8358917b-7cfe-40a9-ae85-a28931e74d74",
+              "name": "The inventory image has been marked as deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The UUID for the item image"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3dba5fda-761f-453e-90a3-e4999c72f8b7",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The UUID for the item image"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7617a3e-5c84-47e6-ab46-c680ea7f0dc4",
+              "name": "Invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "inventory-images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The UUID for the item image"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_IMAGE_TYPE\",\n  \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    },\n    {\n      \"source\": \"file\",\n      \"message\": \"Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9b651d16-2551-41b7-be15-189f3af826ef",
+    "name": "Account Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,883 @@
+{
+  "item": [
+    {
+      "id": "f48640a0-2b9b-43bf-a6cd-49888537b3e3",
+      "name": "Client",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5cb3308c-237e-42c3-b9ab-6b2ccd96ddd3",
+          "name": "Retrieve a client token",
+          "request": {
+            "name": "Retrieve a client token",
+            "description": {
+              "content": "This endpoint issues a client token that can be used with client-side requests to the Neon APIs. Expires in 24 hours.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "client",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string,null>\",\n  \"metadata\": {\n    \"key_0\": 8992.88333444195,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ef8b02a-8704-4e69-bb45-ad9e1cac7a3e",
+              "name": "The client token was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string,null>\",\n  \"metadata\": {\n    \"key_0\": false\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"expiresAt\": \"2023-06-23T20:00:00.000Z\",\n  \"expiresInSeconds\": 9570\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7399d3d-1d16-470f-a5c5-e7ce95a78fc1",
+              "name": "Response for API errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string,null>\",\n  \"metadata\": {\n    \"key_0\": false\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6404ced1-5d70-46bd-b34c-2294abc02b41",
+              "name": "Response for API errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string,null>\",\n  \"metadata\": {\n    \"key_0\": false\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fcafd00-e301-43d8-a769-cead56ed8956",
+              "name": "Response for API errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"accountDisplayName\": \"<string,null>\",\n  \"pricingSheetName\": \"<string,null>\",\n  \"metadata\": {\n    \"key_0\": false\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"AUTH_CODE_NOT_FOUND\",\n  \"message\": \"The provided authorization code was not found\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    },\n    {\n      \"source\": \"code\",\n      \"message\": \"The provided authorization code was not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a6616c9-8894-4049-9202-a41c8b87c3b5",
+          "name": "Create a checkout using a client token",
+          "request": {
+            "name": "Create a checkout using a client token",
+            "description": {
+              "content": "Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. See [Create a checkout using a client token](https://docs.neonpay.com/reference/createcheckoutclient) for more information. Don't use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "client",
+                "checkout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"<string>\",\n  \"languageLocale\": \"<string>\",\n  \"offers\": [\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"playerCountry\": \"<string>\",\n  \"successUrl\": \"<string,null-uri>\",\n  \"externalReferenceId\": \"<string>\",\n  \"storeUrl\": \"<uri>\",\n  \"defaultPaymentMethod\": \"<string,null>\",\n  \"hidePromoCodeInput\": \"<boolean,null>\",\n  \"contact\": {\n    \"email\": \"<string,null>\"\n  },\n  \"cancelUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22c5ef03-4bd6-41ed-9079-50d159955f01",
+              "name": "The response is used to move the user into the checkout flow and can be used to track the status of a checkout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"string\",\n  \"languageLocale\": \"en-US\",\n  \"offers\": [\n    {\n      \"sku\": \"string\",\n      \"quantity\": 3719\n    }\n  ],\n  \"playerCountry\": \"US\",\n  \"successUrl\": \"<string,null-uri>\",\n  \"externalReferenceId\": \"string\",\n  \"storeUrl\": \"https://shop.knightfighter.com/\",\n  \"defaultPaymentMethod\": \"string\",\n  \"hidePromoCodeInput\": false,\n  \"contact\": {\n    \"email\": \"string\"\n  },\n  \"cancelUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"redirectUrl\": \"https://checkout.neonpay.com/checkout/ct_KbWxq3yU8jZpL0vN7sM1aR4tH6gQ2dE5\",\n  \"externalProvider\": {\n    \"name\": \"xsolla\",\n    \"orderId\": 1234567890\n  },\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "722ebcfd-bc81-45f6-8aea-4ad6569ed44c",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"string\",\n  \"languageLocale\": \"en-US\",\n  \"offers\": [\n    {\n      \"sku\": \"string\",\n      \"quantity\": 3719\n    }\n  ],\n  \"playerCountry\": \"US\",\n  \"successUrl\": \"<string,null-uri>\",\n  \"externalReferenceId\": \"string\",\n  \"storeUrl\": \"https://shop.knightfighter.com/\",\n  \"defaultPaymentMethod\": \"string\",\n  \"hidePromoCodeInput\": false,\n  \"contact\": {\n    \"email\": \"string\"\n  },\n  \"cancelUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_ERROR\",\n  \"message\": \"Item missing both price tier and price.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": 23.535074235095934\n      }\n    },\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": 9226,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7632bf3a-2430-4d40-b057-cf398d6fab80",
+          "name": "Mark an unclaimed purchase as claimed",
+          "request": {
+            "name": "Mark an unclaimed purchase as claimed",
+            "description": {
+              "content": "Mark a purchase as claimed. This is required if you are using a serverless flow.\nThe response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "client",
+                "purchase",
+                ":purchaseId",
+                "claim"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "purchaseId",
+                  "description": "(Required) The purchase ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH"
+          },
+          "response": [
+            {
+              "id": "bf26c854-ea7c-41d5-9925-9953eddf9d27",
+              "name": "The purchase object with signed headers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "purchase",
+                    ":purchaseId",
+                    "claim"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) The purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Base64-encoded signature of the response",
+                  "key": "X-Neon-Signature",
+                  "value": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6=="
+                },
+                {
+                  "disabled": false,
+                  "description": "ISO timestamp when the signature was generated",
+                  "key": "X-Neon-Signature-Timestamp",
+                  "value": "2024-04-27T12:34:56.789Z"
+                },
+                {
+                  "disabled": false,
+                  "description": "The signature algorithm used",
+                  "key": "X-Neon-Signature-Algorithm",
+                  "value": "Ed25519"
+                },
+                {
+                  "disabled": false,
+                  "description": "Optional secondary signature using deprecated key only applicable during rotation period. Clients with cached old public keys can verify with this signature.",
+                  "key": "X-Neon-Signature-Deprecated",
+                  "value": "z9y8x7w6v5u4t3s2r1q0p9o8n7m6l5k4j3i2h1g0f9e8d7c6b5a4=="
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checkoutId\": \"string\",\n  \"currency\": \"string\",\n  \"date\": \"1999-01-01T00:23:03.996Z\",\n  \"events\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"sale\",\n      \"amount\": 7330.78390675568,\n      \"currency\": \"string\",\n      \"date\": \"1971-10-02T20:07:24.495Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"refund\",\n      \"amount\": 2330.0382417622554,\n      \"currency\": \"string\",\n      \"date\": \"1966-01-18T13:39:48.140Z\"\n    }\n  ],\n  \"id\": \"string\",\n  \"initialCurrency\": \"string\",\n  \"initialPlayerCountry\": \"string\",\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 978.8897065475388,\n      \"quantity\": 694.6173723817939,\n      \"refundableQuantity\": 4447.751471616488,\n      \"referencePrice\": 4867.555027038799,\n      \"referenceCurrency\": \"string\",\n      \"bundleContents\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 6830\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 3987\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 8437.846383669212,\n      \"quantity\": 4738.424737457065,\n      \"refundableQuantity\": 7438.297336217931,\n      \"referencePrice\": 3250.31623330479,\n      \"referenceCurrency\": \"string\",\n      \"bundleContents\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 3653\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 4682\n        }\n      ]\n    }\n  ],\n  \"itemsSubtotalAmount\": 154.28675110792378,\n  \"locale\": \"en-US\",\n  \"orderNumber\": \"string\",\n  \"payment\": {\n    \"vendor\": \"string\",\n    \"method\": \"string\"\n  },\n  \"playerCountry\": \"US\",\n  \"pricingSheetName\": \"string\",\n  \"status\": \"string\",\n  \"subtotalAmount\": 688.6706839138734,\n  \"taxAmount\": 6674.448807755068,\n  \"taxRate\": 4272.586294420452,\n  \"totalAmount\": 7158.979909918483,\n  \"totalExcludingTaxAmount\": 7004.486029750712,\n  \"discountAmount\": 2307.9099563157447,\n  \"promoCode\": \"string\",\n  \"fee\": {\n    \"fxRate\": 3077.17151284586,\n    \"feeAmount\": 850.1390298134459,\n    \"netProceedsAmount\": 9732.913084866022,\n    \"settlementCurrency\": \"string\"\n  },\n  \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n  \"externalMetadata\": \"\",\n  \"accountId\": \"player_987654\",\n  \"email\": \"string\",\n  \"ipAddress\": \"string\",\n  \"referral\": {\n    \"source\": \"discord\",\n    \"method\": \"click_id\",\n    \"host\": \"string\"\n  },\n  \"claimedAt\": \"2023-05-31T05:42:46.187Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1641977-5ac1-41fb-906d-12b7d4004ce5",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "purchase",
+                    ":purchaseId",
+                    "claim"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) The purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_ERROR\",\n  \"message\": \"Item missing both price tier and price.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": false\n      }\n    },\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": \"string\",\n        \"key_1\": 3428,\n        \"key_2\": false,\n        \"key_3\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62fb57e7-c9a3-4bb1-847f-d2de9771e1ef",
+              "name": "Purchase is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "purchase",
+                    ":purchaseId",
+                    "claim"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "purchaseId",
+                      "description": "(Required) The purchase ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"PURCHASE_NOT_FOUND\",\n    \"message\": \"Purchase not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e1ab2bb-a6b4-4221-8720-3426bee7e30e",
+          "name": "Get all unclaimed purchases for a particular user",
+          "request": {
+            "name": "Get all unclaimed purchases for a particular user",
+            "description": {
+              "content": "Returns a data object containing the list of unclaimed purchases for the user.\nThe response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "client",
+                "purchases",
+                "unclaimed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2cdd6e73-6c1e-4294-bd66-4e02637309af",
+              "name": "The list of unclaimed purchases for the user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "purchases",
+                    "unclaimed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Base64-encoded signature of the response",
+                  "key": "X-Neon-Signature",
+                  "value": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6=="
+                },
+                {
+                  "disabled": false,
+                  "description": "ISO timestamp when the signature was generated",
+                  "key": "X-Neon-Signature-Timestamp",
+                  "value": "2024-04-27T12:34:56.789Z"
+                },
+                {
+                  "disabled": false,
+                  "description": "The signature algorithm used",
+                  "key": "X-Neon-Signature-Algorithm",
+                  "value": "Ed25519"
+                },
+                {
+                  "disabled": false,
+                  "description": "Optional secondary signature using deprecated key only applicable during rotation period. Clients with cached old public keys can verify with this signature.",
+                  "key": "X-Neon-Signature-Deprecated",
+                  "value": "z9y8x7w6v5u4t3s2r1q0p9o8n7m6l5k4j3i2h1g0f9e8d7c6b5a4=="
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"date\": \"1965-08-17T19:16:08.679Z\",\n      \"checkoutId\": \"string\",\n      \"orderNumber\": \"string\",\n      \"itemsSubtotalAmount\": 8844.693200715003,\n      \"totalExcludingTaxAmount\": 4405.091814199827,\n      \"subtotalAmount\": 2323.591082037828,\n      \"taxAmount\": 5404.962109196406,\n      \"taxRate\": 332.2943636294884,\n      \"totalAmount\": 7398.407076961051,\n      \"currency\": \"string\",\n      \"initialCurrency\": \"string\",\n      \"status\": \"string\",\n      \"playerCountry\": \"US\",\n      \"initialPlayerCountry\": \"string\",\n      \"pricingSheetName\": \"string\",\n      \"locale\": \"en-US\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 8421.921218265135,\n          \"quantity\": 6133.822450219173,\n          \"refundableQuantity\": 8387.431439770491,\n          \"referencePrice\": 3070.3159638309153,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 2411.2375682772304,\n          \"quantity\": 957.3485652997182,\n          \"refundableQuantity\": 6611.92905944427,\n          \"referencePrice\": 9499.994977756827,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"payment\": {\n        \"vendor\": \"string\",\n        \"method\": \"string\"\n      },\n      \"discountAmount\": 3688.5496827586185,\n      \"promoCode\": \"string\",\n      \"fee\": {\n        \"fxRate\": 2421.457348778928,\n        \"feeAmount\": 2214.0253437464685,\n        \"netProceedsAmount\": 4235.0464588209115,\n        \"settlementCurrency\": \"string\"\n      },\n      \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n      \"externalMetadata\": \"\",\n      \"accountId\": \"player_987654\",\n      \"email\": \"string\",\n      \"ipAddress\": \"string\",\n      \"referral\": {\n        \"source\": \"support\",\n        \"method\": \"utm\",\n        \"host\": \"string\"\n      },\n      \"claimedAt\": \"1992-12-30T11:18:15.706Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"date\": \"1958-09-27T02:41:23.391Z\",\n      \"checkoutId\": \"string\",\n      \"orderNumber\": \"string\",\n      \"itemsSubtotalAmount\": 8981.307677637957,\n      \"totalExcludingTaxAmount\": 7543.081168022465,\n      \"subtotalAmount\": 176.32500019875152,\n      \"taxAmount\": 9390.742806855129,\n      \"taxRate\": 4051.4762417518577,\n      \"totalAmount\": 182.07705084101966,\n      \"currency\": \"string\",\n      \"initialCurrency\": \"string\",\n      \"status\": \"string\",\n      \"playerCountry\": \"US\",\n      \"initialPlayerCountry\": \"string\",\n      \"pricingSheetName\": \"string\",\n      \"locale\": \"en-US\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 2776.8995637005723,\n          \"quantity\": 2072.129623497436,\n          \"refundableQuantity\": 202.34520208751272,\n          \"referencePrice\": 4860.670518739176,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"price\": 5706.31572759774,\n          \"quantity\": 6790.377726676649,\n          \"refundableQuantity\": 3731.503383963001,\n          \"referencePrice\": 9953.479208574654,\n          \"referenceCurrency\": \"string\",\n          \"bundleContents\": [\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"sku\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quantity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"payment\": {\n        \"vendor\": \"string\",\n        \"method\": \"string\"\n      },\n      \"discountAmount\": 5707.3855788551855,\n      \"promoCode\": \"string\",\n      \"fee\": {\n        \"fxRate\": 3620.686275648474,\n        \"feeAmount\": 8776.62081476611,\n        \"netProceedsAmount\": 2950.3498291760266,\n        \"settlementCurrency\": \"string\"\n      },\n      \"externalReferenceId\": \"e7ec4707-75ee-4fa8-aeb9-57370098ddc5\",\n      \"externalMetadata\": \"\",\n      \"accountId\": \"player_987654\",\n      \"email\": \"string\",\n      \"ipAddress\": \"string\",\n      \"referral\": {\n        \"source\": \"support\",\n        \"method\": \"utm\",\n        \"host\": \"string\"\n      },\n      \"claimedAt\": \"1997-07-02T10:58:35.582Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b9a0d8c-711d-454e-b99b-3fbd7ad03c2f",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "purchases",
+                    "unclaimed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_ERROR\",\n  \"message\": \"Item missing both price tier and price.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": false\n      }\n    },\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": \"string\",\n        \"key_1\": 3428,\n        \"key_2\": false,\n        \"key_3\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76bd40f8-e452-445e-b63d-b9c0d4bbd78a",
+              "name": "Purchase is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "purchases",
+                    "unclaimed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"PURCHASE_NOT_FOUND\",\n    \"message\": \"Purchase not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5ff1e6a-c82e-4327-82db-2f09d9942eeb",
+    "name": "Account Client API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

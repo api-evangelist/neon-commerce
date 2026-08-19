@@ -1,0 +1,640 @@
+{
+  "item": [
+    {
+      "id": "28f302a9-1198-439b-b573-0dba3bd05d1a",
+      "name": "Checkout",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afd12686-5eef-451e-8110-2cb5e0c55126",
+          "name": "Create a checkout",
+          "request": {
+            "name": "Create a checkout",
+            "description": {
+              "content": "Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. On success, we'll send a `purchase.completed` event to your webhook listener. On payment failure, we'll send a `payment.failed` event to your webhook listener.\nDon't use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "checkout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"sku\": \"<string>\",\n      \"imageUrl\": \"<string,null-uri>\",\n      \"subtitle\": \"<string,null>\",\n      \"highlightedSubtitle\": \"<string,null>\",\n      \"taxCode\": \"<string>\",\n      \"shouldShowSingleQuantity\": \"<boolean>\"\n    }\n  ],\n  \"languageLocale\": \"<string>\",\n  \"playerCountry\": \"<string>\",\n  \"successUrl\": \"<string,null-uri>\",\n  \"externalReferenceId\": \"<string>\",\n  \"externalMetadata\": {\n    \"key_0\": true,\n    \"key_1\": 5885,\n    \"key_2\": 2022,\n    \"key_3\": true\n  },\n  \"storeUrl\": \"<uri>\",\n  \"accountDisplayName\": \"<string>\",\n  \"defaultPaymentMethod\": \"<string,null>\",\n  \"hidePromoCodeInput\": \"<boolean,null>\",\n  \"contact\": {\n    \"email\": \"<string,null>\"\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"<string,null-date-time>\",\n      \"socialSignOnType\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"sessionCount\": \"<integer,null>\",\n      \"levelInApp\": \"<integer,null>\",\n      \"followersInApp\": \"<integer,null>\",\n      \"isOnLatestAppVersion\": \"<boolean,null>\",\n      \"hasLinkedSocialAccount\": \"<boolean,null>\",\n      \"finishedGameSetup\": \"<boolean,null>\",\n      \"isKnownUser\": \"<boolean,null>\"\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"region\": \"<string,null>\"\n    }\n  },\n  \"pricingSheetName\": \"<string,null>\",\n  \"cancelUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e04cbe1-fc30-4f9c-9f86-d0f1d025d8bb",
+              "name": "The response is used to move the user into the checkout flow and can be used to track the status of a checkout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"currency\": \"string\",\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"price\": 4130,\n      \"quantity\": 9195,\n      \"sku\": \"string\",\n      \"imageUrl\": \"http://QXeYXoQOtuDBJBqqqRoVPhtehlHQ.zbuzUaKlZm2lp69p6a\",\n      \"subtitle\": \"string\",\n      \"highlightedSubtitle\": \"string\",\n      \"taxCode\": \"digital_goods\",\n      \"shouldShowSingleQuantity\": false\n    }\n  ],\n  \"languageLocale\": \"en-US\",\n  \"playerCountry\": \"US\",\n  \"successUrl\": \"<string,null-uri>\",\n  \"externalReferenceId\": \"string\",\n  \"externalMetadata\": {\n    \"key_0\": 2935.1375948531445\n  },\n  \"storeUrl\": \"https://shop.knightfighter.com/\",\n  \"accountDisplayName\": \"string\",\n  \"defaultPaymentMethod\": \"string\",\n  \"hidePromoCodeInput\": true,\n  \"contact\": {\n    \"email\": \"string\"\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"1966-06-11T14:13:51.070Z\",\n      \"socialSignOnType\": \"google\",\n      \"platform\": \"linux\",\n      \"sessionCount\": 1633,\n      \"levelInApp\": 7900,\n      \"followersInApp\": 890,\n      \"isOnLatestAppVersion\": true,\n      \"hasLinkedSocialAccount\": true,\n      \"finishedGameSetup\": false,\n      \"isKnownUser\": true\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"string\",\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\"\n    }\n  },\n  \"pricingSheetName\": \"string\",\n  \"cancelUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"redirectUrl\": \"https://checkout.neonpay.com/checkout/ct_KbWxq3yU8jZpL0vN7sM1aR4tH6gQ2dE5\",\n  \"externalProvider\": {\n    \"name\": \"xsolla\",\n    \"orderId\": 1234567890\n  },\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d92b3d2-39db-4b51-8d88-a5c6ec2cf219",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"player_987654\",\n  \"currency\": \"string\",\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"price\": 4130,\n      \"quantity\": 9195,\n      \"sku\": \"string\",\n      \"imageUrl\": \"http://QXeYXoQOtuDBJBqqqRoVPhtehlHQ.zbuzUaKlZm2lp69p6a\",\n      \"subtitle\": \"string\",\n      \"highlightedSubtitle\": \"string\",\n      \"taxCode\": \"digital_goods\",\n      \"shouldShowSingleQuantity\": false\n    }\n  ],\n  \"languageLocale\": \"en-US\",\n  \"playerCountry\": \"US\",\n  \"successUrl\": \"<string,null-uri>\",\n  \"externalReferenceId\": \"string\",\n  \"externalMetadata\": {\n    \"key_0\": 2935.1375948531445\n  },\n  \"storeUrl\": \"https://shop.knightfighter.com/\",\n  \"accountDisplayName\": \"string\",\n  \"defaultPaymentMethod\": \"string\",\n  \"hidePromoCodeInput\": true,\n  \"contact\": {\n    \"email\": \"string\"\n  },\n  \"fraudMetadata\": {\n    \"customer\": {\n      \"creationTime\": \"1966-06-11T14:13:51.070Z\",\n      \"socialSignOnType\": \"google\",\n      \"platform\": \"linux\",\n      \"sessionCount\": 1633,\n      \"levelInApp\": 7900,\n      \"followersInApp\": 890,\n      \"isOnLatestAppVersion\": true,\n      \"hasLinkedSocialAccount\": true,\n      \"finishedGameSetup\": false,\n      \"isKnownUser\": true\n    },\n    \"latestLoginIp\": {\n      \"ipAddress\": \"string\",\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\"\n    }\n  },\n  \"pricingSheetName\": \"string\",\n  \"cancelUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_ERROR\",\n  \"message\": \"Item missing both price tier and price.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": false,\n        \"key_1\": true,\n        \"key_2\": 6266\n      }\n    },\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28f2fbf4-b3f4-4ba3-a2ae-28faa9fdb298",
+          "name": "Expire a checkout",
+          "request": {
+            "name": "Expire a checkout",
+            "description": {
+              "content": "Expire a checkout. This will expire the checkout corresponding to the provided checkoutId regardless of the current status.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "checkout",
+                ":checkoutId",
+                "expire"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "checkoutId",
+                  "description": "(Required) A valid checkout ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91b5f2c4-fe6d-4770-af39-cc40a33f86d2",
+              "name": "Checkout successfully expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId",
+                    "expire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) A valid checkout ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checkoutId\": \"string\",\n  \"message\": \"Checkout expired successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b2ac5bc-58e1-4b1c-8ec5-fb87e3e2e1f8",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId",
+                    "expire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) A valid checkout ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_ERROR\",\n  \"message\": \"Item missing both price tier and price.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": 4868.248578560336,\n        \"key_1\": true\n      }\n    },\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8fcf2df-ea4c-42ba-ae48-9f4370e5a1c4",
+              "name": "Checkout not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId",
+                    "expire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) A valid checkout ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"CHECKOUT_NOT_FOUND\",\n    \"message\": \"Checkout not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb471b85-b566-41e6-b7e8-23b2dae2328d",
+          "name": "Returns a checkout's details.",
+          "request": {
+            "name": "Returns a checkout's details.",
+            "description": {
+              "content": "Can be used to get the status of a particular checkout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "checkout",
+                ":checkoutId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "checkoutId",
+                  "description": "(Required) A valid checkout ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7485bf71-2dad-4fa6-95c1-5b30ec800668",
+              "name": "Returns the checkout object associated with the passed in id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) A valid checkout ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"isSandbox\": true,\n  \"cancelUrl\": \"string\",\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"price\": 4674.555985203952,\n      \"priceTierCode\": \"string\",\n      \"quantity\": 8923,\n      \"sku\": \"string\",\n      \"imageUrl\": \"https://tXRdJWxhtqlRmdjMcUGiHV.effzv2eq2Ku2HuIy-XOfKymclynfAJ\",\n      \"subtitle\": \"string\",\n      \"highlightedSubtitle\": \"string\",\n      \"taxCode\": \"digital_goods\",\n      \"shouldShowSingleQuantity\": false\n    },\n    {\n      \"name\": \"string\",\n      \"price\": 2093.437829811158,\n      \"priceTierCode\": \"string\",\n      \"quantity\": 4655,\n      \"sku\": \"string\",\n      \"imageUrl\": \"http://xfEdKfGQCjvjcTd.buuxBlK6Zgt4bUz5cSaZewT-bvn-52YLCtSUwRBoMitlSLUVWvNhvqYS\",\n      \"subtitle\": \"string\",\n      \"highlightedSubtitle\": \"string\",\n      \"taxCode\": \"digital_goods\",\n      \"shouldShowSingleQuantity\": false\n    }\n  ],\n  \"languageLocale\": \"en-US\",\n  \"playerCountry\": \"US\",\n  \"userId\": \"string\",\n  \"initialCurrency\": \"string\",\n  \"initialPlayerCountry\": \"US\",\n  \"storeUrl\": \"https://shop.knightfighter.com/\",\n  \"itemsSubtotalAmount\": 1499,\n  \"totalExcludingTaxAmount\": 1499,\n  \"subtotalAmount\": 1499,\n  \"taxAmount\": 150,\n  \"taxRate\": 0.1,\n  \"totalAmount\": 1649,\n  \"accountId\": \"player_987654\",\n  \"accountDisplayName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d694f69e-ff54-4ad3-961d-efe307372e11",
+              "name": "Response for bad requests. Should note what in the request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) A valid checkout ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ITEM_ERROR\",\n  \"message\": \"Item missing both price tier and price.\",\n  \"statusCode\": 400,\n  \"errors\": [\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": 4868.248578560336,\n        \"key_1\": true\n      }\n    },\n    {\n      \"source\": \"items.0\",\n      \"message\": \"Item missing both price tier and price.\",\n      \"context\": {\n        \"key_0\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a086301a-2348-419d-bc88-426691b2c358",
+              "name": "Checkout not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) A valid checkout ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"CHECKOUT_NOT_FOUND\",\n    \"message\": \"Checkout not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neonpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4ccfd2f2-620d-43c6-9937-36f9249b43f0",
+    "name": "Account Checkout API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Account API is used for managing player accounts.",
+      "type": "text/plain"
+    }
+  }
+}

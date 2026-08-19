@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Client API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Client",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a client token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/client/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint issues a client token that can be used with client-side requests to the Neon APIs. Expires in 24 hours.\n"
+        },
+        {
+          "info": {
+            "name": "Create a checkout using a client token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/client/checkout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. See [Create a checkout using a client token](https://docs.neonpay.com/reference/createcheckoutclient) for more information. Don't use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.\n"
+        },
+        {
+          "info": {
+            "name": "Mark an unclaimed purchase as claimed",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.neonpay.com/client/purchase/:purchaseId/claim",
+            "params": [
+              {
+                "name": "purchaseId",
+                "value": "",
+                "type": "path",
+                "description": "The purchase ID"
+              }
+            ]
+          },
+          "docs": "Mark a purchase as claimed. This is required if you are using a serverless flow.\nThe response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.\n"
+        },
+        {
+          "info": {
+            "name": "Get all unclaimed purchases for a particular user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/client/purchases/unclaimed"
+          },
+          "docs": "Returns a data object containing the list of unclaimed purchases for the user.\nThe response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

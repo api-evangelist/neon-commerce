@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Prices API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get localized pricing by country or IP address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neonpay.com/prices",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "The IP address of the user. Either `ip` or `country` is required."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "The country of the user an ISO 3166-1 code. Either `ip` or `country` is required."
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "The locale to use for localized prices, in IETF BCP 47 tag"
+              }
+            ]
+          },
+          "docs": "Get localized pricing by country or IP address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

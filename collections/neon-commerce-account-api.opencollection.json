@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Merge player accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/account/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API to initiate the merging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments."
+        },
+        {
+          "info": {
+            "name": "Unmerge player accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neonpay.com/account/unmerge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API to initiate the unmerging of player accounts. At the moment, this is only supported for managing accounts at the global level across environments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
