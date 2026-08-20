@@ -35,6 +35,17 @@ tags:
 - Gaming
 - Checkout
 - Storefront
+- Direct to Consumer
+- Subscription
+- Merchant of Record
+- Game Monetization
+- Company
+tags_raw:
+- Commerce
+- Payments
+- Gaming
+- Checkout
+- Storefront
 - Direct-to-Consumer
 - Subscriptions
 - Merchant of Record
@@ -75,6 +86,8 @@ apis:
   humanURL: https://docs.neonpay.com/reference
   baseURL: https://api.neonpay.com
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -103,6 +116,8 @@ apis:
   humanURL: https://docs.neonpay.com/reference
   baseURL: https://api.neonpay.com
   tags:
+  - Clients
+  tags_raw:
   - Client
   properties:
   - type: OpenAPI
@@ -215,6 +230,8 @@ apis:
   humanURL: https://docs.neonpay.com/reference
   baseURL: https://api.neonpay.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
