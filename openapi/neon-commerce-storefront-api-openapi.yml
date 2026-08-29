@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Account Storefront API
-  description: The Account API is used for managing player accounts.
-  version: '1'
+  title: Storefront API
+  description: Every call involved with setting up a storefront is listed in the Storefront API. Every call requires an API key. Each key is scoped to a storefront and can only update the models associated with that storefront.
+  version: 1.0.0
 servers:
 - url: https://api.neonpay.com
 security:
-- GlobalApiKey: []
+- EnvironmentApiKey: []
 tags:
 - name: Storefront
 paths:
@@ -643,53 +643,69 @@ paths:
       tags:
       - Storefront
 components:
-  parameters:
-    NeonSignature:
-      in: header
-      name: X-Neon-Digest
-      required: true
-      schema:
-        type: string
-        description: 'The signature of this request. The signing key used is returned when the callbacks are generated.
-
-          To verify the signature, convert the request body to a JSON string, compute an HMAC with the SHA-256 hash function using the signing key as the key and the JSONified request body as the message.
-
-          '
+  responses:
+    Conflict:
+      description: The request conflicts with the current state of the resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    BadRequest:
+      description: An error response from an invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    InvalidApiKey:
+      description: An error response from an invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    Theme:
+      description: The theme for a storefront
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Theme'
   schemas:
-    ItemText:
-      type: object
-      description: A Neon localized text object for an Item. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
-      required:
-      - nameSingular
-      - namePlural
-      properties:
-        nameSingular:
-          type: string
-          description: The translated singular form of this item.
-          example: gem
-        namePlural:
-          type: string
-          description: The translated plural form of this item.
-          example: gems
-        description:
-          type:
-          - string
-          - 'null'
-          description: A translated description for this item.
-    ErrorDetail:
-      type: object
-      required:
-      - source
-      - message
-      properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: 0.imageFileName
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: 'No images were found matching the file name: gems.png'
+    PlayerInventory:
+      type: array
+      items:
+        type: object
+        required:
+        - sku
+        - purchased
+        properties:
+          sku:
+            type: string
+            description: The offer SKU
+          purchased:
+            type: number
+            minimum: 0
+            description: The amount of this offer the user has already purchased
+          limit:
+            type:
+            - number
+            - 'null'
+            minimum: 0
+            description: The total number of this offer the user may purchase. If null, there is no limit. If zero, the limit is 0
+          startTime:
+            anyOf:
+            - type:
+              - string
+              - 'null'
+              description: The time from which this restriction should be made effective, if applicable, expressed as an ISO 8601 string
+            - type:
+              - number
+              - 'null'
+              description: The time from which this restriction should be made effective, if applicable, expressed in milliseconds since the start of the epoch
+          durationInSeconds:
+            type:
+            - number
+            - 'null'
+            minimum: 0
+            description: The number of seconds after `startTime` for which this restriction should be effective. If not passed, the restriction is indefinitely effective
     Offer:
       type: object
       required:
@@ -842,43 +858,130 @@ components:
           description: Text for this offer in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
           additionalProperties:
             $ref: '#/components/schemas/OfferText'
-    PlayerInventory:
-      type: array
-      items:
-        type: object
-        required:
-        - sku
-        - purchased
-        properties:
-          sku:
-            type: string
-            description: The offer SKU
-          purchased:
-            type: number
-            minimum: 0
-            description: The amount of this offer the user has already purchased
-          limit:
-            type:
-            - number
-            - 'null'
-            minimum: 0
-            description: The total number of this offer the user may purchase. If null, there is no limit. If zero, the limit is 0
-          startTime:
-            anyOf:
-            - type:
-              - string
-              - 'null'
-              description: The time from which this restriction should be made effective, if applicable, expressed as an ISO 8601 string
-            - type:
-              - number
-              - 'null'
-              description: The time from which this restriction should be made effective, if applicable, expressed in milliseconds since the start of the epoch
-          durationInSeconds:
-            type:
-            - number
-            - 'null'
-            minimum: 0
-            description: The number of seconds after `startTime` for which this restriction should be effective. If not passed, the restriction is indefinitely effective
+    OfferText:
+      type: object
+      description: A Neon localized text object for an Offer. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
+      required:
+      - name
+      - description
+      properties:
+        name:
+          description: The translated name of this offer.
+          type: string
+          example: 110 Gems
+        description:
+          description: The translated description for this offer.
+          type:
+          - string
+          - 'null'
+          example: Get 100 gold every day you log in to play.
+        bannerText:
+          description: The translated banner text for this offer.
+          type:
+          - string
+          - 'null'
+          example: Great Value
+        promoText:
+          description: The translated promo text for this offer.
+          type:
+          - string
+          - 'null'
+          example: Great Value
+        theme:
+          description: The translated theme for this offer.
+          type:
+          - string
+          - 'null'
+          example: Great Value
+        subtitle:
+          description: The translated base portion of the subtitle, used to provide context on this item.
+          type:
+          - string
+          - 'null'
+          example: 100 credits
+        highlightedSubtitle:
+          description: The translated highlighted portion of the subtitle, used to highlight any additional value gained from this purchase.
+          type:
+          - string
+          - 'null'
+          example: +10 extra credits
+    ItemText:
+      type: object
+      description: A Neon localized text object for an Item. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
+      required:
+      - nameSingular
+      - namePlural
+      properties:
+        nameSingular:
+          type: string
+          description: The translated singular form of this item.
+          example: gem
+        namePlural:
+          type: string
+          description: The translated plural form of this item.
+          example: gems
+        description:
+          type:
+          - string
+          - 'null'
+          description: A translated description for this item.
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: INVALID_IMAGE_FILE_NAME
+        message:
+          type: string
+          description: A human readable description of the error
+          example: 'No images were found matching the file name: gems.png'
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+        context:
+          type: object
+          description: Additional structured context about the error
+          additionalProperties: true
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: 0.imageFileName
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: 'No images were found matching the file name: gems.png'
+    OfferItemText:
+      type: object
+      description: A Neon localized text object for an Item within an Offer. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
+      properties:
+        subtitle:
+          description: The translated base portion of the subtitle, used to provide context on this item.
+          type:
+          - string
+          - 'null'
+          example: 100 credits
+        highlightedSubtitle:
+          description: The translated highlighted portion of the subtitle, used to highlight any additional value gained from this purchase.
+          type:
+          - string
+          - 'null'
+          example: +10 extra credits
     OfferGroupText:
       type: object
       description: A Neon localized text object for an Offer Group. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
@@ -905,47 +1008,6 @@ components:
           - 'null'
           example: currency-banner-subheader.png
           description: The inventory image file name for this offer group's subheader image. This image will appear in a storefront as a subheader banner above the offer group.
-    Item:
-      description: Items are the base unit of any offer, like gems or gold. Offers are made up of items with quantities (e.g. 500 gold).
-      type: object
-      required:
-      - code
-      - imageFileName
-      - text
-      properties:
-        code:
-          type: string
-          description: A unique code for this item. This code is used for all API operations, like adding this item to an offer.
-          example: gem
-        imageFileName:
-          type: string
-          description: The file name of this item's image. This is the value of `fileName` you passed in when calling `POST /assets/inventory-images`.
-          example: gem-24x24.png
-        text:
-          description: Names and descriptions for this offer group in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ItemText'
-    OfferGroup:
-      description: Offer groups are used to group and display offers in a storefront.
-      type: object
-      required:
-      - code
-      - priority
-      - text
-      properties:
-        code:
-          description: A unique code for this group. This code is used for all API operations, like linking new or existing offers to this group.
-          type: string
-          example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
-        priority:
-          description: Priorities determine where an offer group appears in the storefront. The lower the priority, the earlier the group appears. Priorities default to 0.
-          type: integer
-        text:
-          description: Names and descriptions for this offer group in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/OfferGroupText'
     Theme:
       type: object
       required:
@@ -1181,128 +1243,75 @@ components:
                   - string
                   - 'null'
                   description: The brand image URL for the button background image.
-    APIError:
+    Item:
+      description: Items are the base unit of any offer, like gems or gold. Offers are made up of items with quantities (e.g. 500 gold).
       type: object
       required:
       - code
-      - message
+      - imageFileName
+      - text
       properties:
-        statusCode:
-          type: number
-          description: The HTTP response code
-          example: 400
         code:
           type: string
-          description: An error code that is static and can be used for programmatic error handling
-          example: INVALID_IMAGE_FILE_NAME
-        message:
+          description: A unique code for this item. This code is used for all API operations, like adding this item to an offer.
+          example: gem
+        imageFileName:
           type: string
-          description: A human readable description of the error
-          example: 'No images were found matching the file name: gems.png'
-        errors:
-          type: array
-          description: A list of more detailed errors about specific errors for specific entities
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-        context:
+          description: The file name of this item's image. This is the value of `fileName` you passed in when calling `POST /assets/inventory-images`.
+          example: gem-24x24.png
+        text:
+          description: Names and descriptions for this offer group in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
           type: object
-          description: Additional structured context about the error
-          additionalProperties: true
-    OfferItemText:
+          additionalProperties:
+            $ref: '#/components/schemas/ItemText'
+    OfferGroup:
+      description: Offer groups are used to group and display offers in a storefront.
       type: object
-      description: A Neon localized text object for an Item within an Offer. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
-      properties:
-        subtitle:
-          description: The translated base portion of the subtitle, used to provide context on this item.
-          type:
-          - string
-          - 'null'
-          example: 100 credits
-        highlightedSubtitle:
-          description: The translated highlighted portion of the subtitle, used to highlight any additional value gained from this purchase.
-          type:
-          - string
-          - 'null'
-          example: +10 extra credits
-    OfferText:
-      type: object
-      description: A Neon localized text object for an Offer. See [here](https://neonpay.readme.io/docs/text-localization) for more details.
       required:
-      - name
-      - description
+      - code
+      - priority
+      - text
       properties:
-        name:
-          description: The translated name of this offer.
+        code:
+          description: A unique code for this group. This code is used for all API operations, like linking new or existing offers to this group.
           type: string
-          example: 110 Gems
-        description:
-          description: The translated description for this offer.
-          type:
-          - string
-          - 'null'
-          example: Get 100 gold every day you log in to play.
-        bannerText:
-          description: The translated banner text for this offer.
-          type:
-          - string
-          - 'null'
-          example: Great Value
-        promoText:
-          description: The translated promo text for this offer.
-          type:
-          - string
-          - 'null'
-          example: Great Value
-        theme:
-          description: The translated theme for this offer.
-          type:
-          - string
-          - 'null'
-          example: Great Value
-        subtitle:
-          description: The translated base portion of the subtitle, used to provide context on this item.
-          type:
-          - string
-          - 'null'
-          example: 100 credits
-        highlightedSubtitle:
-          description: The translated highlighted portion of the subtitle, used to highlight any additional value gained from this purchase.
-          type:
-          - string
-          - 'null'
-          example: +10 extra credits
-  responses:
-    Theme:
-      description: The theme for a storefront
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Theme'
-    Conflict:
-      description: The request conflicts with the current state of the resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
-    BadRequest:
-      description: An error response from an invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
-    InvalidApiKey:
-      description: An error response from an invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
+          example: e7ec4707-75ee-4fa8-aeb9-57370098ddc5
+        priority:
+          description: Priorities determine where an offer group appears in the storefront. The lower the priority, the earlier the group appears. Priorities default to 0.
+          type: integer
+        text:
+          description: Names and descriptions for this offer group in each language your storefront supports. The keys of this object are IETF BCP 47 locale codes, e.g. `en-US`.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/OfferGroupText'
+  parameters:
+    NeonSignature:
+      in: header
+      name: X-Neon-Digest
+      required: true
+      schema:
+        type: string
+        description: 'The signature of this request. The signing key used is returned when the callbacks are generated.
+
+          To verify the signature, convert the request body to a JSON string, compute an HMAC with the SHA-256 hash function using the signing key as the key and the JSONified request body as the message.
+
+          '
   securitySchemes:
-    GlobalApiKey:
+    EnvironmentApiKey:
       type: apiKey
       in: header
       name: X-Api-Key
-      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed with `pk_sandbox_`;
 
-        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
+
+        '
+    ClientKey:
+      type: apiKey
+      in: header
+      name: X-Client-Key
+      description: 'Your Client key, used for client-side requests. Sandbox keys are prefixed with `ck_sandbox_`;
+
+        production keys are prefixed with `ck_`. Find your keys in the Neon dashboard.
 
         '

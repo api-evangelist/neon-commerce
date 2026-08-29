@@ -1,12 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Account Reports API
-  description: The Account API is used for managing player accounts.
-  version: '1'
+  title: Reports API
+  description: 'The Reports API is used to fetch getting Report details.
+
+    '
+  version: 1.0.0
 servers:
 - url: https://api.neonpay.com
 security:
-- GlobalApiKey: []
+- EnvironmentApiKey: []
 tags:
 - name: Reports
 paths:
@@ -75,21 +77,34 @@ paths:
       tags:
       - Reports
 components:
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    ReportNotFoundError:
+      description: Report was not found with the given ID
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReportNotFoundError'
   schemas:
-    ErrorDetail:
+    ReportNotFoundError:
       type: object
-      required:
-      - source
-      - message
       properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: reportId
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: Report not found
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: REPORT_NOT_FOUND
+              enum:
+              - REPORT_NOT_FOUND
+            message:
+              type: string
+              example: Report not found
     APIError:
       type: object
       required:
@@ -113,40 +128,31 @@ components:
           description: A list of more detailed errors about specific errors for specific entities
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    ReportNotFoundError:
+    ErrorDetail:
       type: object
+      required:
+      - source
+      - message
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              example: REPORT_NOT_FOUND
-              enum:
-              - REPORT_NOT_FOUND
-            message:
-              type: string
-              example: Report not found
-  responses:
-    BadRequest:
-      description: Response for bad requests. Should note what in the request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
-    ReportNotFoundError:
-      description: Report was not found with the given ID
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ReportNotFoundError'
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: reportId
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Report not found
   securitySchemes:
-    GlobalApiKey:
+    EnvironmentApiKey:
       type: apiKey
       in: header
       name: X-Api-Key
-      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed with `pk_sandbox_`;
 
-        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
+
+        Reports are available globally across your entire account, so any production API key will grant
+
+        access to all production Reports.
 
         '

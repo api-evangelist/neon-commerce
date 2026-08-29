@@ -1,12 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Account Auth API
-  description: The Account API is used for managing player accounts.
+  title: Auth API
+  description: The Auth API is used for authenticating players
   version: '1'
 servers:
 - url: https://api.neonpay.com
-security:
-- GlobalApiKey: []
+security: []
 tags:
 - name: Auth
 paths:
@@ -248,12 +247,21 @@ components:
                       description: Human readable description of the error for this entity (defined in `source`)
                       example: The provided authorization code was not found
   securitySchemes:
-    GlobalApiKey:
+    ClientKey:
+      type: apiKey
+      in: header
+      name: X-Client-Key
+      description: 'Your Client key, used for client-side requests. Sandbox keys are prefixed with `ck_sandbox_`;
+
+        production keys are prefixed with `ck_`. Find your keys in the Neon dashboard.
+
+        '
+    EnvironmentApiKey:
       type: apiKey
       in: header
       name: X-Api-Key
-      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed with `pk_sandbox_`;
 
-        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
 
         '

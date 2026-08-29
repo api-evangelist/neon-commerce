@@ -1,12 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Account Prices API
-  description: The Account API is used for managing player accounts.
+  title: Checkout Prices API
+  description: 'The Checkout API is used to create, and get data about, standalone checkouts, and to register callbacks used during the flow. Only use this API if you don''t have a Neon storefront integration; Neon storefronts automatically create checkouts for you.
+
+    Once the user confirms their checkout, the checkout object is transitioned to a Purchase object. Use the purchase ID sent in the `purchase.completed` webhook, or the ID included in the query parameters attached to the checkout success URL, to fetch data about the finalized checkout, including updated taxes and totals.
+
+    '
   version: '1'
 servers:
 - url: https://api.neonpay.com
 security:
-- GlobalApiKey: []
+- EnvironmentApiKey: []
 tags:
 - name: Prices
 paths:
@@ -103,25 +107,14 @@ paths:
       tags:
       - Prices
 components:
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
   schemas:
-    ErrorDetail:
-      type: object
-      required:
-      - source
-      - message
-      properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: items.0
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: Item missing both price tier and price.
-        context:
-          type: object
-          description: Additional context about the error
-          additionalProperties: true
     APIError:
       type: object
       required:
@@ -145,20 +138,40 @@ components:
           description: A list of more detailed errors about specific errors for specific entities
           items:
             $ref: '#/components/schemas/ErrorDetail'
-  responses:
-    BadRequest:
-      description: Response for bad requests. Should note what in the request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: items.0
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Item missing both price tier and price.
+        context:
+          type: object
+          description: Additional context about the error
+          additionalProperties: true
   securitySchemes:
-    GlobalApiKey:
+    EnvironmentApiKey:
       type: apiKey
       in: header
       name: X-Api-Key
-      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed with `pk_sandbox_`;
 
-        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
+
+        '
+    ClientToken:
+      type: apiKey
+      in: header
+      name: X-Client-Token
+      description: 'A short-lived client token obtained from the `/client/token` endpoint, used for
+
+        client-side requests to the Neon APIs.
 
         '

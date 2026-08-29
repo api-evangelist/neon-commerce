@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Account Assets API
-  description: The Account API is used for managing player accounts.
-  version: '1'
+  title: Assets API
+  description: Manage the assets that support a  storefront experience and/or standalone checkout.
+  version: 1.0.0
 servers:
 - url: https://api.neonpay.com
 security:
-- GlobalApiKey: []
+- EnvironmentApiKey: []
 tags:
 - name: Assets
 paths:
@@ -153,21 +153,20 @@ paths:
       tags:
       - Assets
 components:
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
+    InvalidApiKey:
+      description: Invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
   schemas:
-    ErrorDetail:
-      type: object
-      required:
-      - source
-      - message
-      properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: file
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.
     Image:
       type: object
       required:
@@ -222,26 +221,27 @@ components:
           description: A list of more detailed errors about specific errors for specific entities
           items:
             $ref: '#/components/schemas/ErrorDetail'
-  responses:
-    BadRequest:
-      description: Response for bad requests. Should note what in the request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
-    InvalidApiKey:
-      description: Invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: file
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Invalid item image type. Item mimetype needs to be png, jpeg, or jpg.
   securitySchemes:
-    GlobalApiKey:
+    EnvironmentApiKey:
       type: apiKey
       in: header
       name: X-Api-Key
-      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed with `pk_sandbox_`;
 
-        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
 
         '

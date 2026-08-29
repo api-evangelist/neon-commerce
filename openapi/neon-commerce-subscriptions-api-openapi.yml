@@ -1,12 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Account Subscriptions API
-  description: The Account API is used for managing player accounts.
+  title: Subscriptions API
+  description: 'The Subscriptions API is used to create and manage subscriptions for your users. It allows you to create subscriptions, cancel them, and retrieve their details. The API is designed to be simple and easy to use, providing a straightforward way to integrate subscription management into your application.
+
+    '
   version: '1'
 servers:
 - url: https://api.neonpay.com
 security:
-- GlobalApiKey: []
+- EnvironmentApiKey: []
 tags:
 - name: Subscriptions
 paths:
@@ -305,7 +307,37 @@ paths:
       tags:
       - Subscriptions
 components:
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
   schemas:
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: UNHANDLED_ERROR
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Could not create a subscription
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
     ErrorDetail:
       type: object
       required:
@@ -473,43 +505,13 @@ components:
         country:
           type: string
           description: Player country
-    APIError:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        statusCode:
-          type: number
-          description: The HTTP response code
-          example: 400
-        code:
-          type: string
-          description: An error code that is static and can be used for programmatic error handling
-          example: UNHANDLED_ERROR
-        message:
-          type: string
-          description: A human readable description of the error
-          example: Could not create a subscription
-        errors:
-          type: array
-          description: A list of more detailed errors about specific errors for specific entities
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-  responses:
-    BadRequest:
-      description: Response for bad requests. Should note what in the request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
   securitySchemes:
-    GlobalApiKey:
+    EnvironmentApiKey:
       type: apiKey
       in: header
       name: X-Api-Key
-      description: 'Your Global API key, which spans across environments. Sandbox keys are prefixed with `gk_sandbox_`;
+      description: 'Your Environment API key, scoped to a particular environment. Sandbox keys are prefixed with `pk_sandbox_`;
 
-        production keys are prefixed with `gk_`. Find your keys in the Neon dashboard.
+        production keys are prefixed with `pk_`. Find your keys in the Neon dashboard.
 
         '
