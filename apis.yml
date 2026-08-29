@@ -8,6 +8,18 @@ description: Neon Commerce (Neon) is the direct-to-consumer commerce and payment
   checkout and subscription creation, purchase and refund lookups, payouts, reports, player authentication, brand/inventory
   image assets, and a full webhook/callback event surface, with sandbox and production environments scoped by API
   key.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
