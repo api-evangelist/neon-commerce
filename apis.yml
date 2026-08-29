@@ -258,6 +258,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/neon-commerce-capability-edges.yml
+  name: Neon Commerce Business Capability Map
 - type: Overlay
   url: overlays/neon-commerce-account-overlay.yaml
 - type: DomainSecurity
