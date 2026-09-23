@@ -105,7 +105,8 @@
     "neon-commerce-subscriptions-openapi.yml: tagged paths GET /subscriptions/{subscriptionId} -> Subscriptions",
     "neon-commerce-subscriptions-openapi.yml: tagged paths POST /subscriptions -> Subscriptions",
     "neon-commerce-subscriptions-openapi.yml: declared missing tag: Subscriptions",
-    "tag 'Client' spans 3 source specs (neon-commerce-auth-openapi.yml, neon-commerce-checkout-openapi.yml, neon-commerce-purchase-openapi.yml): per-path servers applied"
+    "tag 'Client' spans 3 source specs (neon-commerce-auth-openapi.yml, neon-commerce-checkout-openapi.yml, neon-commerce-purchase-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "neon-commerce-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",

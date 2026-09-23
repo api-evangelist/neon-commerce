@@ -59,14 +59,21 @@ paths:
       tags:
       - Payouts
 components:
-  responses:
-    BadRequest:
-      description: Response for bad requests. Should note what in the request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
   schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: payoutId
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Payout not found
     APIError:
       type: object
       required:
@@ -90,20 +97,13 @@ components:
           description: A list of more detailed errors about specific errors for specific entities
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    ErrorDetail:
-      type: object
-      required:
-      - source
-      - message
-      properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: payoutId
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: Payout not found
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
   securitySchemes:
     EnvironmentApiKey:
       type: apiKey

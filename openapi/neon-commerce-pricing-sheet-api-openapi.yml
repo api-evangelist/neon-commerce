@@ -1,11 +1,7 @@
 openapi: 3.2.0
 info:
   title: Checkout Pricing Sheet API
-  description: 'The Checkout API is used to create, and get data about, standalone checkouts, and to register callbacks used during the flow. Only use this API if you don''t have a Neon storefront integration; Neon storefronts automatically create checkouts for you.
-
-    Once the user confirms their checkout, the checkout object is transitioned to a Purchase object. Use the purchase ID sent in the `purchase.completed` webhook, or the ID included in the query parameters attached to the checkout success URL, to fetch data about the finalized checkout, including updated taxes and totals.
-
-    '
+  description: The Checkout API is used to create, and get data about, standalone checkouts, and to register callbacks used during the flow.
   version: '1'
 servers:
 - url: https://api.neonpay.com
@@ -16,7 +12,7 @@ tags:
 paths:
   /pricing-sheet:
     get:
-      summary: Get your active pricing sheet. If you don't have a custom pricing sheet, the default Neon pricing sheet is returned.
+      summary: Get your active pricing sheet.
       operationId: getActivePricingSheet
       parameters:
       - in: query
@@ -59,14 +55,25 @@ paths:
       tags:
       - Pricing Sheet
 components:
-  responses:
-    BadRequest:
-      description: Response for bad requests. Should note what in the request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
   schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: items.0
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Item missing both price tier and price.
+        context:
+          type: object
+          description: Additional context about the error
+          additionalProperties: true
     APIError:
       type: object
       required:
@@ -90,24 +97,13 @@ components:
           description: A list of more detailed errors about specific errors for specific entities
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    ErrorDetail:
-      type: object
-      required:
-      - source
-      - message
-      properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: items.0
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: Item missing both price tier and price.
-        context:
-          type: object
-          description: Additional context about the error
-          additionalProperties: true
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
   securitySchemes:
     EnvironmentApiKey:
       type: apiKey

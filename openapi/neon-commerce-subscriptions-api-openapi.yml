@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: Subscriptions API
-  description: 'The Subscriptions API is used to create and manage subscriptions for your users. It allows you to create subscriptions, cancel them, and retrieve their details. The API is designed to be simple and easy to use, providing a straightforward way to integrate subscription management into your application.
-
-    '
+  description: The Subscriptions API is used to create and manage subscriptions for your users. It allows you to create subscriptions, cancel them, and retrieve their details. The API is designed to be simple and easy to use, providing a straightforward way to integrate subscription management into your application.
   version: '1'
 servers:
 - url: https://api.neonpay.com
@@ -16,9 +14,7 @@ paths:
     post:
       summary: Cancel a subscription
       operationId: cancelSubscription
-      description: 'Cancel a subscription.
-
-        '
+      description: Cancel a subscription.
       parameters:
       - in: path
         name: subscriptionId
@@ -41,9 +37,7 @@ paths:
     post:
       summary: Generate a payment method update link
       operationId: generateUpdatePaymentMethodUrl
-      description: 'Returns a redirect URL where the user can update their subscription''s payment method. The URL expires after 1 hour.
-
-        '
+      description: Returns a redirect URL where the user can update their subscription's payment method. The URL expires after 1 hour.
       parameters:
       - in: path
         name: subscriptionId
@@ -105,7 +99,7 @@ paths:
       - Subscriptions
   /subscriptions/{subscriptionId}:
     get:
-      summary: Returns a subscription's details.
+      summary: Returns a subscription's details
       description: Can be used to get the status of a particular subscription.
       operationId: getSubscription
       parameters:
@@ -132,9 +126,7 @@ paths:
     post:
       summary: Create a subscription
       operationId: postSubscription
-      description: 'Create a subscription. Once the subscription is created, redirect the user to the `returnUrl`.
-
-        '
+      description: Create a subscription. Once the subscription is created, redirect the user to the `returnUrl`.
       requestBody:
         required: true
         content:
@@ -307,51 +299,7 @@ paths:
       tags:
       - Subscriptions
 components:
-  responses:
-    BadRequest:
-      description: Response for bad requests. Should note what in the request was invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
   schemas:
-    APIError:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        statusCode:
-          type: number
-          description: The HTTP response code
-          example: 400
-        code:
-          type: string
-          description: An error code that is static and can be used for programmatic error handling
-          example: UNHANDLED_ERROR
-        message:
-          type: string
-          description: A human readable description of the error
-          example: Could not create a subscription
-        errors:
-          type: array
-          description: A list of more detailed errors about specific errors for specific entities
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    ErrorDetail:
-      type: object
-      required:
-      - source
-      - message
-      properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: subscriptionSku
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: Subscription not found
     SubscriptionResponse:
       type: object
       required:
@@ -505,6 +453,50 @@ components:
         country:
           type: string
           description: Player country
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: subscriptionSku
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Subscription not found
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: UNHANDLED_ERROR
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Could not create a subscription
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+  responses:
+    BadRequest:
+      description: Response for bad requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
   securitySchemes:
     EnvironmentApiKey:
       type: apiKey

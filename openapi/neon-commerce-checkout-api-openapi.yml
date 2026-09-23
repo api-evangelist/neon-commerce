@@ -1,11 +1,7 @@
 openapi: 3.2.0
 info:
   title: Checkout API
-  description: 'The Checkout API is used to create, and get data about, standalone checkouts, and to register callbacks used during the flow. Only use this API if you don''t have a Neon storefront integration; Neon storefronts automatically create checkouts for you.
-
-    Once the user confirms their checkout, the checkout object is transitioned to a Purchase object. Use the purchase ID sent in the `purchase.completed` webhook, or the ID included in the query parameters attached to the checkout success URL, to fetch data about the finalized checkout, including updated taxes and totals.
-
-    '
+  description: The Checkout API is used to create, and get data about, standalone checkouts, and to register callbacks used during the flow.
   version: '1'
 servers:
 - url: https://api.neonpay.com
@@ -19,9 +15,7 @@ paths:
       summary: Create a checkout
       description: 'Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. On success, we''ll send a `purchase.completed` event to your webhook listener. On payment failure, we''ll send a `payment.failed` event to your webhook listener.
 
-        Don''t use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.
-
-        '
+        Don''t use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.'
       operationId: createCheckout
       requestBody:
         required: true
@@ -75,9 +69,7 @@ paths:
   /checkout/{checkoutId}/expire:
     post:
       summary: Expire a checkout
-      description: 'Expire a checkout. This will expire the checkout corresponding to the provided checkoutId regardless of the current status.
-
-        '
+      description: Expire a checkout. This will expire the checkout corresponding to the provided checkoutId regardless of the current status.
       operationId: expireCheckout
       parameters:
       - name: checkoutId
@@ -138,7 +130,7 @@ paths:
       - Checkout
   /checkout/{checkoutId}:
     get:
-      summary: Returns a checkout's details.
+      summary: Returns a checkout's details
       description: Can be used to get the status of a particular checkout.
       operationId: getCheckout
       parameters:
@@ -186,6 +178,52 @@ components:
           schema:
             $ref: '#/components/schemas/APIError'
   schemas:
+    CreateCheckoutItem:
+      allOf:
+      - $ref: '#/components/schemas/BaseCheckoutItem'
+      - oneOf:
+        - type: object
+          required:
+          - price
+          properties:
+            price:
+              type: integer
+              description: Item price, in 100x the base unit of the currency; read more about prices [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api)
+        - type: object
+          required:
+          - priceTierCode
+          properties:
+            priceTierCode:
+              type: string
+              description: Item price tier; read more about price tiers [here](https://neonpay.readme.io/docs/pricing)
+    CreateCheckoutRequest:
+      oneOf:
+      - allOf:
+        - $ref: '#/components/schemas/BaseCreateCheckoutRequest'
+        - type: object
+          required:
+          - successUrl
+          properties:
+            successUrl:
+              type:
+              - string
+              - 'null'
+              description: URL to redirect to upon successful checkout
+              format: uri
+            cancelUrl:
+              type: string
+              description: URL to redirect to upon checkout cancellation
+              format: uri
+      - allOf:
+        - $ref: '#/components/schemas/BaseCreateCheckoutRequest'
+        - type: object
+          required:
+          - returnUrl
+          properties:
+            returnUrl:
+              type: string
+              description: Default URL to redirect to if set
+              format: uri
     BaseCheckoutItem:
       type: object
       properties:
@@ -234,38 +272,6 @@ components:
       - name
       - quantity
       - bundleContents
-    CheckoutBundleItem:
-      type: object
-      properties:
-        sku:
-          type: string
-          description: External identifier
-        name:
-          type: string
-          description: Name of item, for display in checkout
-        quantity:
-          type: integer
-          description: Number of this item in purchase
-        imageUrl:
-          type:
-          - string
-          - 'null'
-          description: Item image URL
-          format: uri
-        subtitle:
-          type:
-          - string
-          - 'null'
-          description: Item subtitle description
-        highlightedSubtitle:
-          type:
-          - string
-          - 'null'
-          description: Highlighted item subtitle description
-      required:
-      - sku
-      - name
-      - quantity
     Checkout:
       type: object
       properties:
@@ -369,29 +375,22 @@ components:
       - userId
       - initialCurrency
       - initialPlayerCountry
-    APIError:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        statusCode:
-          type: number
-          description: The HTTP response code
-          example: 400
-        code:
-          type: string
-          description: An error code that is static and can be used for programmatic error handling
-          example: INVALID_ITEM_ERROR
-        message:
-          type: string
-          description: A human readable description of the error
-          example: Item missing both price tier and price.
-        errors:
-          type: array
-          description: A list of more detailed errors about specific errors for specific entities
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
+    CheckoutItem:
+      allOf:
+      - $ref: '#/components/schemas/BaseCheckoutItem'
+      - type: object
+        required:
+        - price
+        - priceTierCode
+        properties:
+          price:
+            type: number
+            description: Item price, in 100x the base unit of the currency; read more about prices [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api)
+          priceTierCode:
+            type:
+            - string
+            - 'null'
+            description: Item price tier; read more about price tiers [here](https://neonpay.readme.io/docs/pricing)
     ErrorDetail:
       type: object
       required:
@@ -410,22 +409,38 @@ components:
           type: object
           description: Additional context about the error
           additionalProperties: true
-    CheckoutItem:
-      allOf:
-      - $ref: '#/components/schemas/BaseCheckoutItem'
-      - type: object
-        required:
-        - price
-        - priceTierCode
-        properties:
-          price:
-            type: number
-            description: Item price, in 100x the base unit of the currency; read more about prices [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api)
-          priceTierCode:
-            type:
-            - string
-            - 'null'
-            description: Item price tier; read more about price tiers [here](https://neonpay.readme.io/docs/pricing)
+    CheckoutBundleItem:
+      type: object
+      properties:
+        sku:
+          type: string
+          description: External identifier
+        name:
+          type: string
+          description: Name of item, for display in checkout
+        quantity:
+          type: integer
+          description: Number of this item in purchase
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: Item image URL
+          format: uri
+        subtitle:
+          type:
+          - string
+          - 'null'
+          description: Item subtitle description
+        highlightedSubtitle:
+          type:
+          - string
+          - 'null'
+          description: Highlighted item subtitle description
+      required:
+      - sku
+      - name
+      - quantity
     BaseCreateCheckoutRequest:
       type: object
       required:
@@ -629,52 +644,29 @@ components:
           type:
           - string
           - 'null'
-    CreateCheckoutRequest:
-      oneOf:
-      - allOf:
-        - $ref: '#/components/schemas/BaseCreateCheckoutRequest'
-        - type: object
-          required:
-          - successUrl
-          properties:
-            successUrl:
-              type:
-              - string
-              - 'null'
-              description: URL to redirect to upon successful checkout
-              format: uri
-            cancelUrl:
-              type: string
-              description: URL to redirect to upon checkout cancellation
-              format: uri
-      - allOf:
-        - $ref: '#/components/schemas/BaseCreateCheckoutRequest'
-        - type: object
-          required:
-          - returnUrl
-          properties:
-            returnUrl:
-              type: string
-              description: Default URL to redirect to if set
-              format: uri
-    CreateCheckoutItem:
-      allOf:
-      - $ref: '#/components/schemas/BaseCheckoutItem'
-      - oneOf:
-        - type: object
-          required:
-          - price
-          properties:
-            price:
-              type: integer
-              description: Item price, in 100x the base unit of the currency; read more about prices [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api)
-        - type: object
-          required:
-          - priceTierCode
-          properties:
-            priceTierCode:
-              type: string
-              description: Item price tier; read more about price tiers [here](https://neonpay.readme.io/docs/pricing)
+    APIError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: INVALID_ITEM_ERROR
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Item missing both price tier and price.
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
   securitySchemes:
     EnvironmentApiKey:
       type: apiKey

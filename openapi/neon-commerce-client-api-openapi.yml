@@ -12,9 +12,7 @@ paths:
     post:
       summary: Retrieve a client token
       operationId: createClientToken
-      description: 'This endpoint issues a client token that can be used with client-side requests to the Neon APIs. Expires in 24 hours.
-
-        '
+      description: This endpoint issues a client token that can be used with client-side requests to the Neon APIs. Expires in 24 hours.
       security:
       - ClientKey: []
       requestBody:
@@ -219,9 +217,7 @@ paths:
   /client/checkout:
     post:
       summary: Create a checkout using a client token
-      description: 'Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. See [Create a checkout using a client token](https://docs.neonpay.com/reference/createcheckoutclient) for more information. Don''t use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.
-
-        '
+      description: Create a checkout. Once the checkout is created, redirect the user to the `redirectUrl`. See Create a checkout using a client token for more information. Don't use this API if you have a Neon storefront set up. Neon storefronts handle creating checkouts on your behalf.
       operationId: createCheckoutClient
       security:
       - ClientToken: []
@@ -281,9 +277,7 @@ paths:
       summary: Mark an unclaimed purchase as claimed
       description: 'Mark a purchase as claimed. This is required if you are using a serverless flow.
 
-        The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.
-
-        '
+        The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.'
       operationId: clientClaimPurchase
       security:
       - ClientToken: []
@@ -338,9 +332,7 @@ paths:
       summary: Get all unclaimed purchases for a particular user
       description: 'Returns a data object containing the list of unclaimed purchases for the user.
 
-        The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.
-
-        '
+        The response is signed with `X-Neon-Signature-` headers for verification. To verify the signature, construct the payload as `{timestamp}.{responseBody}` and verify using the public key from the dashboard.'
       operationId: clientGetPurchasesUnclaimed
       security:
       - ClientToken: []
@@ -444,6 +436,24 @@ components:
           schema:
             $ref: '#/components/schemas/PurchaseNotFoundError'
   schemas:
+    ErrorDetail:
+      type: object
+      required:
+      - source
+      - message
+      properties:
+        source:
+          type: string
+          description: Specific entity that caused this error
+          example: items.0
+        message:
+          type: string
+          description: Human readable description of the error for this entity (defined in `source`)
+          example: Item missing both price tier and price.
+        context:
+          type: object
+          description: Additional context about the error
+          additionalProperties: true
     BaseClientCreateCheckoutRequest:
       type: object
       required:
@@ -563,24 +573,6 @@ components:
           description: A list of more detailed errors about specific errors for specific entities
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    ErrorDetail:
-      type: object
-      required:
-      - source
-      - message
-      properties:
-        source:
-          type: string
-          description: Specific entity that caused this error
-          example: items.0
-        message:
-          type: string
-          description: Human readable description of the error for this entity (defined in `source`)
-          example: Item missing both price tier and price.
-        context:
-          type: object
-          description: Additional context about the error
-          additionalProperties: true
     PurchaseBundleItem:
       type: object
       required:
@@ -597,6 +589,31 @@ components:
         quantity:
           type: integer
           description: Number of this item in purchase
+    Purchase:
+      allOf:
+      - $ref: '#/components/schemas/BasePurchase'
+      - type: object
+        required:
+        - events
+        properties:
+          events:
+            type: array
+            items:
+              $ref: '#/components/schemas/PurchaseEvent'
+    PurchaseNotFoundError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: PURCHASE_NOT_FOUND
+              enum:
+              - PURCHASE_NOT_FOUND
+            message:
+              type: string
+              example: Purchase not found.
     PurchaseItem:
       type: object
       required:
@@ -639,54 +656,6 @@ components:
           description: The items bundled with this SKU
           items:
             $ref: '#/components/schemas/PurchaseBundleItem'
-    PurchaseNotFoundError:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              example: PURCHASE_NOT_FOUND
-              enum:
-              - PURCHASE_NOT_FOUND
-            message:
-              type: string
-              example: Purchase not found.
-    Purchase:
-      allOf:
-      - $ref: '#/components/schemas/BasePurchase'
-      - type: object
-        required:
-        - events
-        properties:
-          events:
-            type: array
-            items:
-              $ref: '#/components/schemas/PurchaseEvent'
-    APIError_2:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        statusCode:
-          type: number
-          description: The HTTP response code
-          example: 400
-        code:
-          type: string
-          description: An error code that is static and can be used for programmatic error handling
-          example: PURCHASE_NOT_FOUND
-        message:
-          type: string
-          description: A human readable description of the error
-          example: Purchase not found
-        errors:
-          type: array
-          description: A list of more detailed errors about specific errors for specific entities
-          items:
-            $ref: '#/components/schemas/ErrorDetail_2'
     ErrorDetail_2:
       type: object
       required:
@@ -727,6 +696,29 @@ components:
           description: The total amount of this event (either the purchase or refund total), expressed as 100x the currency's base unit; see [here](https://docs.neonpay.com/docs/currencies#currencies-in-the-api) for more on currencies
         currency:
           type: string
+    APIError_2:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        statusCode:
+          type: number
+          description: The HTTP response code
+          example: 400
+        code:
+          type: string
+          description: An error code that is static and can be used for programmatic error handling
+          example: PURCHASE_NOT_FOUND
+        message:
+          type: string
+          description: A human readable description of the error
+          example: Purchase not found
+        errors:
+          type: array
+          description: A list of more detailed errors about specific errors for specific entities
+          items:
+            $ref: '#/components/schemas/ErrorDetail_2'
     BasePurchase:
       type: object
       required:

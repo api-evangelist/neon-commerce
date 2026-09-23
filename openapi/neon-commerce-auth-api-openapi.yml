@@ -13,9 +13,7 @@ paths:
     post:
       summary: Retrieve a token
       operationId: createToken
-      description: 'In order to authenticate a shop user with your game, you need to link the player "code" with your internal player account ID. This endpoint does that linking and returns a unique token that can be used to redirect the player back to the shop with an authenticated session.
-
-        '
+      description: In order to authenticate a shop user with your game, you need to link the player "code" with your internal player account ID. This endpoint does that linking and returns a unique token that can be used to redirect the player back to the shop with an authenticated session.
       security:
       - EnvironmentApiKey: []
       requestBody:

@@ -102,6 +102,12 @@ paths:
       - Account
 components:
   responses:
+    Unauthorized:
+      description: Response for unauthorized requests. Should note what in the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIError'
     BadRequest:
       description: Response for bad requests. Should note what in the request was invalid.
       content:
@@ -110,12 +116,6 @@ components:
             $ref: '#/components/schemas/APIError'
     CannotBeUnmerged:
       description: Response when trying to unmerge an account that has accounts merged into it.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIError'
-    Unauthorized:
-      description: Response for unauthorized requests. Should note what in the request was invalid.
       content:
         application/json:
           schema:
